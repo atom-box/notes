@@ -46,3 +46,44 @@ note!  IS  not EQUALS SIGN.
 
 # UNIQUE
 ## select distinct ____  from _____
+
+SELECT * FROM _____ WHERE year >= 1999;
+
+# WILDCARDS
+(exactly one)
+ SELECT * 
+ FROM movies
+ WHERE name LIKE 'Se_en';
+
+(zero or more)
+ SELECT * 
+ FROM movies 
+ WHERE name LIKE '%man%';
+
+ # NULL in sqlite
+ It is not possible to test for NULL values with comparison operators, such as = and !=. Instead, we will have to use these operators: IS NULL   IS NOT NULL
+
+# BETWEEN
+SELECT *
+FROM movies
+WHERE year BETWEEN 1990 AND 1999;
+Really interesting point to emphasize again:
+    BETWEEN two letters is not inclusive of the second letter.
+    BETWEEN two numbers is.
+
+# SORTING
+ SELECT *
+ FROM movies
+ ORDER BY name;
+
+ # LIMIT
+ ...LIMIT 33;
+ LIMIT always goes at the very end.
+
+
+
+
+
+
+
+

@@ -49,6 +49,10 @@ note!  IS  not EQUALS SIGN.
 
 SELECT * FROM _____ WHERE year >= 1999;
 
+SELECT DISTINCT column, another_column, …
+FROM mytable
+WHERE condition(s);
+
 # WILDCARDS
 (exactly one)
  SELECT * 
@@ -79,6 +83,39 @@ Really interesting point to emphasize again:
  # LIMIT
  ...LIMIT 33;
  LIMIT always goes at the very end.
+
+ # LOGIC !!
+ SELECT name,
+ CASE
+  WHEN imdb_rating > 7 THEN 'Good'
+  WHEN imdb_rating > 5 THEN 'Okay'
+  ELSE 'Bad'
+ END
+FROM movies;
+
+		...that comma tripped me up
+		...use hen power, as in 
+		comma
+		WHEN _____ THEN _____
+
+SELECT DISTINCT titles, DISTINCT years
+SELECT ___       GROUP BY ___
+SELECT ___       ORDER BY ___
+LIMIT 36 OFFSET 11;
+
+
+# COUNT 
+SELECT somecolumn,someothercolumn, COUNT(*) 
+   FROM my_table 
+GROUP BY somecolumn,someothercolumn
+
+# ORDER   LIMIT   OFFSET
+
+SELECT column, another_column, …
+FROM mytable
+WHERE condition(s)
+ORDER BY column ASC/DESC
+LIMIT num_limit OFFSET num_offset;
 
 
 

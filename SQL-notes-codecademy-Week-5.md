@@ -145,7 +145,10 @@ DROP TABLE tmp_table_name;
 
 Wrapping all this in a BEGIN TRANSACTION; and COMMIT; is also probably a good idea.
 
+# COUNT 
 
+SELECT COUNT(*)
+FROM table_name;
 
 
 

@@ -121,35 +121,37 @@ LIMIT num_limit OFFSET num_offset;
 # RENAME COLUMNS IN 1-2-3 STEPS
 
 Say you have a table and need to rename "colb" to "col_b":
-
 First you rename the old table:
-
 ALTER TABLE orig_table_name RENAME TO tmp_table_name;
-
 Then create the new table, based on the old table but with the updated column name:
-
 CREATE TABLE orig_table_name (
   col_a INT
 , col_b INT
 );
-
 Then copy the contents across from the original table.
-
 INSERT INTO orig_table_name(col_a, col_b)
 SELECT col_a, colb
 FROM tmp_table_name;
-
 Lastly, drop the old table.
-
 DROP TABLE tmp_table_name;
-
 Wrapping all this in a BEGIN TRANSACTION; and COMMIT; is also probably a good idea.
+
 
 # COUNT 
 
 SELECT COUNT(*)
 FROM table_name;
 
+# my-recipe-for-best-countrys table
+SELECT  country, count(*) as "ducats" from GoldMedal group by country order by ducats desc;
 
+
+# subqueries --> SUBQUERIES -[also called NESTED QUERY]-> 
+This is halfway a solution for Olympic:
+SELECT  x as dandy FROM GoldMedal ,
+(
+    SELECT COUNT(*) AS x FROM GoldMedal
+)
+WHERE COUNTRY LIKE "Spain";
 
 

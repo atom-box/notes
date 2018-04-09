@@ -147,11 +147,59 @@ SELECT  country, count(*) as "ducats" from GoldMedal group by country order by d
 
 
 # subqueries --> SUBQUERIES -[also called NESTED QUERY]-> 
-This is halfway a solution for Olympic:
-SELECT  x as dandy FROM GoldMedal ,
-(
-    SELECT COUNT(*) AS x FROM GoldMedal
-)
-WHERE COUNTRY LIKE "Spain";
+
+#Queries with expressions
+SELECT particle_speed / 2.0 AS half_particle_speed
+FROM physics_data
+WHERE ABS(particle_position) * 10.0 > 500;
+
+#Inner Join
+
+Select query with INNER JOIN on multiple tables
+SELECT column, another_table_column, …
+FROM mytable
+INNER JOIN another_table 
+    ON mytable.id = another_table.id
+WHERE condition(s)
+ORDER BY column, … ASC/DESC
+LIMIT num_limit OFFSET num_offset;
+
+# Two Possible Solutions to that last step of OLYMPICS:
+Zeroeth choice is to count two columns and divide some nonsense.
+First choice is to do it as a nested table.  S  F  W  ( s  X AS Y f w); needs nought after parens!
+Second choice is to store a view.
+
+# VIEWS
+
+CREATE VIEW view_name AS select(*) from Players;
+
+Non-View example  ------------------------------------------------  
+SELECT
+ trackid,
+ tracks.name,
+ albums.Title AS album,
+ media_types.Name AS media,
+ genres.Name AS genres
+FROM
+ tracks
+INNER JOIN albums ON Albums.AlbumId = tracks.AlbumId
+INNER JOIN media_types ON media_types.MediaTypeId = tracks.MediaTypeId
+INNER JOIN genres ON genres.GenreId = tracks.GenreId;
+
+View-Example of Same statement ----------------------------------
+CREATE VIEW v_tracks 
+AS 
+SELECT
+ trackid,
+ tracks.name,
+ albums.Title AS album,
+ media_types.Name AS media,
+ genres.Name AS genres
+FROM
+ tracks
+INNER JOIN albums ON Albums.AlbumId = tracks.AlbumId
+INNER JOIN media_types ON media_types.MediaTypeId = tracks.MediaTypeId
+INNER JOIN genres ON genres.GenreId = tracks.GenreId;
+
 
 

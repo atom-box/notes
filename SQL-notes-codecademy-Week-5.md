@@ -201,5 +201,46 @@ INNER JOIN albums ON Albums.AlbumId = tracks.AlbumId
 INNER JOIN media_types ON media_types.MediaTypeId = tracks.MediaTypeId
 INNER JOIN genres ON genres.GenreId = tracks.GenreId;
 
+# VIEW (part II, cont'd)
+You'll get errors if you re-create an existing view.  
+Hence:
+DROP TABLE x;
+DROP VIEW x;
+...each is userful.
 
+Or:
+DROP TABLE IF EXISTS x;
 
+Or, when making: 
+CREATE TEMP VIEW x AS s f w . . . 
+
+#SQL Functions
+COUNT Function 	Return the count of an expression
+SUM Function 	Return the sum of an expression
+MIN Function 	Return the min of an expression
+MAX Function 	Return the max of an expression
+AVG Function 
+
+# JOIN   (or INNER JOIN)
+SELECT *
+FROM orders
+JOIN customers
+    ON orders.customer_id = customers.customer_id
+*notice the 'inner' was optional.*
+
+SELECT Title, Rating FROM movies
+INNER JOIN Boxoffice 
+ON Movies.id = Boxoffice.Movie_id
+ORDER BY Rating DESC;
+//again, it is okay to say simply JOIN
+
+#OTHER JOIN STYLES (left , full, right)  [no such syntax term OUTER]
+ 
+Select query with LEFT/RIGHT/FULL JOINs on multiple tables
+SELECT column, another_column, …
+FROM mytable
+INNER/LEFT/RIGHT/FULL JOIN another_table 
+    ON mytable.id = another_table.matching_id
+WHERE condition(s)
+ORDER BY column, … ASC/DESC
+LIMIT num_limit OFFSET num_offset;

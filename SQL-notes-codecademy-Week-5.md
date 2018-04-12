@@ -234,7 +234,7 @@ ON Movies.id = Boxoffice.Movie_id
 ORDER BY Rating DESC;
 //again, it is okay to say simply JOIN
 
-#OTHER JOIN STYLES (left , full, right)  [no such syntax term OUTER]
+#OTHER JOIN STYLES (left , full, right, cross)  [no such syntax term OUTER]
  
 Select query with LEFT/RIGHT/FULL JOINs on multiple tables
 SELECT column, another_column, …
@@ -244,3 +244,9 @@ INNER/LEFT/RIGHT/FULL JOIN another_table
 WHERE condition(s)
 ORDER BY column, … ASC/DESC
 LIMIT num_limit OFFSET num_offset;
+
+*crossjoin*
+SELECT shirts.shirt_color,
+       pants.pant_color
+FROM shirts
+CROSS JOIN pants;

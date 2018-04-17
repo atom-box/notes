@@ -223,20 +223,24 @@ AVG Function
 
 # JOIN   (or INNER JOIN)
 SELECT *
-FROM orders
-JOIN customers
-    ON orders.customer_id = customers.customer_id
+FROM 
+orders JOIN customers
+  ON orders.customer_id = 
+  customers.customer_id
 *notice the 'inner' was optional.*
 
-SELECT Title, Rating FROM movies
-INNER JOIN Boxoffice 
-ON Movies.id = Boxoffice.Movie_id
+SELECT Title, Rating FROM 
+movies INNER JOIN Boxoffice 
+ON 
+Movies.id = Boxoffice.Movie_id
 ORDER BY Rating DESC;
 //again, it is okay to say simply JOIN
 
 #OTHER JOIN STYLES (left , full, right, cross)  [no such syntax term OUTER]
  
 Select query with LEFT/RIGHT/FULL JOINs on multiple tables
+*most joins are done on foreign keys with primary keys -- sort of like bringing the cousins back home.  This allows construction of a more-fluid excel type row*
+
 SELECT column, another_column, …
 FROM mytable
 INNER/LEFT/RIGHT/FULL JOIN another_table 
@@ -246,7 +250,11 @@ ORDER BY column, … ASC/DESC
 LIMIT num_limit OFFSET num_offset;
 
 *crossjoin*
+*crossjoin crams things together but doesn't line anything up; it asks-not for any common key, hence it lacks any ON = ON*
+*classic way to use crossJOIN is to add conditions:   COUNT(*) WHERE MONTH < STARTMONTH AND MONTH GREATER THAN ENDMONTH *
 SELECT shirts.shirt_color,
        pants.pant_color
 FROM shirts
 CROSS JOIN pants;
+
+*the point of *

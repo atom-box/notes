@@ -250,6 +250,8 @@ ORDER BY column, … ASC/DESC
 LIMIT num_limit OFFSET num_offset;
 
 *crossjoin*
+*predict no. of rows! answer: a TIMES b*
+*crossing 2 on 4 gives 8*
 *crossjoin crams things together but doesn't line anything up; it asks-not for any common key, hence it lacks any ON = ON*
 *classic way to use crossJOIN is to add conditions:   COUNT(*) WHERE MONTH < STARTMONTH AND MONTH GREATER THAN ENDMONTH *
 SELECT shirts.shirt_color,
@@ -257,4 +259,18 @@ SELECT shirts.shirt_color,
 FROM shirts
 CROSS JOIN pants;
 
-*the point of *
+# UNION 
+_for stacking_
+_main rule: headings are identical_
+
+charmates@gmail.com
+celerity 
+
+
+
+
+SELECT *
+ FROM table1
+ UNION
+ SELECT *
+ FROM table2;

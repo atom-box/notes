@@ -266,11 +266,13 @@ _main rule: headings are identical_
 charmates@gmail.com
 celerity 
 
-
-
-
 SELECT *
  FROM table1
  UNION
  SELECT *
  FROM table2;
+
+ =================
+start projrct sqlite notes
+ =================
+ 

@@ -341,6 +341,111 @@ db.run('INSERT INTO TemperatureData (location, year, temp_avg) VALUES ($location
 
 
 
+
+))))))))))))))))))))))))))))))))))))))
+oooooooooooooooooooooooooooooooooooooo
+))))))))))))))))))))))))))))))))))))))
+oooooooooooooooooooooooooooooooooooooo
+#======= #Learn Node SQLite# =========
+))))))))))))))))))))))))))))))))))))))
+oooooooooooooooooooooooooooooooooooooo
+
+====  _Handling Errors Gracefully_  ==
+====  _Handling Errors Gracefully_  ==
+====  _Handling Errors Gracefully_  ==
+
+const { printQueryResults } = require('./utils');
+const sqlite = require('sqlite3');
+
+const db = new sqlite.Database('./db.sqlite');
+
+const newRow = {
+  location: 'Istanbul, Turkey',
+  year: 1976,
+  tempAvg: 13.35
+}
+
+db.run('INSERT INTO TemperatureData (location, year, temp_avg) VALUES ($location, $year, $tempAvg)', {
+  $location: newRow.location,
+  $year: newRow.year,
+  $tempAvg: newRow.tempAvg
+}, function(error) {
+  // handle errors here!
+  if(error){
+    return console.log(error);
+  }
+  
+  console.log(this.lastID);
+  
+  db.get('SELECT * FROM TemperatureData WHERE id = $id', {
+      $id: this.lastID
+  },
+  function(error, row){
+    printQueryResults(row);
+  });
+});
+
+ 
+))))))))))))))))))))))))))))))))))))))
+oooooooooooooooooooooooooooooooooooooo
+======================================
+process every row returned 
+from a database query. 
+oooooooooooooooooooooooooooooooooooooo
+======================================
+db.each("SELECT * FROM Dog WHERE breed = 'Labrador'", 
+  (error, row) => {
+    // This gets called for every row our query returns
+    console.log(`${row.name} is a good dog`);
+  },
+  (error, numberOfRows) => {
+    // This gets called after each of our rows have been processed
+    console.log(`There were ${numberOfRows} good dogs`);
+});
+::::::::::::::::::
+const { printQueryResults, calculateAverages, addClimateRowToObject } = require('./utils');
+const sqlite = require('sqlite3');
+
+const db = new sqlite.Database('./db.sqlite');
+
+const temperaturesByYear = {};
+
+db.run('DROP TABLE IF EXISTS Average', error => {
+  if (error) {
+    throw error;
+  }
+  db.each('SELECT * FROM TemperatureData',
+    (error, row) => {
+      if (error) {
+        throw error;
+      }
+      addClimateRowToObject(row, temperaturesByYear);
+    }, 
+    error => {
+      if (error) {
+        throw error;
+      }
+      const averageTemperatureByYear = calculateAverages(temperaturesByYear);
+      printQueryResults(averageTemperatureByYear);
+    }
+  );
+});
+:::::::::::::::::::::::
+
+
+))))))))))))))))))))))))))))))))))))))
+oooooooooooooooooooooooooooooooooooooo
+======================================
+))))))))))))))))))))))))))))))))))))))
+oooooooooooooooooooooooooooooooooooooo
+======================================
+))))))))))))))))))))))))))))))))))))))
+oooooooooooooooooooooooooooooooooooooo
+======================================
+))))))))))))))))))))))))))))))))))))))
+oooooooooooooooooooooooooooooooooooooo
+======================================
+
 ::::::::DEV DIARY  :::::::::::::::::::
 As a new programmer, I miss the old days when I was trying to solve a puzzle, like to invent a recursive algorithm.  
 Now, learning framework syntax, it feels like installing plumbing. 
@@ -390,12 +495,13 @@ How do I fit in a 3 week BOOT CAMP immersion in DC or with no pay, staying at a 
 Ideal would be a Detroit based one! BootCamp lists are at FCCamp and that free place. 
 Alternative to immersion is QUIT AND START UNPAID INTERNSHIP.   
 
-Thursday.
+Dev Diary Thursday.
 Problem -- made a local branch. Now can't push branch to the remote. How do? 
-Saturday.
+Dev Diary Saturday.
 Felt good.  Sat down and rote-typed and did For Each and objects in an array by memory, feeling better on javascript feel.  Feel good that I mailed my mom's-day card.
 
-Sunday:
+
+Thursday:
 ------------------- 
 Try to type the 
 THE THREE PARTS OF _db.run_ by zombie rote in 15 minutes.  Then, goal, solve 7/11 and 8/11 today and then 9/11 & 10/11 Monday.  
@@ -407,3 +513,13 @@ And need to start going back and prettyifying my portfolio.   Maybe Portfolio st
 Next to-do:
 Solve in Sublime the instructions for #6.7.js
 Noodle around with your Hahn exercise of Eggen printing to the screen a parsed word, via objects in an array, per Duckett.  Post to github
+.   .   .   .   .   .   .   .   .   .   .  
+p.236
+Be tolerant of all mistakes the first time.
+Never allow the same mistake to be made twice.
+1) cat box
+2) save backups so can reinstall windows tomorrow
+3) pull 15 min of dandelions.  Seed backyard.  
+
+Sunday replant Tree 1 & 2
+

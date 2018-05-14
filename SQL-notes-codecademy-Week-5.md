@@ -1,3 +1,5 @@
+1.  Cool!  npm install sqlite3 worked.
+
 # SELECT * from celebs;
 
 # Make a new table
@@ -514,12 +516,26 @@ Next to-do:
 Solve in Sublime the instructions for #6.7.js
 Noodle around with your Hahn exercise of Eggen printing to the screen a parsed word, via objects in an array, per Duckett.  Post to github
 .   .   .   .   .   .   .   .   .   .   .  
-p.236
-Be tolerant of all mistakes the first time.
-Never allow the same mistake to be made twice.
+
+
+
+
 1) cat box
 2) save backups so can reinstall windows tomorrow
 3) pull 15 min of dandelions.  Seed backyard.  
 
 Sunday replant Tree 1 & 2
+Monday to-do:  On your own, try to get the thing where you load utils from a separate file.   Like CONST { CRUNCH, TELL} = REQUIRE('./UTILS');
 
+p.84
+What differentiates (Henry Ford) from (the other 400 auto startupsin 1905) is that the succesful enterpreneurs had the ...ability.. to discoverwhich parts of their plans were working billiantly and which were misguided and adapt their strategies accordingly. ""
+
+(1/1) 
+All I need to know about startups I learned from an Captain Fantastic Elton John biography:  set a sustainable daily schedule of hard work, find a startup partner that handles a different skill set than yours and build a history of respecting each other's traditions.   If he gives you a weird lyric, just sincerely sing it like you mean it.  off load lyric writing, recording, backing vocal writing to Gus Dudgeon, Bernie Taupin, Davey Johnstone.   Release four or five albums that aren't great, but get better the whole time.   (Empty Sky.)
+And one anti-example:  don't try cocaine.  Ever.
+Amazing example of the work pace:  Caribou LP, in 8 days, not only recorded, but also written.  (Backing vocals and horns were outsourced and added later.)
+
+When my fater-in-law visits we do calistenics.  
+He taught me this morning to stick my foot through a paint can and do quadriceps in a chair. 
+
+Next action, Monday:  Zed Shaw the error part.  Copy the last two lessons!!!!

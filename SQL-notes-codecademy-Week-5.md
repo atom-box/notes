@@ -404,6 +404,7 @@ db.each("SELECT * FROM Dog WHERE breed = 'Labrador'",
     // This gets called after each of our rows have been processed
     console.log(`There were ${numberOfRows} good dogs`);
 });
+
 ::::::::::::::::::
 const { printQueryResults, calculateAverages, addClimateRowToObject } = require('./utils');
 const sqlite = require('sqlite3');
@@ -432,6 +433,187 @@ db.run('DROP TABLE IF EXISTS Average', error => {
     }
   );
 });
+----------
+#By this point we've learned in SQLITE to:
+    Query a database for weather records by location.
+    Reformat that data into a JavaScript object.
+    Manipulate that JavaScript object to find new, meaningful information.
+_________
+Lesson (9/11)in Part 6
+#Creating A New Table))))))))))))))))))
+const { calculateAverages, addClimateRowToObject, logNodeError, printQueryResults } = require('./utils');
+const sqlite = require('sqlite3');
+
+const db = new sqlite.Database('./db.sqlite');
+
+const temperaturesByYear = {};
+
+// start by wrapping all the code below in a serialize method
+
+db.run('DROP TABLE IF EXISTS Average', error => {
+  if (error) {
+    throw error;
+  }
+  db.each('SELECT * FROM TemperatureData',
+    (error, row) => {
+      if (error) {
+        throw error;
+      }
+      addClimateRowToObject(row, temperaturesByYear);
+    }, 
+    error => {
+      if (error) {
+        throw error;
+      }
+      const averageTemperatureByYear = calculateAverages(temperaturesByYear);
+      db.run('CREATE TABLE Average (id INTEGER PRIMARY KEY, year INTEGER NOT NULL, temperature REAL NOT NULL)', logNodeError);
+      averageTemperatureByYear.forEach(row => {
+        db.run('INSERT INTO Average (year, temperature) VALUES ($year, $temp)', {
+          $year: row.year,
+          $temp: row.temperature
+        }, err => {
+          if (err) {
+            console.log(err);
+          }
+        });
+      });
+    }
+  );
+});
+______________ 
+#Lesson 10/11
+##Forcing Code to NOT thread, to run in order
+
+*Before:*
+
+*Instructions:*
+Instructions
+1.
+
+Let's un-nest your code to take advantage of db.serialize(). We'll go step by step. First, open a call to db.serialize(). Put all of your nested db code inside of db.serialize()’s callback function.
+
+Your code should a structure resembling this:
+
+db.serialize(() => {
+  // All your current db.<method> code
+});
+
+2.
+
+We start with a clean slate every time the code runs with a DROP TABLE IF EXISTS statement. . All your queries are currently inside the callback for this query. Close the callback function after the error checking and un-nest the db.each() method You can leave the contents of db.each() as they are for now. The db.each() query should be on the same level as your DROP TABLE query and will run serially after it.
+
+The DROP TABLE query should be completely closed before the db.each():
+
+// Inside db.serialize():
+db.run('DROP TABLE ....',
+  err => {
+    // Handle errors
+  }
+);
+db.each('<query>', (err, row) => {
+  // Your other queries
+});
+
+3.
+
+Move your command to CREATE the table Average into your db.serialize() method call right after dropping the table and before db.each(). It should be at the same level of nesting as db.each().
+
+Leave your command to INSERT the rows into Average inside the second callback of db.each(), guaranteeing that the averages are calculated after your table is created.
+
+Your code inside db.serialize() should now have this structure:
+
+db.run('DROP TABLE ....', (err) => {
+  // Contents for error handling
+});
+db.run('CREATE TABLE ... ', (err) => {
+  // Contents for error handling
+});
+db.each('<query>', (err, row) => {
+  // All the rest of your logic
+});
+
+4.
+
+No more errors! After all your rows have been inserted with the averageTemperatureByYear.forEach() loop inside db.each(), create a new db.all() query to SELECT all rows from the Average table and printQueryResults() with the transformed data!
+
+Use db.all() to select many rows.
+5.
+
+We were able to add this information to the new table, congrats! Review the results logged to the console, do they make sense?
+
+
+
+
+
+
+
+:::::::::::::::::::
+
+db.serialize(() => {                                                                                                                          
+  db.run("DROP TABLE Dog");
+  db.run("CREATE TABLE Dog");
+  db.run("INSERT INTO Dog (breed, name, owner, fur_color, fur_length) VALUES  ('Dachshund', 'Spike', 'Elizabeth', 'Brown', 'Short')");
+});
+
+
+::::::::::::::::::
+1)   sqlite3 is the node library for sqlite
+2)   SYNTAX FOR db.run
+___
+db.run(sql, params, function(err){
+  // 
+});
+___
+*If error occurred*, you can find the detailed information in the err argument of the callback function.
+
+*If executed successfully*, the this object of the callback function will contain two properties:
+
+    lastID property stores the value of the last inserted row ID.
+    changes property stores the rows affected by the query.
+LIST OF ALL DB.XXX METHODS:
+https://www.w3resource.com/node.js/nodejs-sqlite.php
+
+Database#close([callback])
+
+
+Database#run(sql, [param, ...], [callback])
+
+
+Database#get(sql, [param, ...], [callback])
+ 
+
+Database#all(sql, [param, ...], [callback])
+ 
+Database#each(sql, [param, ...], [callback], [complete])
+ 
+
+Database#exec(sql, [callback])
+ 
+Database#prepare(sql, [param, ...], [callback])
+ 
+
+Statement#bind([param, ...], [callback])
+ 
+Statement#reset([callback])
+ 
+Statement#finalize([callback])
+
+Statement#run([param, ...], [callback])
+ 
+Statement#get([param, ...], [callback])
+ 
+
+Statement#all([param, ...], [callback])
+ 
+Statement#each([param, ...], [callback], [complete])
+ 
+#DEBUGGING (SEE ORIGINAL REF. FOR MORE COMPLETENESS)#
+Writing asynchronous functions using the thread pool unfortunately also removes all stack trace information, making debugging very hard since you only see the error message, not which statement caused it. To mitigate this problem, node-sqlite3 has a verbose mode which captures stack traces when enqueuing queries. To enable this mode, call the sqlite3.verbose(), or call it directly when requiring: var sqlite3 = require('sqlite3').verbose().
+ 
+Database#on('trace', [callback])
+ 
+
+Database#on('profile', [callback])
 :::::::::::::::::::::::
 
 

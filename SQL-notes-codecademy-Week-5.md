@@ -3,16 +3,46 @@
 # SELECT * from celebs;
 
 # Make a new table
-CREATE TABLE table_name (
+CREATE TABLE IF NOT EXISTS table_name (
     column_1 data_type, 
     column_2 data_type, 
     column_3 data_type
   );
 
 *or*
+
 CREATE TABLE ()
 
+* or *
+
+ JUST ONE ROW, SHOWING foreign key
+ group_id integer NOT NULL,
+        FOREIGN KEY (group_id) REFERENCES supplier_groups(group_id)
+
+
 *or*
+
+The "CREATE TABLE" command is used to create a new table in an SQLite database. A CREATE TABLE command specifies the following attributes of the new table:
+
+    The name of the new table.
+
+    The database in which the new table is created. Tables may be created in the main database, the temp database, or in any attached database.
+
+    The name of each column in the table.
+
+    The declared type of each column in the table.
+
+    A default value or expression for each column in the table.
+
+    A default collation sequence to use with each column.
+
+    Optionally, a PRIMARY KEY for the table. Both single column and composite (multiple column) primary keys are supported.
+
+    A set of SQL constraints for each table. SQLite supports UNIQUE, NOT NULL, CHECK and FOREIGN KEY constraints.
+
+    Whether the table is a WITHOUT ROWID table. 
+
+_or_
 CREATE TABLE awards (
   id INTEGER PRIMARY KEY,
   recipient TEXT NOT NULL,
@@ -439,6 +469,26 @@ db.run('DROP TABLE IF EXISTS Average', error => {
     Reformat that data into a JavaScript object.
     Manipulate that JavaScript object to find new, meaningful information.
 _________
+w3Schools -- ERRORS  ERRORS  W3
+_________
+function myFunction() {
+    var message, x;
+    message = document.getElementById("p01");
+    message.innerHTML = "";
+    x = document.getElementById("demo").value;
+    try {
+        if(x == "") throw "empty";
+        if(isNaN(x)) throw "not a number";
+        x = Number(x);
+        if(x < 5) throw "too low";
+        if(x > 10) throw "too high";
+    }
+    catch(err) {
+        message.innerHTML = "Input is " + err;
+    }
+}
+_________
+
 Lesson (9/11)in Part 6
 #Creating A New Table))))))))))))))))))
 const { calculateAverages, addClimateRowToObject, logNodeError, printQueryResults } = require('./utils');
@@ -500,7 +550,9 @@ db.serialize(() => {
 
 2.
 
-We start with a clean slate every time the code runs with a DROP TABLE IF EXISTS statement. . All your queries are currently inside the callback for this query. Close the callback function after the error checking and un-nest the db.each() method You can leave the contents of db.each() as they are for now. The db.each() query should be on the same level as your DROP TABLE query and will run serially after it.
+We start with a clean slate every time the code runs with a 
+DROP TABLE IF EXISTS 
+statement. . All your queries are currently inside the callback for this query. Close the callback function after the error checking and un-nest the db.each() method You can leave the contents of db.each() as they are for now. The db.each() query should be on the same level as your DROP TABLE query and will run serially after it.
 
 The DROP TABLE query should be completely closed before the db.each():
 
@@ -570,6 +622,11 @@ ___
 
     lastID property stores the value of the last inserted row ID.
     changes property stores the rows affected by the query.
+
+::::::::::::::::::::::::::
+::::::::::::::::::::::::::
+::::::::::::::::::::::::::
+
 LIST OF ALL DB.XXX METHODS:
 https://www.w3resource.com/node.js/nodejs-sqlite.php
 
@@ -607,6 +664,12 @@ Statement#all([param, ...], [callback])
  
 Statement#each([param, ...], [callback], [complete])
  
+##Asynchronous Callbacks-learned at Colectivo##
+(1) You need to 
+Nest the functions.  This enforces order of fulfillment.  However this is a bit caveman
+(2) ECMA6 introduced Promise and  (pending, resolved, rejected).
+https://blogs.msdn.microsoft.com/yizhang/2018/01/17/calling-node-js-sqlite-callback-function-using-promise-and-await/
+(3) db.serialize() is the other clerver modern way 
 #DEBUGGING (SEE ORIGINAL REF. FOR MORE COMPLETENESS)#
 Writing asynchronous functions using the thread pool unfortunately also removes all stack trace information, making debugging very hard since you only see the error message, not which statement caused it. To mitigate this problem, node-sqlite3 has a verbose mode which captures stack traces when enqueuing queries. To enable this mode, call the sqlite3.verbose(), or call it directly when requiring: var sqlite3 = require('sqlite3').verbose().
  
@@ -615,10 +678,114 @@ Database#on('trace', [callback])
 
 Database#on('profile', [callback])
 :::::::::::::::::::::::
+GOOD EXAMPLE DB.ALL
+var sqlite3 = require('sqlite3').verbose();
+var file = "hr";
+var db = new sqlite3.Database(file);
+db.all("SELECT first_name,last_name FROM employees", function(err, rows) {
+        rows.forEach(function (row) {
+            console.log(row.first_name, row.last_name);
+        })
+  }); 
+db.close();
+https://www.w3resource.com/node.js/nodejs-sqlite.php
+:::::::::::::::::::::::
+GOOD EXAMPLE OF
+APP.POST
+AND
+DB.ALL
+app.post("/login", function(req, res) {
+      let db = new sqlite3.Database("./database/InvoicingApp.db");
+      let sql = `SELECT * from users where email='${req.body.email}'`;
+      db.all(sql, [], (err, rows) => {
+        if (err) {
+          throw err;
+        }
+        db.close();
+        if (rows.length == 0) {
+          return res.json({
+            status: false,
+            message: "Sorry, wrong email"
+          });
+        }
+https://scotch.io/tutorials/building-a-mini-invoicing-app-with-vue-and-node-database-and-api
+:::::::::::::::::::::::
+:::::::::::::::::::::::
+:::::::::::::::::::::::
+:::::::::::::::::::::::
+:::::::::::::::::::::::
+:::::::::::::::::::::::
 
 
-))))))))))))))))))))))))))))))))))))))
+
+
+
+
+
+
+
+
+))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+       )))))))))))))   TUTORIAL FOR  e.j.s.  ))))))))))))
+))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+view-serving can be done in raw Node, supposedly.  
+Something called Jade is built-in
+
+
+
+Control flow is possible.  
+The bracket types are 
+<%  %>  This means CONTROL ELEMENT
+<%=  %> This means escaped output. Huh??
+<%-  %>   Unescaped raw output.
+
 oooooooooooooooooooooooooooooooooooooo
+NODE    JS    TUTORIALS    POINT    SAYS:
+__dirname
+The __dirname represents the name of the directory that the currently executing script
+resides in.
+Example
+Create a js file named main.js with the following code:
+// Let's try to print the value of __dirname
+console.log( __dirname );
+Now run the main.js to see the result:
+$ node main.js
+
+""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""
+
+RUNNING IN ORDER -- via RUN-SEQUENCE  and  GULP 
+First, install run-sequence as a development dependency:
+
+npm install --save-dev run-sequence
+
+Then add use it in your gulpfile, like so (note these are only examples, please check the documentation for your functions for the correct way to use them):
+
+var gulp = require('gulp');
+var runSequence = require('run-sequence');
+var del = require('del');
+var fs = require('fs');
+ 
+// This will run in this order:
+// * build-clean
+// * build-scripts and build-styles in parallel
+// * build-html
+// * Finally call the callback function
+gulp.task('build', function(callback) {
+  runSequence('build-clean',
+              ['build-scripts', 'build-styles'],
+              'build-html',
+              callback);
+});
+""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""
+https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/
+Good article.  The linkname says it all.
+""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""
+
+
+
 ======================================
 ))))))))))))))))))))))))))))))))))))))
 oooooooooooooooooooooooooooooooooooooo
@@ -711,9 +878,18 @@ Monday to-do:  On your own, try to get the thing where you load utils from a sep
 
 p.84
 What differentiates (Henry Ford) from (the other 400 auto startupsin 1905) is that the succesful enterpreneurs had the ...ability.. to discoverwhich parts of their plans were working billiantly and which were misguided and adapt their strategies accordingly. ""
-
-(1/1) 
-All I need to know about startups I learned from an Captain Fantastic Elton John biography:  set a sustainable daily schedule of hard work, find a startup partner that handles a different skill set than yours and build a history of respecting each other's traditions.   If he gives you a weird lyric, just sincerely sing it like you mean it.  off load lyric writing, recording, backing vocal writing to Gus Dudgeon, Bernie Taupin, Davey Johnstone.   Release four or five albums that aren't great, but get better the whole time.   (Empty Sky.)
+This could probably be a medium article.
+(1/4) 
+All I need to know about startups I learned from a Captain Fantastic Elton John biography:  
+set a sustainable daily schedule of hard work by signing a two albums a year contract (graphic is 1970 to 1975 album covers) 
+(2/4)
+( of penned lyrics) find a startup partner that handles a different skill set , AND THEN TRUST THEM.  Choose wisely; bail if they are not a listener, 'cause it has to be a reciprocal 'I'm on your level, I understand, your thing, I trust you on it'
+.  than yours and build a history of respecting each other's traditions.   If he gives you a weird lyric, just sincerely sing it like you mean it.  off load lyric writing, 
+(3/4)
+Your team can be potheads, imperfect, everything is cool if when you wake up each morning at Chateau au Honky Meraigne they have laid the rhythm AND the backing vocals.  Choose a drummer who is competent but not ambitious, i.e. I'm here for the 'benefits'.
+recording, backing vocal writing to Gus Dudgeon, Bernie Taupin, Davey Johnstone.   (graphic of back sleeve on Capt Fantastic, them floating away)
+4/4
+Back to point one.  Just start!  Release four or five albums that aren't great, but get better the whole time.   (Empty Sky.)
 And one anti-example:  don't try cocaine.  Ever.
 Amazing example of the work pace:  Caribou LP, in 8 days, not only recorded, but also written.  (Backing vocals and horns were outsourced and added later.)
 
@@ -721,3 +897,105 @@ When my fater-in-law visits we do calistenics.
 He taught me this morning to stick my foot through a paint can and do quadriceps in a chair. 
 
 Next action, Monday:  Zed Shaw the error part.  Copy the last two lessons!!!!
+
+Wednesday 5/16/2018
+to do:
+Adapt the comment machine to this.  A button that responds in Duckett-splendor.  
+Find that code.  
+Copy the files.  Get it to just output.  Then solve all the homework !!
+---
+My network-builder: make my podcast/medium about not exactly tech.  Do my activism interviews podcast. Go purple (blue & red like my hero Ben Dominic).
+I should do three hours of just maintenance on my resume.
+---
+Look on github & bookmark it:
+Friendly To Open Source e.g. 'operation code'.
+Only way to get there is to commit some time to it every day for a long time.  
+
+
+Jane Doe, Wish I'd known: "Everyone can see your commit messages on GH."
+I think mine are okay.  (Although feedback is welcome: xxxxx )
+
+thursday commits
+Start to add a little express server.  Enable one button to GET redirect  Rick-roll, as a server test.
+Make the button send the text to a variable in js (hence volatile).
+Using js, modify the placeholder on QUESTION in the html.
+Make a express instantiate the APP object.
+Make sqlite3 instantiate the sqlite object.
+Hand draw some art, cut around it make the shape transparent, use it to replace Duckett's (awesome) teacher image.
+Make GET work for the Express APP object on a temporary js variable.  
+Store the inputted text in that object 
+Add in a generic bit-icon.
+Add in a personalized bit-icon for your brand. 
+Add your brand somewhere with a link back to your github.
+
+Q: When is /newentry getted?
+A: button says value POST ENTRY
+Q: why does ENTRY work.  seems it should be NEW-ENTRY
+A: Home page button has an href
+<a href="/new-entry" class="btn btn-primary " >Leave a comment.</a>
+A: Later button on 3 part page I used reads
+<input type="text" class="form-control" id="title" name="title" placeholder="Entry title" required>
+<textarea class="form-control" id= "body" name="body" placeholder="Your comment." rows="3" required></textarea>
+  <input type="submit" value="Post entry" class="btn btn-primary">
+Sunday:  
+Problem: boss man not running when called from within HTML
+Solution: Move the Express server to its own file.  Do this by using syntax from the blue class notes or the BossMachine js scripts.
+Problem:  Still getting an error: 'require not defined'.  
+Solution: run as EJS
+Monday to do:
+Adjust the file locations of the TEACHER.PNG image and CSS file so they load okay.
+Your .PNG and .CSS are M.I.A.; add the neccessary app.set('foo', path.resolve(where-is-foo)) to find them.
+
+Tuesday:
+Zed Shaw but to a limit.
+By 6:15 be doing the project
+7:15 lots done
+
+HAND WRITE TO red notebook:
+1) SCOPING RULES DO NOT APPLY TO CONDITIONAL LOOPS NOR FOR LOOPS
+2) Whoa -- REQUIRE is a node word.  It won't work in a browser.
+
+Goal today:
+write a syntax example function that accepts A FUNCTION as args.  [Javascript you are blowing my mind that that is even possible to give and receive functions via some other function.  I ever dreamed of doing that in C++, never figured out if that was possible there.]  
+write a syntax example function that accepts AN UNLIMITED # (incl zero) OF FUNCTIONS as args.
+write a syntax example function that returns A FUNCTION.
+
+5/27/2018
+Next do do:
+
+Make npm environment, save to package.json or maybe just run npm install.  (look first at the p.json to see if it has express, etc)
+Read the instructions and set 3 first commits.  
+
+6/4/2018
+Write a get route for /api/artists in server.js
+Take the working route for /api/artists Refactor so it exists in a separate folder called ./routes/publicRouter.js
+Write a get route for /api/artists/:artistId
+QUESTION: if I'm putting routes off in a folder somewhere, where?  Check Olympic and 4 precedent. 
+6/5/2018
+The windfall UTILs in src/XPress are not runnable -- maybe the syntax at the top of the file is tweekable?  Looks like an IIFE.  Maybe copy the entire file and hack it??
+
+
+The windfall UTILs in src/XPress are not runnable -- try making them run--you should accept and set an optional database file argument from `process.env.TEST_DATABASE` in all Express route files that open and modify your database
+6/6
+They are pretty different. 95% unusable BUT I am using their structure and args.
+Page-128- redNB will help you refactor into routes when the time comes.  
+
+look up in sqlite3  db.run db.each db.??
+b/c db.run may not be correct
+
+0. make an app.use(x)  that runs a dummy IIFE file.  See notes+examples/iife.js
+1. add seed
+2. cleave to those two examples of db.each db.all
+
+// Call Mike McCabe for canvassing 6062218025
+// Call Mike McCabe for canvassing 6062218025
+// Call Mike McCabe for canvassing 6062218025
+
+6/7/2018:
+Serialize the 2nd and 3rd funcs in MIGRATION.JS.  This is in response to 'unhandled error: SQL database locked.'
+I linked in the Jack Kirby functions of Seed.js BUT they run at weird order.  They only run if I chaotically insert a console.log statement.  So for now, I commented it out. 
+Put the 
+Nest the three TABLE-CREATES in a giant I.I.F.E..  This may allow some control over their asynchronousness.
+6/8/2018:
+Need to make JackKirby run at the right time.   Is this done by error handling alone?  That would be amazing.  Try it!  Then go re-read the lessons of Codecademy.
+TRY STICKING IN NEXT.  APP.USE(NEXT) THEN APP.USE(NEXT) ala p.61 of Hahn.

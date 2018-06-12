@@ -855,7 +855,25 @@ Felt good.  Sat down and rote-typed and did For Each and objects in an array by 
 Thursday:
 ------------------- 
 Try to type the 
-THE THREE PARTS OF _db.run_ by zombie rote in 15 minutes.  Then, goal, solve 7/11 and 8/11 today and then 9/11 & 10/11 Monday.  
+THE THREE PARTS OF _db.run_ by zombie rote in 15 minutes.  
+---
+---
+HERE IS LESSON 8/11:
+db.each("SELECT * FROM Dog WHERE breed = 'Labrador'", 
+  (error, row) => {
+    // This gets called for every row our query returns
+    console.log(`${row.name} is a good dog`);
+  },
+  (error, numberOfRows) => {
+    // This gets called after each of our rows have been processed
+    console.log(`There were ${numberOfRows} good dogs`);
+});
+WTF IS NUMBEROFROWS?
+---
+---
+
+
+Then, goal, solve 7/11 and 8/11 today and then 9/11 & 10/11 Monday.  
 Long term goal:
 --------------------
 Goal is to SHAVE THIS BEARD and MongoDB the Hahn
@@ -893,7 +911,7 @@ Back to point one.  Just start!  Release four or five albums that aren't great, 
 And one anti-example:  don't try cocaine.  Ever.
 Amazing example of the work pace:  Caribou LP, in 8 days, not only recorded, but also written.  (Backing vocals and horns were outsourced and added later.)
 
-When my fater-in-law visits we do calistenics.  
+When my father-in-law visits we do calistenics.  
 He taught me this morning to stick my foot through a paint can and do quadriceps in a chair. 
 
 Next action, Monday:  Zed Shaw the error part.  Copy the last two lessons!!!!
@@ -999,3 +1017,7 @@ Nest the three TABLE-CREATES in a giant I.I.F.E..  This may allow some control o
 6/8/2018:
 Need to make JackKirby run at the right time.   Is this done by error handling alone?  That would be amazing.  Try it!  Then go re-read the lessons of Codecademy.
 TRY STICKING IN NEXT.  APP.USE(NEXT) THEN APP.USE(NEXT) ala p.61 of Hahn.
+Off-site the main route. Refactor SERVER.JS.
+6/10/2018
+For now 
+Pass in utils as methods on a tools-object. SERVER.JS runs utils exported from WORK/TOOLS.JS

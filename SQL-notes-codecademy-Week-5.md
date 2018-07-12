@@ -421,6 +421,398 @@ db.run('INSERT INTO TemperatureData (location, year, temp_avg) VALUES ($location
 ))))))))))))))))))))))))))))))))))))))
 oooooooooooooooooooooooooooooooooooooo
 ======================================
+SQL Queries for the SQL: Advanced Data Retrieval and Modification v4.0.0 workshop
+
+
+/* Region 1
+----------------------------------*/
+SELECT r.region_name,c.country_name
+FROM regions r INNER JOIN countries c 
+  ON r.region_id = c.region_id
+
+
+/* Region 2
+----------------------------------*/
+SELECT job_title, min_salary
+FROM jobs
+UNION
+SELECT job_title, min_salary
+FROM new_jobs
+
+
+/* Region 3
+----------------------------------*/
+SELECT job_title, min_salary, 'jobs'
+FROM jobs
+UNION
+SELECT job_title, min_salary, 'new_jobs'
+FROM new_jobs
+
+
+/* Region 4
+----------------------------------*/
+SELECT job_title, min_salary, 'jobs' AS SourceTable
+FROM jobs
+UNION
+SELECT job_title, min_salary, 'new_jobs'
+FROM new_jobs
+
+
+/* Region 5
+----------------------------------*/
+SELECT job_id, COUNT(employee_id)
+FROM employees
+GROUP BY job_id
+
+
+/* Region 6
+----------------------------------*/
+SELECT job_id, COUNT(employee_id)
+FROM employees
+GROUP BY job_id
+HAVING COUNT(employee_id) > 5
+
+
+/* Region 7
+----------------------------------*/
+SELECT jobs.job_title, employees.salary, employees.hire_date
+FROM jobs INNER JOIN employees 
+  ON jobs.job_id = employees.job_id
+WHERE employees.hire_date > to_date('2007/01/01', 'YYYY/MM/DD')
+
+
+/* Region 8
+----------------------------------*/
+SELECT jobs.job_title, ROUND(AVG(employees.salary),0)
+FROM jobs INNER JOIN employees 
+  ON jobs.job_id = employees.job_id
+WHERE employees.hire_date > to_date('2007/01/01', 'YYYY/MM/DD')
+GROUP BY jobs.job_title
+
+
+/* Region 9
+----------------------------------*/
+SELECT jobs.job_title, ROUND(AVG(employees.salary),0)
+FROM jobs INNER JOIN employees 
+  ON jobs.job_id = employees.job_id
+WHERE employees.hire_date > to_date('2007/01/01', 'YYYY/MM/DD')
+GROUP BY job_title
+HAVING ROUND(AVG(employees.salary),0) > 7000
+
+
+/* Region 10
+----------------------------------*/
+SELECT emps.first_name, emps.last_name, mgrs.first_name, mgrs.last_name
+FROM employees emps INNER JOIN employees mgrs 
+  ON emps.manager_id = mgrs.employee_id
+
+
+/* Region 11
+----------------------------------*/
+SELECT emps.first_name AS "Emp First", emps.last_name AS "Emp Last", mgrs.first_name AS "Mgr First", mgrs.last_name AS "Mgr Last"
+FROM employees emps INNER JOIN employees mgrs 
+  ON emps.manager_id = mgrs.employee_id
+
+
+/* Region 12
+----------------------------------*/
+SELECT emps.first_name AS "Emp First", emps.last_name AS "Emp Last", mgrs.first_name AS "Mgr First", mgrs.last_name AS "Mgr Last"
+FROM employees emps LEFT OUTER JOIN employees mgrs 
+  ON emps.manager_id = mgrs.employee_id
+
+/*//////////////////////////////////////////////////////////////
+
+USING INSERT
+
+///////////////////////////////////////////////////////////////*/
+
+
+/* Region 13
+----------------------------------*/
+INSERT INTO jobs (job_id, job_title, min_salary, max_salary)
+VALUES ('IT_ADMIN','Server Administrator', 4000, 10000)
+
+
+/* Region 14
+----------------------------------*/
+SELECT job_id, job_title
+FROM jobs
+
+
+/* Region 15
+----------------------------------*/
+INSERT INTO jobs (job_id, job_title, min_salary, max_salary)
+SELECT job_id, job_title, min_salary, max_salary
+FROM new_jobs
+
+
+/* Region 16
+----------------------------------*/
+SELECT *
+FROM jobs
+
+
+/* Region 17
+----------------------------------*/
+INSERT INTO jobs (job_id, job_title, min_salary, max_salary)
+VALUES ('IT_PROG','Programmer',2000,8000)
+
+
+/* Region 18
+----------------------------------*/
+INSERT INTO jobs (job_id, min_salary, max_salary)
+VALUES ('IT_MAN', 7000, 16000)
+
+
+/* Region 19
+----------------------------------*/
+INSERT INTO countries (country_id, country_name, region_id)
+VALUES ('VA', 'Vanuatu', 16)
+
+
+/*//////////////////////////////////////////////////////////////
+
+USING UPDATE
+
+///////////////////////////////////////////////////////////////*/
+
+
+/* Region 20
+----------------------------------*/
+SELECT *
+FROM jobs
+
+
+/* Region 21
+----------------------------------*/
+UPDATE jobs
+SET min_salary = (min_salary * 1.03), max_salary = (max_salary * 1.03)
+
+
+/* Region 22
+----------------------------------*/
+SELECT *
+FROM jobs
+
+
+/* Region 23
+----------------------------------*/
+SELECT first_name, last_name, job_id, commission_pct
+FROM employees
+WHERE job_id = 'SA_REP'
+
+
+/* Region 24
+----------------------------------*/
+UPDATE employees
+SET commission_pct = commission_pct + .1
+WHERE job_id = 'SA_REP'
+
+
+/* Region 25
+----------------------------------*/
+SELECT first_name, last_name, job_id, commission_pct
+FROM employees
+WHERE job_id = 'SA_REP'
+
+
+/* Region 26
+----------------------------------*/
+SELECT employees.first_name, employees.last_name, employees.salary, jobs.job_title
+FROM employees  INNER JOIN jobs 
+  ON employees.job_id = jobs.job_id
+WHERE job_title LIKE '%Manager'
+
+
+/* Region 27
+----------------------------------*/
+SELECT first_name, last_name, salary, job_id
+FROM employees 
+WHERE job_id IN ('FI_MGR','PU_MAN','ST_MAN') 
+
+
+/* Region 28
+----------------------------------*/
+SELECT first_name, last_name, salary, job_id
+FROM employees 
+WHERE job_id IN                             
+(SELECT job_id FROM jobs WHERE job_title like '%Manager')
+
+
+
+/* Region 29
+----------------------------------*/
+UPDATE employees
+SET salary = (salary * .98)
+WHERE job_id IN
+  (SELECT job_id FROM jobs
+  WHERE job_title LIKE '%Manager')
+
+
+/* Region 30
+----------------------------------*/
+SELECT first_name, last_name, salary, job_id
+FROM employees 
+WHERE job_id IN                   
+  (SELECT job_id FROM jobs WHERE job_title like '%Manager')
+
+
+
+/*//////////////////////////////////////////////////////////////
+
+USING DELETE
+
+///////////////////////////////////////////////////////////////*/
+
+
+/* Region 31
+----------------------------------*/
+DELETE FROM new_jobs
+
+
+/* Region 32
+----------------------------------*/
+SELECT * FROM new_jobs
+
+
+/* Region 33
+----------------------------------*/
+SELECT job_id, job_title
+FROM jobs
+WHERE job_id NOT IN
+  (SELECT job_id
+  FROM employees)
+
+
+/* Region 34
+----------------------------------*/
+DELETE
+FROM jobs
+WHERE job_id NOT IN
+  (SELECT job_id
+  FROM employees)
+
+
+/* Region 35
+----------------------------------*/
+DELETE FROM jobs
+WHERE job_id = 'IT_PROG'
+
+
+
+/*//////////////////////////////////////////////////////////////
+
+UNDERSTANDING TRANSACTIONS
+
+///////////////////////////////////////////////////////////////*/
+
+
+/* Region 36 (in Oracle SQL Developer)
+----------------------------------*/
+INSERT INTO regions (region_id,region_name)
+VALUES (25,'Antarctica')
+
+
+/* Region 37 (in Oracle SQL Developer)
+----------------------------------*/
+SELECT *
+FROM regions
+
+
+/* Region 38 (in Aqua Data Studio)
+----------------------------------*/
+SELECT *
+FROM regions
+
+
+/* Region 39 (in Oracle SQL Developer)
+----------------------------------*/
+COMMIT
+
+
+/* Region 40 (in Oracle SQL Developer)
+----------------------------------*/
+UPDATE employees
+SET salary = 2500
+
+
+/* Region 41 (in Oracle SQL Developer)
+----------------------------------*/
+SELECT first_name, last_name, salary
+FROM employees
+
+
+/* Region 42 (in Oracle SQL Developer)
+----------------------------------*/
+ROLLBACK
+
+
+/* Region 43
+----------------------------------*/
+SELECT first_name, last_name, salary
+FROM employees
+
+
+/* Region 44
+----------------------------------*/
+SELECT *
+FROM regions
+
+
+/*////////////////////////////////////////////////////////////////////////
+
+SOLUTIONS TO CHALLENGE EXERCISES
+The below SQL refers to the challenge exercises provided throughout the document
+
+/////////////////////////////////////////////////////////////////////////*/
+
+/* Challenge Exercise 1: Using UNION
+-----------------------------------------------------*/
+SELECT 'jobs' AS SourceTable, sum(min_salary), sum(max_salary)
+FROM jobs
+UNION
+SELECT 'new_jobs',sum(min_salary), sum(max_salary)
+FROM new_jobs
+
+
+/* Challenge Exercise 2: Using HAVING
+-----------------------------------------------------*/
+SELECT department_name, SUM(employees.salary)
+FROM departments INNER JOIN employees ON departments.department_id = employees.department_id 
+GROUP BY department_name
+HAVING SUM(employees.salary) > 50000
+
+
+/* Challenge Exercise 3: Using SELF JOIN
+-----------------------------------------------------*/
+SELECT firstJob.employee_id, firstJob.end_date as "First Job Ended", secondJob.start_date as "Second Job Started"
+FROM job_history firstJob INNER JOIN job_history secondJob ON firstJob.employee_id = secondJob.employee_id 
+WHERE firstJob.end_date < secondJob.start_date
+
+
+/* Challenge Exercise 4: Using INSERT
+-----------------------------------------------------*/
+INSERT INTO countries (country_id,country_name, region_id)
+VALUES ('LT','Lesotho',4)
+
+Alternate:
+INSERT INTO Countries (country_id,country_name, region_id)
+SELECT 'LT','Lesotho', region_ID 
+FROM regions 
+WHERE region_name = 'Middle East and Africa'
+
+
+/* Challenge Exercise 5: Using UPDATE
+-----------------------------------------------------*/
+UPDATE locations
+SET street_address = '9234 Packer Road', postal_code = '98111'
+WHERE city='Seattle'
+
+
+
+
+
+
 process every row returned 
 from a database query. 
 oooooooooooooooooooooooooooooooooooooo
@@ -715,6 +1107,373 @@ https://scotch.io/tutorials/building-a-mini-invoicing-app-with-vue-and-node-data
 :::::::::::::::::::::::
 :::::::::::::::::::::::
 :::::::::::::::::::::::
+SQL Queries for the SQL: Data Retrieval v4.0.0 workshop
+
+
+/* SIMPLE SELECT QUERIES
+----------------------------------------------------------------------*/
+
+/* Region 1 */
+SELECT first_name, last_name
+FROM employees
+
+
+/* Region 2 */
+SELECT * 
+FROM employees
+
+
+
+
+/* SORTING USING "ORDER BY"
+----------------------------------------------------------------------*/
+
+/* Region 3 */
+SELECT last_name, first_name
+FROM employees
+ORDER BY last_name, first_name
+
+
+/* Region 4 */
+SELECT last_name, first_name
+FROM employees
+ORDER BY last_name DESC, first_name ASC
+
+
+/* Region 5 */
+SELECT city, state_province, postal_code
+FROM locations
+ORDER BY postal_code
+
+
+/* Region 6 */
+SELECT last_name, first_name, salary
+FROM employees
+ORDER BY salary
+
+
+/* Region 7 */
+SELECT last_name, first_name, hire_date
+FROM employees
+ORDER BY hire_date
+
+
+/* UNDERSTANDING USING INNER JOINS
+----------------------------------------------------------------------*/
+
+/* Region 8 */
+SELECT region_id, country_name
+FROM countries
+
+
+/* Region 9 */
+SELECT region_id, country_name, region_name
+FROM countries INNER JOIN regions 
+  ON countries.region_id = regions.region_id
+
+
+/* Region 10 */
+SELECT countries.region_id, countries.country_name, regions.region_name
+FROM countries INNER JOIN regions 
+  ON countries.region_id = regions.region_id
+
+
+/* Region 11 */
+SELECT employees.last_name, employees.first_name, departments.department_name
+FROM employees INNER JOIN departments
+  ON employees.department_id = departments.department_id
+
+
+/* Region 12 */
+SELECT employees.last_name, employees.first_name, departments.department_name
+FROM employees INNER JOIN departments
+  ON employees.department_id = departments.department_id
+ORDER BY employees.last_name
+
+
+/* Region 13 */
+SELECT countries.region_id, countries.country_name, regions.region_name
+FROM countries INNER JOIN regions 
+  ON countries.region_id = regions.region_id
+
+
+/* Region 14 */
+SELECT countries.region_id, countries.country_name, regions.region_name, locations.city
+FROM countries 
+INNER JOIN regions ON countries.region_id = regions.region_id
+INNER JOIN locations ON countries.country_id = locations.country_id
+
+
+/* Region 15 */
+SELECT employees.last_name, employees.first_name, jobs.job_title, departments.department_name
+FROM employees
+INNER JOIN jobs ON employees.job_id = jobs.job_id
+INNER JOIN departments ON employees.department_id = departments.department_id
+ORDER BY employees.last_name
+
+
+
+/* USING OUTER JOINS
+----------------------------------------------------------------------*/
+
+/* Region 16 */
+SELECT employees.last_name, employees.first_name, departments.department_name
+FROM employees LEFT OUTER JOIN departments 
+  ON employees.department_id = departments.department_id
+ORDER BY employees.last_name
+
+
+/* Region 17 */
+SELECT employees.last_name, employees.first_name, departments.department_name
+FROM employees RIGHT OUTER JOIN departments 
+  ON employees.department_id = departments.department_id
+ORDER BY employees.last_name DESC
+
+
+/* Region 18 */
+SELECT regions.region_name, countries.country_name 
+FROM countries INNER JOIN regions 
+  ON regions.region_id = countries.region_id
+
+
+/* Region 19 */
+SELECT regions.region_name, countries.country_name, locations.street_address, locations.postal_code, locations.city
+FROM countries
+INNER JOIN regions ON regions.region_id = countries.region_id
+LEFT OUTER JOIN locations ON locations.country_id = countries.country_id
+
+
+/* COMPARISON OPERATORS USING "WHERE"
+----------------------------------------------------------------------*/
+
+/* Region 20 */
+SELECT job_id, job_title
+FROM jobs
+ORDER BY job_title
+
+
+/* Region 21 */
+SELECT last_name, first_name, job_id
+FROM employees
+WHERE job_id = 'SA_REP'
+ORDER BY last_name
+
+
+/* Region 22 */
+SELECT employees.last_name, employees.first_name, jobs.job_title
+FROM employees INNER JOIN jobs 
+  ON employees.job_id = jobs.job_id
+WHERE jobs.job_title = 'Programmer'
+
+
+/* Region 23 */
+SELECT last_name, first_name, job_id
+FROM employees
+WHERE job_id IN ('SA_REP', 'IT_PROG')
+ORDER BY job_id
+
+
+/* Region 24 */
+SELECT last_name, first_name, job_id
+FROM employees
+WHERE job_id LIKE 'AD_%'
+ORDER BY job_id
+
+
+/* Region 25 */
+SELECT last_name, first_name, salary
+FROM employees
+WHERE salary > 8000
+ORDER BY salary
+
+
+/* Region 26 */
+SELECT job_title, min_salary
+FROM jobs
+WHERE min_salary BETWEEN 2000 AND 4500
+ORDER BY min_salary
+
+
+
+/* UNDERSTANDING NULL VALUES
+----------------------------------------------------------------------*/
+
+/* Region 27 */
+SELECT last_name, first_name, commission_pct
+FROM employees
+ORDER BY commission_pct
+
+
+/* Region 28 */
+SELECT last_name, first_name, commission_pct
+FROM employees
+WHERE commission_pct IS NOT NULL
+
+
+/* Region 29 */
+SELECT last_name, first_name, commission_pct
+FROM employees
+WHERE commission_pct IS NULL
+
+
+
+
+/* "AND" AND "OR" OPERATORS
+----------------------------------------------------------------------*/
+
+/* Region 30 */
+SELECT employees.last_name, employees.first_name, employees.salary, departments.department_name
+FROM employees INNER JOIN departments
+  ON employees.department_id = departments.department_id
+
+
+/* Region 31 */
+SELECT employees.last_name, employees.first_name, employees.salary, departments.department_name
+FROM employees INNER JOIN departments 
+  ON employees.department_id = departments.department_id
+WHERE employees.salary > 8000
+AND departments.department_name = 'Finance'
+
+
+/* Region 32 */
+SELECT employees.last_name, employees.first_name, employees.salary, departments.department_name
+FROM employees INNER JOIN departments
+  ON employees.department_id = departments.department_id
+WHERE employees.salary > 8000 
+OR departments.department_name = 'Finance'
+
+
+/* Region 33 */
+SELECT employees.first_name, employees.last_name,departments.department_name,jobs.min_salary
+FROM employees 
+INNER JOIN departments ON employees.department_id = departments.department_id
+INNER JOIN jobs ON employees.job_id = jobs.job_id
+WHERE jobs.min_salary > 6000 and NOT departments.department_name IN ('Finance','Sales')
+
+
+/* Region 34 */
+SELECT employees.last_name, employees.first_name, employees.salary, departments.department_name
+FROM employees INNER JOIN departments
+  ON employees.department_id = departments.department_id
+WHERE departments.department_name = 'Shipping' OR departments.department_name = 'Finance' AND employees.salary > 8000
+
+
+/* Region 35 */
+SELECT employees.last_name, employees.first_name, employees.salary, departments.department_name
+FROM employees INNER JOIN departments
+  ON employees.department_id = departments.department_id
+WHERE (departments.department_name = 'Shipping' OR departments.department_name = 'Finance') AND employees.salary > 8000
+
+
+
+
+/* USING AGGREGATE FUNCTIONS
+----------------------------------------------------------------------*/
+
+/* Region 36 */
+SELECT SUM(salary)
+FROM employees
+
+
+/* Region 37 */
+SELECT COUNT(employee_id)
+FROM employees
+WHERE hire_date > to_date('2008/01/01'. 'YYYY/MM/DD')
+
+
+/* Region 38 */
+SELECT departments.department_name, SUM(employees.salary)
+FROM departments INNER JOIN employees
+  ON departments.department_id = employees.department_id
+GROUP BY departments.department_name
+
+
+/* Region 39 */
+SELECT departments.department_name AS "Dept Name", SUM(employees.salary) AS "Total Salary"
+FROM departments INNER JOIN employees
+ON departments.department_id = employees.department_id
+GROUP BY departments.department_name
+
+
+/* Region 40 */
+SELECT last_name, first_name, (salary * 12) AS "Yearly Pay"
+FROM employees
+ORDER BY last_name, first_name
+
+
+/* Region 41 */
+SELECT (last_name || first_name) AS "Employee", (salary / 2) AS "Paycheck Amount"
+FROM employees
+ORDER BY "Employee"
+
+
+/* Region 42 */
+SELECT (last_name || ', ' || first_name) AS "Employee", (salary / 2) AS "Paycheck Amount"
+FROM employees
+ORDER BY "Employee"
+
+
+############################################################
+SOLUTIONS TO CHALLENGE EXERCISES
+The below SQL refers to the challenge exercises provided throughout the workshop
+############################################################
+
+/* Challenge Exercise 1: 
+  Simple Select Statements  
+----------------------------------------------------------------------*/
+SELECT job_title, min_salary, max_salary
+FROM jobs
+ORDER BY min_salary DESC
+
+
+/* Challenge Exercise 2: 
+  Using Inner Joins
+----------------------------------------------------------------------*/
+SELECT employees.first_name, employees.last_name, employees.email, jobs.job_title
+FROM employees INNER JOIN jobs ON employees.job_id = jobs.job_id
+ORDER BY jobs.job_title ASC
+
+
+/* Challenge Exercise 3: 
+  Select Statements Using Multiple Inner Joins
+----------------------------------------------------------------------*/
+SELECT employees.first_name, employees.last_name, departments.department_name, 
+locations.city, locations.state_province, locations.postal_code
+FROM departments 
+INNER JOIN employees ON departments.department_id = employees.department_id
+INNER JOIN locations ON departments.location_id = locations.location_id
+
+
+/* Challenge Exercise 4: 
+  Using Outer Joins
+----------------------------------------------------------------------*/
+SELECT departments.department_name, locations.city, locations.state_province, employees.first_name, employees.last_name
+FROM departments 
+INNER JOIN locations ON departments.location_id = locations.location_id
+LEFT OUTER JOIN employees ON departments.manager_id = employees.employee_id
+
+
+/* Challenge Exercise 5: 
+  Using the WHERE Clause
+----------------------------------------------------------------------*/
+Exercise 1:
+SELECT locations.city, locations.state_province, locations.postal_code
+FROM locations INNER JOIN countries ON locations.country_id = countries.country_id
+WHERE country_name IN ('Japan','Mexico','United Kingdom')
+
+Exercise 2:
+SELECT first_name, last_name, hire_date, job_id 
+from employees 
+WHERE hire_date > '2004/1/1' and job_id LIKE 'SH_%'
+
+
+/* Challenge Exercise 6: 
+  Using Functions
+----------------------------------------------------------------------*/
+SELECT jobs.job_title, AVG(employees.salary)
+FROM employees INNER JOIN jobs ON employees.job_id = jobs.job_id
+GROUP BY job_title
+
 
 
 
@@ -1021,3 +1780,23 @@ Off-site the main route. Refactor SERVER.JS.
 6/10/2018
 For now 
 Pass in utils as methods on a tools-object. SERVER.JS runs utils exported from WORK/TOOLS.JS
+6/11/2018
+db.serialize 
+db.run
+db.run
+
+june 18
+Creates a new artist with the information from the `artist` property of the request body and saves it to the database.
+Listen for a PUT on /api/artists . Create a fake artist object via a static fake SFW.  
+June 19
+Eyeball your 
+router.get
+router.put
+vis-a-vis 
+the solution !!
+It's not cheating.  
+Feel okay.
+June 20
+Get error handling in there for !this !that, circa line 23 in routes.js.
+Comply with the Zakas "Don't call an error for if (!object.propy){do error handling}"
+June 21

@@ -1,10 +1,10 @@
 #Elm
 
 ## Elm, from Wikipedia
-Elm is a domain-specific programming language for declaratively creating web browser-based graphical user interfaces. Elm is purely functional, and is developed with emphasis on usability, performance, and robustness. It advertises "no runtime exceptions in practice,"[4] made possible by the Elm compiler's static type checking. 
+*"Elm is a domain-specific programming language for declaratively creating web browser-based graphical user interfaces. Elm is purely functional, and is developed with emphasis on usability, performance, and robustness. It advertises "no runtime exceptions in practice,"[4] made possible by the Elm compiler's static type checking. 
 Typing discipline	Static, Strong, Inferred
 Influenced by:  Haskell, F#
-Influenced: Redux, Vue.js
+Influenced: Redux, Vue.js"*
 
 ## Compiled, Types
 Elm : Javascript
@@ -27,7 +27,7 @@ In computer science, functional programming is a programming paradigm—a style 
 ## strongly typed js:
 TypeScript. GraphQL. Elm. Reason.
 
-##Programming paradigms
+## General Programming Paradigms
 Declarative (contrast: Imperative)
 
     Functional

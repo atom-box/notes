@@ -63,3 +63,18 @@ Imperative (contrast: Declarative)
 
     Procedural
     Object-oriented
+	
+	#Steve Martin notes
+	Obsession is a substitute for talent. 
+	Be willing to eliminate everything that is not original from your 'act'.
+	Enjoyment while performing was RARE.   Long hours in elation or dejection.
+	
+	Years:
+	10 + 4 + 4 
+	Learning + Refining + Wild-success
+	
+	The course was more plodding than heroic, with a few intuitive leaps.
+	
+	And now the napkin trick.
+	
+	

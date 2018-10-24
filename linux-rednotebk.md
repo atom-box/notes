@@ -1,3 +1,38 @@
+FTP
+only say the remote, at first.  presence in your pwd is implied:
+ftp vmwebdev (if local... otherwise something.1and1.com, whatever is after the AT SIGN)
+open vmwebdev
+(name and pwd)
+put filename.txt
+
+
+SIZE
+du /etc
+du /etc/man
+du .
+du ~/Dropbox/code
+
+USERADD ---- MAKE NEW USER
+nano /etc/default/useradd
+su
+useradd testGirl (passwd and location will be done as /etc/default/useradd)
+sudo passwd testGirl
+(enter and reenter new passwd)
+su - testGirl (change to that user)
+(system prompts you for pw)
+
+
+* How To Create A User With A Home Directory 
+su (and then)
+sudo useradd -m tim
+* How To Create A User With A Different Home Directory 
+sudo useradd -m -d /home/narnia/testGirl  testGirl 
+* How To Change A User's Password Using Linux 
+sudo passwd testGirl
+* How To Switch Users
+su - testGirl
+su - testBoy 
+
 FIND A FILE NAMED app.js
 find  ./  -name app.js
 FIND ALL FILES NEWR THAN foo.js

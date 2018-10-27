@@ -1,10 +1,19 @@
+SSH & SFTP & ONEANDONE &  KUNDEN
+ 4497  ssh u89220366@home680775943.1and1-data.host
+ 4499  ssh u89220366@home680775943.1and1-data.host
+ 4508  ssh u89220366@home680775943.1and1-data.host
+4509 
+
+
 FTP
 only say the remote, at first.  presence in your pwd is implied:
 ftp vmwebdev (if local... otherwise something.1and1.com, whatever is after the AT SIGN)
 open vmwebdev
 (name and pwd)
 put filename.txt
-
+FIND YOUR IP ADDRESS: 
+google or bing IP ADDRESS.  gives just machine you are on
+IPCONFIG gives info too
 
 SIZE
 du /etc

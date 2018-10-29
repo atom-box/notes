@@ -1,3 +1,9 @@
+## Stash
+git stash
+git stash apply
+git merge OR 
+	git diff
+
 ## Journey to the past, Eaxy way
 git checkout 498285OLD
 git status —graph

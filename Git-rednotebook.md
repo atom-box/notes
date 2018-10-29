@@ -1,3 +1,128 @@
+## Journey to the past, Eaxy way
+git checkout 498285OLD
+git status —graph
+git checkout master (comes back to present
+
+## Journey to the past, stranger way
+git checkout 498285OLD
+git branch setAMarker HEAD ISNT POINTING TO IT, UH OH
+git checkout setaMarker.  NOW HEAD IS POINTING TO THAT
+
+
+## My usual lost, and a 23rd Psalm to show the way 
+git merge dev
+CONFLICT - FIX CONFLICT AND COMMIT THE RESULTS
+** git status
+YOU HAVE UNMERGED PATHS .  okay still to bail at this point
+ 
+## two things  can happen when you try to merge
+1 if there is a direct path, a fast-forward would happen automatically
+2 else you could be on the tips of the V.  You can’t go from one V tip to the other with fastrforward.   So, a merge is needed 
+3 !! you have a given line that got changed by both people 
+REMEMBER, TO GIT, A FILE DOESN’T EXIST UNTIL YOU COMMIT IT.  
+YOU ARE SAVING FILES AND ACTING LIKE THEY CAN BE MERGED. THEY CANT!
+
+## deleting a branch 
+git branch -d evanbranch 
+
+## Dot Dot notation
+git diff master..myBranch 
+
+## head, 
+HEAD just tells you what branch you are on, it doesn’t say which commit
+
+## Speak correctly
+1 Your files you can see - WORKING TREE 
+2 The staging area - THE INDEX
+3 The commits
+
+## NUT TO CRACK
+Once you understand this, much control will be bestowed on you:
+ ___  git log
+commit 4fc291a81f1cf269d71254148cb18875aa57ac36 (HEAD -> scared, one/master, master)
+
+## TWO.   NEW.   COMMANDS
+ git show master@{yesterday}
+ git reflog
+
+## My mistake!  Learn this syntax!!
+DON'T REFER TO THE REMOTE AS 
+git pull origin/munising WRONG!
+git pull origin munising  RIGHT!
+
+
+## Nice tip REFLOG
+
+git reflog IS BETTER THAN LOG
+
+## Digital Ocean TWO MERGE TIPS
+Abort the merge, in case there are conflicts.
+
+    git merge --abort
+
+You can also select a particular commit to merge with cherry-pick with the string that references the specific commit.
+
+    git cherry-pick f7649d0
+
+
+## Digital Ocean fetch, then, merge
+Collaborate and Update
+
+To download changes from another repository, such as the remote upstream, you’ll use fetch.
+    git fetch upstream
+
+Merge the fetched commits.  BRANCH SPECIFYING SYNTAX
+    git merge upstream/master
+
+Push or transmit your local branch commits to the remote repository branch.
+    git push origin master
+
+Fetch and merge any commits from the tracking remote branch.
+    git pull
+
+
+
+## Digital Ocean DIFF
+git diff command shows changes between commits, branches, and more. You can read more fully about it through the Git documentation.
+
+Compare modified files that are on the staging area.
+    git diff --staged
+
+Display the diff of what is in a-branch but is not in b-branch.
+    git diff a-branch..b-branch
+
+Show the diff between two specific commits.
+    git diff 61ce3e6..e221d9c
+
+
+
+## SSH PATHS, ADDRESSES
+ With SSH URLs, relative paths start from your home directory, and it doesn't understand shell shortcuts like ~. So do:
+git remote add origin ssh://user@example.com/git/example.com
+
+if you want to use absolute paths, like /home/mario/git/example.com, use an extra leading slash:
+git remote add origin ssh://user@example.com//home/mario/git/example.com
+
+
+## remotes explained in Merge message
+"You asked to pull from the remote 'one', but did not specify
+a branch. 
+Because this is not the default configured remote
+for your current branch, you must specify a branch on the command line.""
+HOW TO SPECIFY THE REMOTE URL:
+
+The correct syntax for REMOTEREPO + BRANCH is to JUST LEAVE A SPACE:
+git push catserver newfeature
+
+
+git@skarp.beanstalkapp.com:/gittest.git
+i.e. in the URL you're using, you missed out the : (colon)
+
+To update the URL for origin you could do:
+git remote set-url origin git@skarp.beanstalkapp.com:/gittest.git
+
+
+
 ## Julia Evans Awk example
 history | awk '$2 == "git" {print $1 " " $3}' > history.txt 
 
@@ -8,18 +133,15 @@ The sequence of a GIT MERGE is
 1) Do your editing, via git merge git mergetool
 2) TWO WORD COMMAND NOW: git commit
 3) Allow it a LONG form commit message, partly so you can trace it, partly for the helpful messages.   Some of your message is just uncommenting.
-@kyle welch
-Your talk nicely @CreamCityCode nicely bridged a range of Git-ability-levels in the audience.  I am benefitting this morning by making better commit messages. 
-Good job dealing with no Wifi in the room.
-That Julia Evans #Git visualizer you recommended is very cool!  
-Bad news:
-Instead of ftp, I am updating my web page via LocalCommit -> GitHubRemote -> PullToHostingServer.  This is 3x more steps and is causing many merge/conflicts.
-Good news: 
-Forced to get better at Git and Vim-mergetool. And low-stakes: my static fun page. 
+
+
+Twit
+Learn to keep two idea queue, without writing down.
+Learn to always ensconce emerging idea to secondary slot in that queue.
 
 
 
-## Kyle Welch talk at CreamCityCode (works at EventBrite) Oct 13, 2018
+## Notes from Kyle Welch talk at CreamCityCode (works at EventBrite) Oct 13, 2018
 1111
 git merge --squash
 INSTEAD OF JUST MERGING, THIS MAKES THE ROAD LOOKING BKWDS A STRAIGHT, SINGLE ROAD

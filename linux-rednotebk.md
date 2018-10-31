@@ -1,3 +1,28 @@
+
+ADDING a user by an ADMINISTRATOR
+note, su and sudo might need to be changed per Debian vs other Linux.
+FIRST, CHECK FOR ALL USERS:
+sudo less /etc/passwd
+MAKE CELERY
+useradd celery
+(although sometimes it is "adduser")
+passwd _-_-_
+mkdir /home/jsmith
+chown jsmith:users /home/jsmith
+
+SWITCH USER TO CELERY
+exit (neccessary if you are logged in as root)
+exit
+su celery
+ssh celery@localhost
+
+REGEX EXAMPLES
+matching a username
+/^[a-z0-9_-]{3,16}$/
+matching an email
+/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+
+
 SSH & SFTP & ONEANDONE &  KUNDEN
  4497  ssh u89220366@home680775943.1and1-data.host
  4499  ssh u89220366@home680775943.1and1-data.host

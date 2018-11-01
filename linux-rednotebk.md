@@ -1,5 +1,45 @@
+MAC OS KEY BINDINGS
+Press ⌘ + SPACE (Spotlight Search) 
 
-ADDING a user by an ADMINISTRATOR
+WHERE INSTALLED FOLDER
+which python
+which perl
+
+SEARCH.   IN NANO.
+ctl - W
+
+APACHE 
+Apache 2.4 comes pre-packaged in macOS 10.12 Sierra, 
+*check the version to verify*
+httpd -v
+__start the server by running the command__
+apachectl start
+-------------------- 
+PATH OF APACHE
+1) set how:
+The DocumentRoot directive is set in your main server configuration file (httpd.conf) 
+2) if DocumentRoot were set to /var/www/html then a request for http://www.example.com/fish/guppies.html would result in the file /var/www/html/fish/guppies.html being served to the requesting client.
+------------
+MAKE THE APACHE CONFIG file APPEAR! 
+*from websitebeaver.com*
+sudo nano /etc/apache2/httpd.conf 
+Delete the #
+ from #LoadModule php7_module libexec/apache2/libphp7.
+-----------
+PATHS WITH A SLASH AT BEGINNING
+*from /etc/apache2/httpd.conf*
+If the filenames do *not* begin
+# with "/", the value of ServerRoot is prepended -- so "logs/access_log"
+# with ServerRoot set to "/usr/local/apache2" will be interpreted by the
+# server as "/usr/local/apache2/logs/access_log", whereas "/logs/access_log$
+# will be interpreted as '/logs/access_log'.
+
+
+START AS ROOT
+sudo su -
+
+
+*ADDING a user by an ADMINISTRATOR*
 note, su and sudo might need to be changed per Debian vs other Linux.
 FIRST, CHECK FOR ALL USERS:
 sudo less /etc/passwd

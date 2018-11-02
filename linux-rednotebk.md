@@ -1,3 +1,30 @@
+TROUBLESHOOTING
+1) turning on and off started working after I cleared browser history. It turns off now.
+2) "Forbidden: root!" happened when I said /Users/evan/Dropbox/elephant
+
+
+U.R.I. SYNTAX 
+Both of these are equivalent:
+file://localhost/etc/fstab
+file:///etc/fstab
+
+WINDOWS FILE PATH:
+To access a file "the file.txt", the following might be used.
+For a network location:
+file://hostname/path/to/the%20file.txt
+Or for a local file, the hostname is omitted, but the slash is not (note the third slash):
+file:///c:/path/to/the%20file.txt
+
+
+
+SET THE PATH SO APACHE CAN FIND YOUR FOLDERS:
+1)  Go back to Terminal and enter sudo nano /etc/apache2/httpd.conf
+2) Replace both occurrences of /Library/WebServer/Documents with /Users/david/Sites (instead of david use your name which can be found at the top of your terminal next to the home icon) 
+3) Type sudo apachectl restart and press enter
+Undid
+/Library/WebServer/Documents
+
+
 MAC OS KEY BINDINGS
 Press ⌘ + SPACE (Spotlight Search) 
 
@@ -33,7 +60,9 @@ If the filenames do *not* begin
 # with ServerRoot set to "/usr/local/apache2" will be interpreted by the
 # server as "/usr/local/apache2/logs/access_log", whereas "/logs/access_log$
 # will be interpreted as '/logs/access_log'.
-
+TODO: 
+at McDonalds, continue
+https://websitebeaver.com/set-up-localhost-on-macos-high-sierra-apache-mysql-and-php-7-with-sslhttps
 
 START AS ROOT
 sudo su -

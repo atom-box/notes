@@ -1,0 +1,97 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font><br>Getting data in and out of 
+<font color="4040ff">R</font></font></center>
+<h2>The Manual Method</h2>
+<b><font color="4040ff">R</font></b> uses the <emph>assignment</emph> operator 
+<code>&lt;-</code> to give a data (or other) object its values. -&gt;, which
+points the other way, can also be used, although the assignment is now from
+left to right. A very common mistake (due
+to conventions that used the <code>=</code> sign for both comparison and
+assignment) is to mix them up in <b><font color="4040ff">R</font></b>.<p>
+<code>&gt; x<-2</code><p>
+assigns the value of <code>2</code> to <code>x</code>.<p>
+<code>&gt; y<-c(1,2,3,4,5)</code><p>
+assigns the vector of values shown to <code>y</code>.  Note here that you
+<u>must</u> use the <code>c</code> ("combine") function.  However, once you have
+assigned the value of <code>y</code>, you may then assign its value to other
+data objects<p> 
+<code>&gt; z<-y</code><p>
+The cryptically named <code>c</code> will also combine character strings<p>
+<code>&gt; names<-c("Abe","Bob","Con")</code><p>
+into vectors or <emph>lists</emph> into a list of lists.<p>
+<img src="hoover.gif">The underscore character '_' also acted as an assignment
+oeprator until <b><font color="4040ff">R</font></b> v1.8.0.  This was a
+real bummer if you used underscores in place of spaces in naming
+objects. Fortunately, it has been officially evicted from the pantheon of
+operators, but may still bedevil users of earlier versions.<p>
+<a name="preex"><h2>Getting pre-existing data into <font color="4040ff">R
+</font></h2>
+Manually entering data is only suitable for small data sets.  How do you get
+your rectangular data file or spreadsheet or data base table into 
+<b><font color="4040ff">R</font></b>? The <code>foreign</code> package will
+import many different data formats.<p>
+One of the most straightforward ways to retrieve data is through plain text.
+Almost all applications used for handling data will export data as a delimited 
+file in ASCII text, and this gives us a rough and ready way to
+get the vast majority of data into <b><font color="4040ff">R</font></b>.<p>
+First, export the data, usually using a command like <code>Save As...</code>
+and selecting <code>ASCII text, CSV</code> or just <code>text</code>.<p>
+<img src="hoover.gif">Some spreadsheets export numeric fields with embedded 
+spaces.  These usually are translated as factors, which is often not what you 
+want. Stripping out any embedded spaces with:<p>
+<code>tr -d '\40' < old.dat > new.dat</code><p>
+will usually fix things up. Text editors may also be used if they have a search
+and replace facility, by searching for spaces and replacing them with nothing.<p>
+You may have a choice of <emph>delimiters</emph> (the characters that separate
+the data values). Commas are often used (as in the CSV format), so say you have 
+a comma-delimited data file named <code>infert.dat</code> that looks like this<p>
+<pre>education,age,parity,induced,case,spontaneous,stratum,pooled.stratum
+0-5yrs,26,6,1,1,2,1,3
+0-5yrs,42,1,1,1,0,2,1
+0-5yrs,39,6,2,1,0,3,4
+...</pre><p>
+and want to import it.<p>
+<pre>&gt; infert<-read.table("/home/jim/infert.dat",header=T,sep=",")</pre><p>
+What <code>read.table</code> does is try to read data from the file named as the
+first argument.  If <code>header</code> is specified as <code>T</code> (True),
+the first line will be read as the column names for the <emph>data frame</emph>
+to which the values are assigned.  If there are no labels, <code>header</code>
+defaults to <code>F</code> (False).  If we had used something like TAB for a
+delimiter, <code>sep</code> would have been defined as a C-style
+<emph>escape sequence</emph> beginning with a backslash ("\t").  This is because you
+can't put a TAB character into the command line.  As the file was
+comma-delimited, the comma was put directly between the quotes.  
+<emph>Escape sequences</emph> will come in handy quite often.<p>
+<h2>Getting it out again</h2>
+The function <code>write.table()</code> performs the opposite transformation,
+writing out an <b><font color="4040ff">R</font></b> date frame object into a
+rectangular data file. There are other output options like <code>write()</code>
+to write out a matrix to a data file, and the functions in the
+<code>foreign()</code> package that let you write out data in proprietary
+formats.<p>
+<h2>Squeezing in big data sets</h2>
+<b><font color="4040ff">R</font></b> uses a memory based model to process data.  
+This means that the amount of data that can be handled is critically 
+dependent upon how much memory is available.  Earlier versions required the user
+to increase the amount of memory available when starting up, but there is now a
+dynamic allocation.  However, if you still run out of memory while trying to 
+import a large data set, you <emph>may</emph> be able to overcome the
+problem.  Using <code>scan()</code> to import the file will use less memory.  
+<code>scan</code> isn't as easy to use, and you have to 
+enter the column names separately.<p>
+<pre>&gt; infert<-data.frame(scan("/home/jim/infert.dat",list("",0,0,0,0,0,0,0),skip=1))
+Read 128 lines
+&gt; names(infert)<-c("education","age","parity","induced","case","spontaneous","stratum","pooled.stratum")</pre><p>
+Note how the assignment operator was used to assign the names to the data
+frame.<p>
+Going beyond <code>scan()</code>, there are methods to store your data in a
+database table and access the table using the appropriate interface. This
+enables the user to access huge amounts of data by only processing it in
+bits.<p>
+For more information, see <u>An Introduction to R</u>: Reading data from files,
+and the documentation from the 
+<a href="http://cran-r.project.org/src/contrib/PACKAGES.html">
+<emph>foreign, RmSQL, RMySQL, RODBC and ROracle</emph></a> packages.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

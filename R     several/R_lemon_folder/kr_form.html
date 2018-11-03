@@ -1,0 +1,38 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Formulae</b></font></center><p>
+Formulae in <b><font color="4040ff">R</font></b> bear a passing resemblance to
+other formulae with which you may be familiar.  Their primary purpose is to
+specify a statistical model, but they may also be used to specify other sorts of
+relationships between variables.  This helps to simplify the user interface,
+although it does exert some pressure upon the beginner to learn the syntax of 
+formulae .<p>
+The most straightforward use of formulae is in specifying a linear model, such
+as the following:<p>
+<code>y = ax<sub>1</sub> + bx<sub>2</sub> + cx<sub>3</sub> + i</code><p>
+where the x terms are variables and the a, b, c and i terms are numeric
+constants.  Requesting a computation of this model in 
+<b><font color="4040ff">R</font></b> from the <code>lm()</code> function would 
+look something like this:<p>
+<code>lm(y~x1+x2+x3,data=mydata.df)</code><p>
+Note that the The variable on the left of the tilde ('~') is the response (or dependent)
+variable, and those on the right are the terms of the model (sometimes the
+independent variables). So far, so good.<p>
+Because formulae are a vital concept in specifying models, the syntax is rich
+and sometimes confusing, allowing the usual interactions between variables and
+the inclusion of various terms that specify the details of calculation.<p>
+The reader will have noticed that the simple formula
+construction was used to specify how to breakdown a variable by a number of
+factors in the <a href="brkdn.R" target="brkdn"><code>brkdn()</code></a> 
+function.  In this case, the formula representation was used as a convenient 
+way to specify the breakdown to the function rather than a linear model.  
+As with the <a href="xtab.R" target="xtab"><code>xtab()</code></a>
+function, formulae may be used to specify a number of relationships between
+variables in <b><font color="4040ff">R</font></b>.  It is best to ensure that
+you know how a formula representation is being used by a particular function, as
+simply sticking one together and sending it to the function often results in
+particularly confusing error messages.<p>
+For more information, see <u>Introduction to R</u>: Defining statistical models; 
+formulae<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

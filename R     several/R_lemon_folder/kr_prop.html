@@ -1,0 +1,33 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> 
+<font color="4040ff">R</font> - Tests of proportion</b></font></center><p>
+Many simple hypotheses are concerned with whether the proportion of one 
+group (e.g. females) with a certain characteristic (e.g. tobacco smoking) is
+different from that of another group (e.g. males). In the package
+<code>ctest</code>, which is now loaded automatically when
+<b><font color="4040ff">R</font></b> starts up, is the function
+<code>prop.test()</code>. This function tests whether two or more samples 
+divided on a dichotomous variable have the same proportions of each value.
+Here's an example:<p>
+<pre>&gt; sexsmoke<-matrix(c(70,120,65,140),ncol=2,byrow=T)
+&gt; rownames(sexsmoke)<-c("male","female")
+&gt; colnames(sexsmoke)<-c("smoke","nosmoke")
+&gt; prop.test(sexsmoke)</pre><p>
+In this case, we passed a matrix of "successes" (i.e. smokers) and "failures"
+(i.e. non-smokers). <code>prop.test()</code> will also accept separate vectors
+of "successes" and "totals", like this:<p>
+<code>&gt; prop.test(c(70,65),c(190,205))</code><p>
+You can also specify the hypothetical proportions, if you want to test the
+samples against a particular set of values, whether your hypothesis is 
+directional, and the confidence interval in the case of a two sample test.<p>
+<pre>&gt; prop.test(c(70,65),c(190,205),conf.level=0.99)
+&gt; prop.test(c(70,65),c(190,205),c(0.33,0.33))</pre><p>
+An alternative function is <code>fisher.test()</code>, also in the package
+<code>ctest</code>. This function performs Fisher's exact test on contingency
+tables. For a function that will perform multiple comparisons of proportions,
+see the <a href="gptest.R">group.prop.test</a> function.<p>
+<hr>
+For more information, see the <b><font color="4040ff">R</font></b> help index - 
+package ctest.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

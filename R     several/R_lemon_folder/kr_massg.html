@@ -1,0 +1,67 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i>
+<font color="4040ff">R</font><br>Massaging data in
+<font color="4040ff">R</font></font></center>
+<h2>Specifying subsets of data</h2>
+This in known as <emph>extraction</emph> in 
+<b><font color="4040ff">R</font></b>. Most users will use the extraction
+operator "[]" to select values from a data object. The flexibility of the
+extraction operator does cause a bit of confusion in many new users.
+To extract a single value from a matrix or array of <b>m</b> dimensions,
+append the brackets to the name of the object with <b>m</b> integers separated
+by commas, e.g.:<p>
+<code>&gt; xmat[2,3]</code><p>
+Easy. What about a data frame? As the columns of a data frame can contain
+different modes of data, they may be specified differently:<p>
+<pre>&gt; xdf$age[3]
+&gt; xdf[[2]][3]
+&gt; xdf[,2][3]
+&gt; xdf[2,3]</pre><p>
+In the first line, the <emph>name</emph> of the column was used, along with the
+index of the desired value, in the second line, the <emph>index</emph> of the 
+column was used in double brackets, then the index of the value in single
+brackets. Then the second column was specified by omitting the first index 
+in single brackets, again with a second index in single brackets. Finally, the
+same system shown for matrices or arrays will work. Note that only the first
+example will extract only the value. The others will return a factor object with
+a single value if that column was a factor object.<p>
+To extract more than one value, use a vector rather than a single integer.<p>
+<pre>&gt; xdf$age[3:6]
+&gt; xdf$age[c(0,0,1,1,1,1)]</pre><p>
+The vector can be explicit indices, as shown in the first line, or a vector of
+logicals that will return the elements corresponding to non-zero values.<p>
+<h2>Changing the value of a variable</h2>
+The convention of aligning variables as columns and subject as rows is pretty
+well established and will be observed here unless specified otherwise. Say that
+you have one or more variables that you would like to normalize (i.e. transform
+so that each variable has a mean of 0 (zero) and a variance of 1 (one).<p>
+<code>&gt; mydata$myvar<-(mydata$myvar-mean(mydata$myvar))/sd(myvar)</code><p>
+The original <code>myvar</code> has been replaced by the normalized values. 
+Numeric transformations like this are relatively simple, as are generating
+categories from continuous measurements:<p>
+<code>&gt; mydata$tertiaryed<-ifelse(mydata$yearseduc > 12,"Y","N")</code><p>
+or recategorizations of factors:<p>
+<code>&gt; mydata$tertiaryed<-ifelse(mydata$education == "UNI" || mydata$education == "COL","Y","N")</code><p>
+Notice how this time, the new values were stored in a new variable rather than
+overwriting the previous values. You can either append the new variable to the
+original data frame, as in the example, or just make it a separate variable.
+Obviously, if you want to save your data in a compact form for further analysis,
+appending makes it easier to manage.<p>
+<h2>Dealing with NAs (missing values)</h2>
+The NA (datum Not Available) is <b><font color="4040ff">R</font></b>'s way of
+dealing with missing data. NAs can give you trouble unless you explicitly tell
+functions to ignore them, or pass the data through <code>na.omit()</code>
+(drop all NAs in the data) or <code>na.exclude()</code>. In some cases you may
+wish to give the NAs a specific value. For example, you may know that only
+non-smokers did not complete a "How many cigarettes?" item, and want to replace
+the NAs that were generated with zeros.<p>
+<code>&gt; mydata$ncigs[is.na(mydata$ncigs)]<-0</code><p>
+Notice here that an equality test is not appropriate for NAs, because they don't
+equal anything. The <code>is.na()</code> function returns a vector of indices
+that correspond to the elements in <code>mydata$ncigs</code> that are NAs. Those
+elements are then replaced with zeros. You can also replace NAs with potentially 
+more informative values by using a data imputation function.<p>
+For more information, see <u>An Introduction to R</u>: 
+Simple manipulations; numbers and vectors<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

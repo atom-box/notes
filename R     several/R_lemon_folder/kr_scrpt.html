@@ -1,0 +1,100 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Writing R scripts</b></font></center><p>
+<h2>So what is an R script?</h2>
+An <b><font color="4040ff">R</font></b> script is simply a text file containing
+(almost) the same commands that you would enter on the command line of
+<b><font color="4040ff">R</font></b>. (almost) refers to the fact that if you
+are using <code>sink()</code> to send the output to a file, you will
+have to enclose some commands in <code>print()</code> to get the same output as
+on the command line. To run a script, let's say one with the name:<p>
+<code>/home/jim/psych/adoldrug/partyuse1.R</code><p>
+you may either use:<p>
+<code>source("/home/jim/psych/adoldrug/partyuse1.R")</code><p>
+on the command line of R OR<p>
+<code>R CMD BATCH /home/jim/psych/adoldrug/partyuse1.R</code><p>
+<img src="hoover.gif">Let's pause to note a little historical bifurcation that
+has caused almost as much strife as the question of exactly what the
+&lt;Delete&gt; key should do. The convention that the slash (/) character is
+used as a separator in the notation for a filesystem path is not universal. 
+PC-DOS, for example, used the backslash (\). Like Fords <i>vs</i> Chevrolets, 
+French <i>vs</i> English, and whether you crack the egg at the big or small end,
+it doesn't really matter a rat's behind which one you use as long as it works.
+To make it work in <b><font color="4040ff">R</font></b>, however, where the *NIX
+convention of using the backslash as an escape character is respected, you will
+have to double backslashes in paths for them to be read properly. Thus if the
+filename above was:<p>
+<code>C:\JIM\PSYCH\ADOLDRUG\PARTYUSE1.R</code><p>
+I would have to refer to it as:<p>
+<code>C:\\JIM\\PSYCH\\ADOLDRUG\\PARTYUSE1.R</code><p>
+in an <b><font color="4040ff">R</font></b> script.
+<h2>Using the script to determine where things happen</h2>
+Managing the various objects used in <b><font color="4040ff">R</font></b> can be
+challenging. As mentioned in <a href="kr_start.html">Starting Up</a>, using the 
+directory structure to sort these objects into sensible categories can be a big 
+help. Instead of starting the <b><font color="4040ff">R</font></b> session in a 
+particular directory, you may wish to keep a directory of 
+<b><font color="4040ff">R</font></b> scripts and allow these to change the
+working directory to suit whatever task they perform.<p>
+First, choose your directory. This will be the place where all of your
+<b><font color="4040ff">R</font></b> scripts will be stored. You can either
+change to this directory before starting <b><font color="4040ff">R</font></b> or
+use the method described in <a href="kr_start.html">Starting Up</a>. 
+Let's examine the beginning and end of a typical script written for this purpose:<p>
+<pre># store the current directory
+initial.dir<-getwd()
+# change to the new directory
+setwd("/home/jim/psych/risk/adol")
+# load the necessary libraries
+library(nlme)
+# set the output file
+sink("adolrisk03.out")
+# load the dataset
+...
+# close the output file
+sink()
+# unload the libraries
+detach("package:nlme")
+# change back to the original directory
+setwd(initial.dir)</pre><p>
+First notice that the script stores the initial directory and changes to the
+directory where the data is, and where output will be generated. The libraries
+necessary for the analysis are then loaded. Finally, the output of the script
+is directed to a text file, producing a record of the analysis. Then comes the
+action. After the analysis has been completed, the output file is closed, the
+libraries are unloaded, and the directory is changed back to where the scripts
+reside. At this point, you may want to start another script or shut down 
+<b><font color="4040ff">R</font></b>.<p>
+<h2>Annotating the output file</h2>
+<b><font color="4040ff">R</font></b>'s output can often be terse. Annotating it
+will make it much easier for someone unfamiliar with 
+<b><font color="4040ff">R</font></b> or statistical analysis to understand.<p>
+<pre>cat("\nMean risk-taking scores for all groups\n\n")
+brkdn(risk~group,adolrisk03.df)</pre><p>
+Here <code>cat()</code> is used to label a breakdown of means, leaving a blank
+line above and two below the label. Spacing the
+output with meaningful labels improves the appearance and comprehensibility.
+<h2>Viewing and saving plots</h2>
+One potential disadvantage of scripts is that multiple plots will flash by in a 
+blur if you let them.<p>
+<pre>...
+par(ask=TRUE)
+xpos<-barplot(loaeval[1,],ylim=c(0,5),main="Lecture evaluation scores",
+ names.arg=eval.names)
+error.bars(xpos,loaeval)
+dev.copy2eps("loaeval.ps",width=6,height=6)
+...
+par(ask=FALSE)</pre><p>
+<code>par(ask=TRUE)</code> requires you to hit &lt;Return&gt; <u>before</u> each
+plot is displayed. If you want such a prompt <u>after</u> display you can
+use:<p>
+<code>readline("Press &lt;Enter&gt; to continue")</code><p>
+Remember that the little message will show up in the command window and the user
+will have to switch to that window to restart the action by pressing 
+&lt;Enter&gt;. If you want a little window to pop up with a flashing message
+that will alert the near-unconscious, get into the Tcl-Tk interface. It's amazing.
+The example then uses <code>dev.copy2eps()</code> to copy the display to a
+Postscript file so that the plot may be printed or inserted into a document.<p>
+For more information, see <u>An Introduction to R</u>: Device Drivers.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

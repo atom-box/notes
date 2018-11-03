@@ -1,0 +1,70 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Repeated measures</b></font></center>
+<h2>Repeated measures</h2>
+One of the most common statistical questions in psychology is whether something 
+has changed over time, for example, whether the rats learned the task or 
+whether the clients in the intervention group got better. Such questions are 
+typically tested by comparing observations before and after some treatment. It
+is inappropriate to just compare the before and after observations as if they
+were independent, because they are not. The "after" observations are usually
+dependent upon the "before" observations <u>and</u> the effect of order. That is,
+a client who was very anxious at the initial occasion of measurement is likely
+to be less anxious at subsequent occasions, and because of the selection of
+clients on the basis of their disturbed psychological state and the change that
+state over time, our clients (who tended to be more disturbed than usual when
+they were recruited) will be likely to get somewhat better even if we just tell 
+them to come back in six weeks.<p>
+There are a number of ways to perform repeated measures analysis in
+<b><font color="4040ff">R</font></b>. Here, we'll just examine two - the
+univariate method using ANOVA and that using linear mixed effects analysis.<p>
+<h2>Univariate ANOVA</h2>
+Many simple repeated measures analyses can be performed as a "univariate" ANOVA 
+using <code>aov()</code> if the "circularity" property (the equivalence of 
+variances of the differences between repeat observations) is met. For two 
+repeats, of course, this is not a problem. Assume you have a data frame like 
+this:<p>
+<pre>subid	age	test1	test2
+S001	23	17	21
+S002	32	16	24
+...</pre><p>
+The function <a href="makerm.R" target="makerm"><code>make.rm()</code></a>
+will reformat a data frame that contains repeats as multiple columns so that a
+call of the form:<p>
+<code>myexpr.df<-make.rm(constant=c("subid","age"),repeated=c("test1","test2"),data=myexp.df)<br>
+summary(aov(repdat~age*contrasts+Error(subid),myexpr.df))</code><p>
+will perform a simple repeated measures analysis.<p>
+Analyzing repeated measures using ANOVA involves stretching out the matrix of
+observations in a way that <code>aov()</code> is able to appropriately partition
+the variance for this problem. It is <u>not</u> always appropriate to use this
+method, and the reader should not just blindly plug their repeated measures
+problem into the cookbook method outlined here and expect to get the correct
+answer.<p>
+<h2>Linear Mixed Effects</h2>
+A more general method for repeated measures is to use the Linear Mixed Effects
+functions found in the <code>nlme</code> package. These functions expect the
+data to be in the "stretched-out" form produced by </code>make.rm()</code>, so
+that you may use this function to transform data that is in a "subject x repeat"
+format. Try the example using the data set <code>ergoStool</code> as follows:<p>
+<pre>&gt; library(nlme)
+&gt; data(ergoStool)
+&gt; summary(lme(effort ~ Type, data = ergoStool, random = ~ 1 | Subject))
+</pre><p>
+This shows that there are differences between type T1 (the reference category) 
+and types T2 and T3, but not T4. Perhaps the contrast of interest to you is
+whether types T1 and T4, made by manufacturer X, are different from types T2 and
+T3, made by manufacturer Y.<p>
+<pre>&gt; XvY<-ifelse(ergoStool$Type=="T1",1,0)+
++ ifelse(ergoStool$Type=="T4",1,0)+
++ ifelse(ergoStool$Type=="T2",-1,0)+
++ ifelse(ergoStool$Type=="T3",-1,0)
+&gt; summary(lme(effort ~ XvY, data = ergoStool, random = ~ 1 | Subject))
+</pre><p>
+While not as "good" a model as the one in the example, this may be more
+informative in a particular case.<p>
+For a much more detailed treatment of ANOVAs and other methods, get the 
+<a href="http://www.stat.math.ethz.ch/CRAN/src/contrib/PACKAGES.html">
+VR</a> package or <a href="http://cran.r-project.org">Notes on the use of R..."
+</a> in the Contributed documentation page.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

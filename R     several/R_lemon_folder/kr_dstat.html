@@ -1,0 +1,77 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Descriptive statistics</b></font></center><p>
+<h2>Writing a descriptive stats function</h2>
+Assume that we want a <a href="kr_func1.html">function</a> that will give 
+us the mean, variance and valid n for one or more numeric variables in a data 
+frame. Here's a very simple example of such a function,
+<a href="dstats.R" target="dstats">dstats()</a>.<p>
+Note that two things have been done before any
+calculation.  First the function checks whether the required argument
+<code>x</code> is missing, then it checks whether <code>x</code> is a data frame
+or matrix.  This avoids any messy errors that would result by calling the
+function without any arguments or with objects that didn't make any sense to the
+function.  If these checks fail, a simple usage message is
+printed to inform the user.<p>
+After all this preparation, what does the function do?  First, it works out
+which columns of the input data are numeric.  It then computes the
+vector of means as above.  Then it makes almost exactly the same call, except
+using the function <code>var()</code> to get the variances.  You won't find the 
+third function in the <b><font color="4040ff">R</font></b> help listing.<br>  
+<pre>validn<-function(datavec) {
+ return(sum(!is.na(datavec)))
+}</pre><p>
+All it does is add up the vector of <code>TRUE</code> and <code>FALSE</code>
+values (which happen to equal 1 and 0) produced by the function
+<code>is.na()</code> and reversed by the NOT (!) operator.  That value is the 
+number of valid (NOT NA) observations in the object passed to it, which will be 
+each column of the incoming data to
+<code>dstats()</code>.  So <code>validn()</code> had to be written
+before <code>dstats()</code> would run. This is a good time to consider when
+it is worth writing a separate function to do something. <code>validn()</code>
+has the advantage that it returns a useful value that might be used by many 
+other functions. Also, it's slightly easier to use a function name in
+<code>sapply()</code> than writing in the function definition. It has the 
+disadvantage that it is a one-liner and could simply
+be inserted into the code of the other functions rather than a call.
+Your own style of programming will probably dictate at what point you begin to
+write separate functions.<p>
+<code>dstats()</code> then calls <code>rbind()</code> to stick the three 
+vectors together into a matrix row by row, and calls <code>rownames()</code> to 
+assign the desired row labels to the matrix.  Finally, <code>dstats()</code>
+assigns the class of "dstat", which will allow objects produced by it to be
+recognized as a specific sort of object.  The object <code>dstat</code> is then 
+returned,  which means that it will be displayed, and optionally assigned to 
+another object.<p>
+Assume that you would like to have more control over which variables are
+included in the output.  You know that the mean is a suitable description for 
+<code>age</code> and <code>parity</code>.  <code>dstats()</code> as written
+allows you to pass a vector of either integers or names that will specify the
+variables to be used.<p>
+So, why do we go to all this trouble to define a special object and write a
+function to produce it? I find that an object that contains means, variances
+and ns allows me to easily display a summary and produce a basic plot, including 
+error bars, etc. It also allows functions to recognize the object as the correct
+sort without extensive testing of the contents. Apparently other people have 
+noticed the same thing, and there is at least one other "dstat" object out 
+there. One of the really valuable things about being able to program your stats 
+is that you can customize such objects to suit the sort of work that you do. 
+Therefore, I encourage readers to devise and refine their own objects, a good
+way to learn the capabilities of <b><font color="4040ff">R</font></b> and more
+importantly, to get what you want.<p>
+<h2>What about median and mode?</h2>
+Say that you wanted the median and mode in your <code>dstat</code> object. You
+could add a call to the <code>median()</code> function and include that in the
+object returned. <b>mode</b> is a bit more difficult. We can use the 
+<code>tabulate()</code> function to calculate it - <u>if</u> the data are all
+positive numbers:<p>
+<pre>&gt; x<-sample(1:10,30,TRUE)
+xt<-tabulate(x)
+xmode<-which(xt == max(xt))
+if(sum(xt == max(xt))>1) xmode<-NA</pre><p>
+<code>xmode</code> will be the value of the first category that has a frequency
+equal to the highest frequency in the table. If there is more than one category 
+with the maximum frequency, <code>xmode</code> will be set to NA.<p>
+For more information, see <u>An Introduction to R</u>: Vector arithmetic.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

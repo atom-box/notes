@@ -1,0 +1,35 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font><br>Starting and stopping</font></center>
+<h2>Starting <font color="4040ff">R</font></h2>
+If <font color="4040ff">R</font> has been installed properly, simply entering
+<code>R</code> on the command line of a terminal should start the program. In
+Windows, the program is typically specified as the action performed when
+clicking on an icon. You can also use this method on a *NIX system that has a
+window manager such as KDE.<p>
+<h2>Where does it start?</h2>
+<font color="4040ff">R</font> normally starts in the current directory, unless
+the command associated with it specifies something different. A handy way of
+building working directory specification into the <font color="4040ff">R</font>
+startup file is to add the following line:<p>
+<code>-s) shift; cd $1 ;;</code><p>
+to the <font color="4040ff">R</font> script just before the line that begins:<p>
+<code>)*</code><p>
+at about line 120. This allows you to start <font color="4040ff">R</font> with a
+command line like:<p>
+<code>&gt; R -s /home/jim/R/analyses</code><p>
+Now this may not seem like much use as a command line, unless it is the command
+that is run by one of a number of icons. You can then have several 
+<font color="4040ff">R</font> icons that will start up in different directories
+with different data sets, making the management of your data a bit easier.
+Another way, described in <a href="kr_scrpt.html">The R Script</a> is to include
+the directory change in a script file.
+<h2>Stopping it</h2>
+<font color="4040ff">R</font> has a function <code>q()</code> that will end the
+session, asking if you want to add the objects and commands from the current
+session to the .RData and .Rhistory files respectively. If you decline, whatever
+was in there prior to the current session will remain. There is also a .Last() 
+function that can be used to automate your exit.<p>
+For more information, see <u>An Introduction to R</u>: Using R interactively.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

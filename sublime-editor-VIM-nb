@@ -1,3 +1,46 @@
+## Best shortcut ever. Sublime, jump to next occurance
+On the Mac it's CMD+OPTION+G,
+
+## IN ALL MAC STUFF
+fn + arrow is pageup pagedown
+
+## Best of Viget link, below btw
+Comment Selection/Line: ⌘ + /
+Indenting and Unindent: ⌘ + [ or ]
+Duplicate Line or Selection: ⌘ + ⇧ + D
+	If you have text selected, it will duplicate your selection. Otherwise, place 
+	your cursor on the line and duplicate the whole line.
+Select Between Brackets: ⌘ + ⇧ + Space
+	This is helpful for selecting everything between brackets. Works with CSS 
+	too.
+Line end jump: arrows with Ctl
+
+
+## list to entire shortcuts page
+https://www.viget.com/articles/my-overused-sublime-text-keyboard-shortcuts/#select_next_match_of_a_selection 
+Selecting Stuff
+    * Select Next Match of a Selection
+    * Select All Matches of a Selection
+    * Select Opening and Closing Tag Relative to Cursor
+    * Select Between Container New
+    * Select Between Brackets
+Moving Lines and Text Around
+    * Move Line Up or Down
+    * Duplicate Line or Selection
+    * Indenting and Unindent
+Cutting and Removing, Copying, and Pasting
+    * Cut Line or Selection
+    * Paste While Respecting Indents
+    * Wrap Line or Selection with Tag
+    * Remove Enclosed Container Element
+Text and Number Manipulation
+    * Evaluate Math Expression
+    * Increment and Decrement
+    * Upper and Lowercase
+Commentating and Aligning Variables
+    * Comment Selection/Line
+    * AlignTab with a Custom Keyboard Shortcut
+
 ## shortcuts
 CLOVER-D 
 skips to next occurance of that word, cumulatively selecting more and more

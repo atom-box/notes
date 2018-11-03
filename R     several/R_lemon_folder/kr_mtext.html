@@ -1,0 +1,24 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font><br>Text in the margins</b></font></center><p>
+<h2>Staggered axis labels</h2>
+Monday, Tuesday,... oops, the X axis is beginning to look like a mess. When you
+have one or more long labels on the axis, they can run together unless you
+squash the font down to an unreadable size or stagger the labels. Using one of
+the variables in the previous example, try this.<p>
+<pre>&gt; upvar<-rnorm(10)+seq(1,1.9,by=0.1)
+&gt; plot(upvar,pch=1,col=3,axes=F)
+&gt; box()
+&gt; axis(at=2)
+&gt; axis(1,at=1:10,labels=F)
+&gt; nnames<-c("one","two","three","four","five","six","seven","eight","nine","ten")
+&gt; mtext(nnames,1,at=1:10,line=rep(c(1,2),5))</pre><p>
+First plot the data with no axes at all, then add the box and the ordinate. The
+second call to <code>axis()</code> just makes the tick marks where we want them.
+I've assigned the labels to a character vector to make it easier to see what's
+going on here. <code>mtext()</code> then places the ten labels on alternate
+lines, staggering them. You may want to add space for an extra line to the
+bottom of the plot if you think it will look better.<p>
+
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

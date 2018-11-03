@@ -1,0 +1,60 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font><br>Plotting data - point/line
+graphs</b></font></center><p>
+<h2>Getting the picture</h2>
+Plotting is, on one level, really simple.<p>
+<code>&gt; plot(infert)</code><p>
+However, the result can be really ugly.  Ask <b><font color="4040ff">R</font></b> 
+to plot a data frame and it does the best it can, spraying the data all over a
+matrix of scatter plots.  To the experienced eye, this can be a rich source of
+information about the data, but it probably doesn't look like much to the
+beginner who just wants a simple plot.  Let's start with a plot of the mean age
+by parity.  First we'll have to get the group means, which we can obtain with
+the <a href="brkdn.R" target="brkdn"><code>brkdn()</code></a> function.<p>
+The <code>brkdn()</code> function returns not only the values of the means
+for each group defined by each value of <code>parity</code>, but also the
+variances and numbers of observations.  In fact, it has been written to return
+an object like the one returned by <code>dstats()</code>.  The returned object has
+been assigned the class <code>dstat</code> as well.<p>
+<pre>&gt; agexeduc<-brkdn(age~educ,infert)
+&gt; agexeduc
+           0-5yrs   6-11yrs   12+ yrs
+Mean     35.25000  32.85000  29.72414
+Variance 40.02273  28.66639  19.19280
+n        12.00000 120.00000 116.00000
+attr(,"class")
+[1] "dstat"</pre><p>
+Sending the means to the <code>plot()</code> function <p>
+<code>&gt; plot(agexeduc[1,])</code><p>
+gets a plot, but it's still pretty sparse and difficult for the reader to work
+out what's being illustrated.  Try this next.<p>
+<pre>&gt; plot(agexeduc[1,],main="Age by education",
++ xlab="Education",ylab="Age (years)",type="b")</pre><p>
+Now it's starting to look like something.  The xaxis ticks are not very good
+here.  With <b><font color="4040ff">R</font></b>, of course, you can
+roll your own.  First plot again <u>without</u> the x axis.<p>
+<pre>&gt; plot(agexeduc[1,],main="Age by education",
++ xlab="Education (years)",ylab="Age (years)",type="b",xaxt="n")</pre><p>
+Now, specify your own x axis as follows:<p>
+<code>&gt; axis(1,1:length(agexeduc[1,]),colnames(agexeduc))</code><p>
+Finally, a simple plot of means.  Don't despair, it gets easier.  Notice that
+the values used in most of the operations refer to the data being plotted.  This
+means that as long as you are thoughtful in writing the function to produce the
+data for plotting, you will be able to automate most of the process by writing a
+function for producing point/line plots the way you want them.  Now try to stick the 
+separate commands in the preceding examples together to make a function called 
+<code>pointline.plot</code>.<p>
+The first thing that will hit you in the eye is that the title and axis labels
+have been <u>hard coded</u>.  Unless you want to spend the remainder of your
+career plotting age by education, this will have to be remedied. 
+Fortunately, it's not too hard - see <a href="kr_ptline.R"
+target="ptline">plot.dstat()</a>. There are a number of functions in this file,
+as producing a "simple" plot is not all that simple.<p>
+This function is <emph>interactive</emph>, allowing the operator
+to specify the information that will change from plot to plot but is not
+included in the data passed to the function.<p>
+For more information, see <u>An Introduction to R</u>: High level plotting
+commands.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

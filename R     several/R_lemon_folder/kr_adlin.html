@@ -1,0 +1,47 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Adding lines to a plot</b></font></center><p>
+Many lines that are added to plots are just straight lines that span the plot. 
+<code>abline()</code> is a good choice for this type of line.  Say that we wished
+to add a vertical line at 2.5 on the x axis to the plot to divide the women who
+completed high school from those who didn't.<p>
+<code>&gt; abline(v=2.5,col=3,lty=3)</code><p>
+This would produce a green, dotted, vertical line across the plot.  To divide
+the other axis, say that age 33 was to be marked.<p>
+<code>&gt; abline(h=33,col=4,lty=2)</code><p>
+would draw a blue, dashed, horizontal line at 33 on the y axis.  We can also
+display regression lines.<p>
+<code>&gt; abline(lm(infert$age~as.numeric(infert$educ)),col=2,lty=1)</code><p>
+This draws a solid, red line illustrating the regression of education on age.<p>
+<h2>Hypothetical distribution curves</h2>
+Sometimes a hypothetical distribution curve for the data illustrated will give
+the viewer a better notion of how the distribution in the population might look
+(we sincerely hope). If you can write down the function that describes the
+distribution you think underlies the data, you can use <code>curve()</code> to
+add it to your plot. Using the <code>airquality</code> data, plot
+<code>airquality$Ozone</code>. Suppose you think that the probability of a given
+concentration of ozone on any day is described by two linear functions, one
+valid for the range 0 to 120, and the other for 120 and up.<p>
+<pre>&gt; data(airquality)
+&gt; airhist<-hist(airquality$Ozone)
+&gt; curve(40-(x/3.3+1),from=0,to=120,add=T)
+&gt; curve(6.6-(x/30),from=120,to=180,add=T)</pre><p>
+This might impress an uncritical audience, but it is completely
+fabricated. When you are at a loss for what the underlying distribution might
+be, it may be better to just smooth the data and plot the result.<p>
+<pre>&gt; airhist<-hist(airquality$Ozone)
+&gt; airspline<-spline(airhist$counts)
+&gt; lines(rescale(airspline$x,range(airhist$mids)),airspline$y)</pre><p>
+There are a number of smoothing algorithms available in R, including
+<code>spline()</code>. Producing smoothed curves for <code>histogram()</code> 
+or <code>barplot()</code> is a common problem, partly because the horizontal
+axis on these plots is not scaled in an obvious way. As you can see,
+<code>histogram()</code> returns a list that contains the midpoints of the bars,
+as does <code>barplot()</code>. The function <a href="rescale.R"
+target="rescale">rescale()</a> does a simple linear transformation of one 
+vector of values into a new scale. In this case, the scaling was by about a 
+factor of 20.<p>
+For more information, see <u>An Introduction to R</u>: Examining the
+distribution of a set of data.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

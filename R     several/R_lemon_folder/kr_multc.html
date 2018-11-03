@@ -1,0 +1,46 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Multiple comparisons</b></font></center><p>
+Significance testing is one of the more lively areas of statistics.  In general,
+the idea is not to make <u>too</u> many mistakes in our conclusions.  If this
+only applied to Type I errors, we could all relax, apply the most conservative
+tests of significance possible and restrict ourselves to the study of the 
+glaringly obvious.  <b><font color="4040ff">R</font></b> attends to the problem
+of significance testing in some ways, but sensibly avoids prescribing methods
+which may not be appropriate for particular analyses.<p>
+<h2>Adjustments for multiple comparisons</h2>
+The basic method of adjusting for multiple comparisons is to define the group of
+comparisons that are to be tested and select an appropriate method of adjustment
+and the overall probability of a Type I error (perhaps considering the
+implications of Type II errors).  Then, either define a critical probability 
+which any test in that group must exceed or adjust the probability of each test
+individually and compare that to the selected overall probability of Type I
+errors.  The latter method has been established in 
+<b><font color="4040ff">R</font></b> in the function <code>p.adjust()</code>, 
+but it's a bit awkward to integrate with functions like <code>anova()</code> 
+that may produce a table with a number of probabilities.<p>
+Using the <code>infert</code> data set, we'll apply the Bonferroni correction to 
+multiple tests of the prevalence of induced labor within groups defined by 
+educational attainment in the <code>infert</code> data set. First let's go 
+through the function 
+<a href="gptest.R" target="gptest"><code>group.prop.test()</code></a>
+that I found useful for repetitive testing of groups of Bernoulli trial
+(success/failure) data where the outcome of interest was which groups differed 
+from the overall proportion, that is, which groups were better or worse than the
+average level of success by a fairly conservative test.<p>
+The usual checks of the input data are performed, then the overall proportion is
+calculated and the result list is set up, filled with blanks and zeros.  
+For each group defined by the grouping vector <code>by</code>, a test of
+proportions is conducted, and the adjusted probability stored in the appropriate
+element of <code>gptest</code>.  Notice that the formatting of the group names
+was performed after the calculation.  Otherwise the comparison performed by
+<code>subset</code> would have failed.  After the calculation, the results are 
+printed out and the list of results is returned invisibly.  By playing around 
+with this data, you may discover that a simple test of the contingency table 
+indicates that the groups do not come from the same population, but in fact 
+none differ from the average prevalence of induced labor, at least by this test.<p>
+When I originally wrote the function, it simply printed out the critical
+(corrected) p-value at the top of the table, and all of the observed values 
+were compared with that.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

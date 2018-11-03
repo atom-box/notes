@@ -1,0 +1,42 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Plotting data - error bars</b></font></center><p>
+<h2>Illustrating variability</h2>
+If you are interested in <b><font color="4040ff">R</font></b>, you are likely to
+be interested in statistics, and if you are interested in statistics, you must
+have some appreciation of variability.  One way to illustrate this quantity
+is with error bars.  <b><font color="4040ff">R</font></b> has a function named
+<code>arrows</code> that can simplify this task.  <code>arrows</code> requires
+at least four arguments, the x/y start and end points of each arrow (if each
+argument is a vector, an arrow will be drawn for each value in the vector). 
+Note that the points will be specified in <emph>user</emph> units, that is, the
+units that are actually illustrated on the graph.  Start with the start points. 
+These are usually separated from the points marking the values by a small
+amount. I use the current height of a lower case "m".  In order
+to get bars going up and down, there will have to be two sets of starting
+points.  Similarly, two sets of end points will be needed, calculated by adding
+and subtracting the value of the standard errors for each of the data points
+- see <a href="kr_ptline.R" target="ptline">plot.dstat()</a>.<p>
+First, the function checks that its argument is there, and is an object of class
+"dstat".  Now have a look at the arguments to <code>arrows</code>.  In addition 
+to the first four arguments specifying the start and end points of the arrows, 
+the <code>length</code> argument specifies the length of the arms in (blush) 
+inches and the <code>angle</code> argument specifies the angle of the arms from 
+the stem.<p>
+<img src="hoover.gif">
+<b><font color="4040ff"> R</font></b> has inherited a lot of things from
+<b>S</b>.  Some of them aren't the greatest, like the default units of inches
+and points.  Well, nobody's perfect.<p>
+Notice that the function will do its best to work out missing arguments from the
+data. If error bars are requested, <code>get.dstat.ylim()</code> is called to
+work out the maximum range of the entire dstat object.<p>
+Notice the <code>offset=</code> option in <code>plot.dstat</code>. This allows
+you to ask for additional points and error bars produced by 
+<code>add.pointline()</code> to be moved side to side so that they don't 
+overlap.<p>
+Your idea of a great point/line plot may be somewhat different.  By now you should
+have an idea of the tools that can be used to get that plot.<p>
+For more information, see <u>An Introduction to R</u>: High-level plotting
+commands.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

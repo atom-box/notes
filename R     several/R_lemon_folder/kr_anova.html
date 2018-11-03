@@ -1,0 +1,28 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> 
+<font color="4040ff">R</font> - ANOVAs</b></font></center>
+<h2>ANOVAs</h2>
+For more complex hypotheses, we'll have to go to ANOVAs. As a pretty artifical
+example, we'll combine the test performed in the t-test example with another
+test in a simple ANOVA using <code>aov()</code>, asking if <code>case</code> 
+and <code>education</code> <u>and</u> their interaction have any association 
+with <code>age</code>.<p> 
+<pre>&gt; anova(aov(age~case*education,infert))
+Analysis of Variance Table
+ 
+Response: age
+                Df Sum Sq Mean Sq F value    Pr(>F)
+case             1    0.1     0.1  0.0034    0.9536
+education        2  753.3   376.7 15.0456 6.938e-07
+case:education   2    0.2     0.1  0.0031    0.9969
+Residuals      242 6058.4    25.0 </pre><p>
+We're getting pretty much the same answers, except that the variance has been
+partitioned appropriately for looking at the more complex question. 
+<code>anova()</code> produces the ANOVA table from the output of
+<code>aov()</code>.<p>
+<hr>For a much more detailed treatment of ANOVAs and other methods, get the 
+<a href="http://www.stat.math.ethz.ch/CRAN/src/contrib/PACKAGES.html">
+VR</a> package or <a href="http://cran.r-project.org">Notes on the use of R..."
+</a> in the Contributed documentation page.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

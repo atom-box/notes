@@ -1,0 +1,64 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Plotting more than one data series</b></font></center><p>
+<h2>Adding points or lines to a plot</h2>
+If you only want to overlay data series on the same axes, it is sufficient to
+specify that you don't want to "erase" the first plot and suppress display of 
+the axes after the first plot:<br>
+<pre>&gt; plot(6:25,rnorm(20),type="b",xlim=c(1,30),ylim=c(-2.5,2.5),col=2)
+&gt; par(new=T)
+&gt; plot(rnorm(30),type="b",axes=F,col=3)
+&gt; par(new=F)</pre><p>
+Notice how extra space was left in case the second series had a greater range
+than the first. The example also shows how to "line up" the series if they
+don't have the same x range by specifying an explicit X range in the first
+plot.<p>
+If you only want to add series of points/lines that have the same x and y
+ranges, <code>points()</code> or <code>lines()</code> will do the job<br>
+<pre>&gt; plot(rnorm(100),type="l",col=2)
+&gt; lines(rnorm(100),col=3)</pre><p>
+If the first data series plotted has a smaller range than subsequent ones, you
+will have to include a <code>ylim=</code> argument on the first plot to fit them
+all in:<br>
+<pre>&gt; yrange<-range(c(datavector1,datavector2,datavector3))
+&gt; plot(datavector1,type="l",ylim=yrange,col=2)
+&gt; lines(datavector2,type="l",col=3)
+&gt; ...</pre>
+<h2>Dual ordinates</h2>
+Illustrating the relationship between two things on a plot is a common task.
+Typically, the abcissa represents time, and the two sets of points (or lines)
+show some sort of covariation. The trick is getting things lined up so that the
+relationship between the variables is easy to see. Using artificial data this
+time, we'll set up two variables that increase and decrease with successive
+observations. In this case, the two data series have different x and y ranges.<p>
+<pre>&gt; upvar<-rnorm(10)+seq(1,1.9,by=0.1)
+&gt; downvar<-rnorm(20)*5+19:10
+&gt; par(mar=c(5,4,4,4))
+&gt; plot(6:15,upvar,pch=1,col=3,xlim=c(1,20),xlab="Occasion",ylab="",main="Dual ordinate plot")
+&gt; mtext("upvar",side=2,line=2,col=3)</pre><p>
+That's the first plot, with green circles showing the data points and a green
+label on the y axis to identify the ordinate for them. The call to
+<code>par()</code> adds space for two extra lines on the right side of the plot,
+which we'll need for the ticks and labels.<p>
+<pre>&gt; abline(lm(upvar~I(1:10)),col=3)</pre><p>
+The <code>I()</code> term in the formula is necessary to prevent
+<code>lm()</code> from generating an error. Now we've got a plot with green
+circles and a green line showing the regression of <code>upvar</code> on
+observation index.<p>
+<pre>&gt; par(new=T)
+&gt; plot(downvar,axes=F,xlab="",ylab="",pch=2,col=4)
+&gt; axis(side=4)
+&gt; abline(lm(downvar~I(1:20)),col=4)
+&gt; mtext("downvar",side=4,line=2,col=4)</pre><p>
+First, there's another call to <code>par()</code> that allows us to plot the
+second set of data without erasing the first plot. The second plot is without
+axes and labels, so that they don't get mixed up with the first plot. After
+adding the second axis on the right side and plotting the regression line for 
+<code>downvar</code>, <code>mtext()</code> is used to put the variable name next
+to the right ordinate. Because we overlaid a new plot, we didn't have to use
+<code>ylim=</code> to fit the two ranges together. 
+<code>xlim=</code> was used to line up the occasions correctly.<p>
+For more information, see <u>An Introduction to R</u>: High level plotting
+commands.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

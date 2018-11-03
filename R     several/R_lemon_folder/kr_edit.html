@@ -1,0 +1,35 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Editing things</b></font></center>
+<h2>The command line is a bummer</h2>
+You've noticed that <b><font color="4040ff">R</font></b> is a command line
+oriented program. You make a lot of typing mistakes. You think it will take you
+forever to type in all the commands that are needed to get any but the most
+trivial analysis finished. You want a text editor. You find the function
+<code>edit()</code> and you go for it.<p>
+There is a potential trap here.  If you happen to like the system's preferred
+editor (which happens to be <code>vi</code> on my system - it will probably be
+Notepad on Windows), you will probably be overjoyed. The first time I found 
+myself in <code>vi</code>, I didn't know how to use it. 
+Even worse, I didn't know how to exit from it.  So the first thing you may
+want to do is change the editor to your preference.<p>
+First invoke the function<p>
+<pre>&gt; options()</pre><p>
+you'll see, right up near the top of the list,<p>
+<pre>$editor
+[1] "vi"</pre><p>
+Now you can temporarily change the default editor with:<p>
+<pre>&gt; options(editor="my_favorite_editor")</pre><p>
+but you might not want to do this every time you start up 
+<b><font color="4040ff">R</font></b>. The <a href="kr_first.html">.First()</a>
+function can do the work for you.<p>
+<pre>&gt; .First<-function() {
++ options(editor="my_favorite_editor")
++ }</pre><p>
+You may prefer to put this into one of the <a href="kr_first.html">
+initialization files</a> </h2>
+Use <code>.Rprofile</code> to limit this preference to your home directory, or 
+<code>Rprofile</code> to make it system-wide.<p>
+For more information, see <u>An Introduction to R</u>: Appendix B.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

@@ -1,0 +1,19 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Breakdown</b></font></center><p>
+<h2>Displaying means for levels of a factor</h2>
+Cranking out group means is likely to be one of the first things you have to do
+in many analyses. <a href="brkdn.R" target="brkdn">brkdn()</a> is a function using a formula again to 
+describe how the data should be broken down.<p>
+This function successively peels off terms of the formula until there is only
+one term (factor) on the right side.  Each time it encounters a factor, it 
+prints the means for the levels of that factor, calling itself recursively if
+there is more than one factor to process.  The display is therefore a
+hierarchical listing of means starting from the last factor on the right side of
+the formula.<p>
+Notice also that the maximum number of levels may be limited, with a default of
+10.  This is a bit of insurance in case a variable with a huge number of levels
+slips in as a factor.  If you really want more than 10 levels for any variable,
+you can pass the appropriate value.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

@@ -1,0 +1,46 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font><br>Finding the function that you want</b></font></center>
+<h2>Why can't I find those functions that the gurus know about?</h2>
+<b><font color="4040ff">R</font></b> has a whole lot of built-in functions, and
+a small army of contributors who are busily cranking out more all the time.
+There is hardly anything more irritating than spending hours writing a function
+that turns up as a one-liner on the R-help list.
+<b><font color="4040ff">R</font></b> has a neat search engine in the HTML help
+package to help you find functions, but there are two little problems with it. 
+First, it's written in Java, and this means that it will only run on a browser
+that has a Java engine. Second, and perhaps more important, the index is
+pre-written, so that the keyword you use must match the keyword that someone
+else used. Given the tradition of naming things as you damn well please in many
+disciplines, you may find that your treasured keywords aren't shared by other
+people. Especially other people who wrote the help index.<p>
+What you need here is the ability to search the descriptions of the functions
+for the words you know. Programs like 
+<a href="http://www.htdig.org"><code>htdig</code></a>
+allow you to perform a full-text search of the 
+<b><font color="4040ff">R</font></b> documentation and find out which function
+descriptions match <u>your</u> keywords. If you're not that lucky, but do have
+Tcl/Tk installed on your PC, there is still hope.<p>
+<img src="diyhelp.jpg" align="right">
+Part of the <b>Kickstarting</b> <b><font color="4040ff">R</font></b> package is
+a little text searching facility called <code>DIYHelp</code>. The program is
+based upon a simple, brute-force search of the directory tree from the point
+that you specify. The concept is that you often know approximately where the
+information you want to know is, but not exactly which file.<p>
+By unpacking the <code>diyhelp.tar.gz</code> file in a suitable place (often
+<code>/usr/local</code>) and following the instructions in the 
+<code>INSTALL</code> file, you can see if the program helps you to find
+functions in <b><font color="4040ff">R</font></b>.<p>
+<code>DIYHelp</code> allows you to enter a keyword and a directory in which to
+begin the search. It will then build a list of all the files under that
+directory that it can display that contain the keyword. When you select one of
+these files, it will start up a program appropriate to display the file. It can
+also pare down the list to just the files you find helpful, and save the list
+for future reference. As an example, using R-1.6.2, the function 
+<code>help.search()</code> returns 28 help documents with the keyword
+"correlation", while DIYHelp returns a list of 139. Obviously, most of these
+won't be of use, but the list <u>is</u> exhaustive. I would particularly like 
+feedback on this little program, as I have found it quite helpful in locating 
+the function I need, but am ignorant of the name.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

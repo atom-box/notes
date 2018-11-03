@@ -1,0 +1,495 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+
+
+<title>R Tutorial: Basic Plotting</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="keywords" content="R,tutorial,R tutorial">
+<link href="R4_plotting_files/main.css" rel="stylesheet" title="default" type="text/css">
+<meta name="description" content="R Tutorial">
+</head><body>
+
+<div id="bigWrapper">
+<div id="lightBox">
+
+        <div id="rightSide">
+            More Tutorials: <br>
+            <a href="http://www.cyclismo.org/tutorial/R/index.html">Front Page</a><br>
+        </div>
+
+        <div id="title">
+        <table> <tbody><tr> <td>
+                <h1> <a href="http://www.cyclismo.org/tutorial/R/index.html">R Tutorial</a> </h1>
+                <h4> <a href="http://www.cyclismo.org/">Cyclismo.org</a> </h4>
+        </td> </tr> </tbody></table>
+        </div>
+
+
+
+
+<h2>Basic Plots</h2>
+
+<p>
+We look at some of the ways R can display information
+graphically. This is a basic introduction to some of the basic
+plotting commands. It is assumed that you know how to enter data or
+read data files which is covered in the <a href="http://www.cyclismo.org/tutorial/R/input.html">first
+chapter</a>, and it is assumed that you are familiar with the
+different <a href="http://www.cyclismo.org/tutorial/R/types.html">data types</a>.
+</p>
+
+<p>
+In each of the topics that follow it is assumed that two different
+data sets, <a href="http://www.cyclismo.org/tutorial/R/w1.dat">w1.dat</a> and <a href="http://www.cyclismo.org/tutorial/R/trees91.csv">trees91.csv</a> have been read and defined using
+the same variables as in the <a href="http://www.cyclismo.org/tutorial/R/input.html">first
+chapter</a>. Both of these data sets come from the study discussed on
+the web site given in the <a href="http://www.cyclismo.org/tutorial/R/input.html">first chapter</a>. We
+assume that they are read using "read.csv" into variables "w1" and
+"tree:"
+</p>
+
+<pre>&gt;  w1 &lt;- read.csv(file="w1.dat",sep=",",head=TRUE)
+&gt; names(w1)
+[1] "vals"
+&gt;  tree &lt;- read.csv(file="trees91.csv",sep=",",head=TRUE)
+&gt; names(tree)
+ [1] "C"      "N"      "CHBR"   "REP"    "LFBM"   "STBM"   "RTBM"   "LFNCC" 
+ [9] "STNCC"  "RTNCC"  "LFBCC"  "STBCC"  "RTBCC"  "LFCACC" "STCACC" "RTCACC"
+[17] "LFKCC"  "STKCC"  "RTKCC"  "LFMGCC" "STMGCC" "RTMGCC" "LFPCC"  "STPCC" 
+[25] "RTPCC"  "LFSCC"  "STSCC"  "RTSCC" 
+&gt; 
+</pre>
+
+<ol>
+<li><a href="#strip">Strip Charts</a></li>
+<li><a href="#histograms">Histograms</a></li>
+<li><a href="#boxplots">Boxplots</a></li>
+<li><a href="#scatter">Scatter Plots</a></li>
+<li><a href="#qqplot">Normal QQ Plots</a></li>
+</ol>
+
+<h3><a name="strip">Strip Charts</a></h3>
+
+<p>
+A strip chart is the most basic type of plot available. It plots the
+data in order along a line with each data point represented as a
+box. Here we provide examples using the "w1" data frame mentioned at
+the top of this page, and the one column of the data is "w1$vals."
+</p>
+
+<p>
+To create a strip chart of this data use the <span class="command">stripchart</span> command:
+</p>
+
+<pre>stripchart(w1$vals)
+</pre>
+
+<p>
+As you can see this is about as bare bones as you can get. There is no
+title nor axes labels. It only shows how the data looks if you were to
+put it all along one line and mark out a box at each point. If you
+would prefer to see which points are repeated you can specify that
+repeated points be stacked: 
+</p>
+
+<pre>&gt; stripchart(w1$vals,method="stack")
+</pre>
+
+<p>
+A variation on this is to have the boxes moved up and down so that
+there is more separation between them:
+</p>
+
+<pre>&gt; stripchart(w1$vals,method="jitter")
+</pre>
+
+<p>
+If you do not want the boxes plotting in the horizontal direction you
+can plot them in the vertical direction:
+</p>
+
+<pre>&gt; stripchart(w1$vals,vertical=TRUE)
+&gt; stripchart(w1$vals,vertical=TRUE,method="jitter")
+</pre>
+
+<p>
+Since you should <b>always annotate</b> your plots there are many
+different ways to add titles and labels. One way is within the
+stripchart command itself:
+</p>
+
+<pre>&gt; stripchart(w1$vals,method="stack",
+       main='Leaf BioMass in High CO2 Environment',
+       xlab='BioMass of Leaves')
+</pre>
+
+<p>
+If you have a plot already and want to add a title, you can use the
+<span class="command">title</span> command:
+</p>
+
+<pre>&gt; title('Leaf BioMass in High CO2 Environment',xlab='BioMass of Leaves')
+</pre>
+
+<p>
+Note that this simply adds the title and labels and will write over
+the top of any titles or labels you already have.
+</p>
+
+<h3><a name="histograms">Histograms</a></h3>
+
+<p>
+A histogram is very common plot. It plots the frequencies that data
+appears within certain ranges. Here we provide examples using the "w1"
+data frame mentioned at the top of this page, and the one column of
+data is "w1$vals."
+</p>
+
+
+<p>
+To plot a histogram of the data use the "hist" command:
+</p>
+
+<pre>&gt; hist(w1$vals)
+</pre>
+
+<p>
+As you can see R will automatically calculate the intervals to
+use. There are <b>many</b> options to determine how to break up the
+intervals. Here we look at just one way, varying the domain size and
+number of breaks. If you would like to know more about the other
+options check out the help page:
+</p>
+
+<pre>&gt; help(hist)
+</pre>
+
+<p>
+You can specify the number of breaks to use using the <span class="command">breaks</span> option. Here we look at the histogram
+for various numbers of breaks:
+</p>
+
+<pre>&gt; hist(w1$vals,breaks=2)
+&gt; hist(w1$vals,breaks=4)
+&gt; hist(w1$vals,breaks=6)
+&gt; hist(w1$vals,breaks=8)
+&gt; hist(w1$vals,breaks=12)
+&gt;
+</pre>
+
+<p>
+You can also vary the size of the domain using the <span class="command">xlim</span> option. This option takes a vector with
+two entries in it, the left value and the right value:
+</p>
+
+<pre>&gt; hist(w1$vals,breaks=12,xlim=c(0,10))
+&gt; hist(w1$vals,breaks=12,xlim=c(-1,2))
+&gt; hist(w1$vals,breaks=12,xlim=c(0,2))
+&gt; hist(w1$vals,breaks=12,xlim=c(1,1.3))
+&gt; hist(w1$vals,breaks=12,xlim=c(0.9,1.3))
+&gt; 
+</pre>
+
+<p>
+The options for adding titles and labels are exactly the same as for
+strip charts.  You should <b>always annotate</b> your plots and there
+are many different ways to add titles and labels. One way is within
+the <span class="command">hist</span> command itself:
+</p>
+
+<pre>&gt; hist(w1$vals,
+       main='Leaf BioMass in High CO2 Environment',
+       xlab='BioMass of Leaves')
+</pre>
+
+
+<p>
+If you have a plot already and want to change or add a title, you can
+use the <span class="command">title</span> command:
+</p>
+
+<pre>&gt; title('Leaf BioMass in High CO2 Environment',xlab='BioMass of Leaves')
+</pre>
+
+<p>
+Note that this simply adds the title and labels and will write over
+the top of any titles or labels you already have.
+</p>
+
+<p>
+It is not uncommon to add other kinds of plots to a histogram. For
+example, one of the options to the <span class="command">stripchart</span> command is to add it to a plot that
+has already been drawn. For example, you might want to have a
+histogram with the strip chart drawn across the top. The addition of
+the strip chart might give you a better idea of the density of the
+data:
+</p>
+
+<pre>&gt; hist(w1$vals,main='Leaf BioMass in High CO2 Environment',xlab='BioMass of Leaves',ylim=c(0,16))
+&gt; stripchart(w1$vals,add=TRUE,at=15.5)
+</pre>
+
+
+<h3><a name="boxplots">Boxplots</a></h3>
+
+<p>
+A boxplot provides a graphical view of the median, quartiles, maximum,
+and minimum of a data set.  Here we provide examples using two
+different data sets.  The first is the "w1" data frame mentioned at
+the top of this page, and the one column of data is "w1$vals." The
+second is the "tree" data frame from the "trees91.csv" data file which
+is also mentioned at the top of the page.
+</p>
+
+<p>
+We first use the "w1" data set and look at the boxplot of this data set:
+</p>
+
+<pre>&gt; boxplot(w1)
+</pre>
+
+<p>
+Again, this is a very plain graph, and the title and labels can be
+specified in exactly the same way as in the <span class="command">stripchart</span> and <span class="command">hist</span> commands:
+</p>
+
+<pre>&gt; boxplot(w1$vals,
+          main='Leaf BioMass in High CO2 Environment',
+	  ylab='BioMass of Leaves')
+</pre>
+
+<p>
+Note that the default orientation is to plot the boxplot
+vertically. Because of this we used the <span class="command">ylab</span> option to specify the axis label. There
+are a large number of options for this command. To see more of the
+options see the help page:
+</p>
+
+<pre>&gt; help(boxplot)
+</pre>
+
+<p>
+As an example you can specify that the boxplot be plotted horizontally
+by specifying the <span class="command">horizontal</span> option:
+</p>
+
+<pre>&gt; boxplot(w1$vals,
+          main='Leaf BioMass in High CO2 Environment',
+          xlab='BioMass of Leaves',
+	  horizontal=TRUE)
+</pre>
+
+<p>
+The option to plot the box plot horizontally can be put to good use to
+display a box plot on the same image as a histogram. You need to
+specify the <span class="command">add</span> option, specify where to
+put the box plot using the <span class="command">at</span> option, and
+turn off the addition of axes using the <span class="command">axes</span> option:
+</p>
+
+<pre>&gt; hist(w1$vals,main='Leaf BioMass in High CO2 Environment',xlab='BioMass of Leaves',ylim=c(0,16))
+&gt; boxplot(w1$vals,horizontal=TRUE,at=15.5,add=TRUE,axes=FALSE)
+</pre>
+
+<p>
+If you are feeling really crazy you can take a histogram and add a
+box plot and a strip chart:
+</p>
+
+
+<pre>&gt; hist(w1$vals,main='Leaf BioMass in High CO2 Environment',xlab='BioMass of Leaves',ylim=c(0,16))
+&gt; boxplot(w1$vals,horizontal=TRUE,at=16,add=TRUE,axes=FALSE)
+&gt; stripchart(w1$vals,add=TRUE,at=15)
+</pre>
+
+<p>
+Some people shell out good money to have this much fun.
+</p>
+
+
+<p>
+For the second part on boxplots we will look at the second data frame,
+"tree," which comes from the "trees91.csv" file. To reiterate the
+discussion at the top of this page and the discussion in the <a href="http://www.cyclismo.org/tutorial/R/types.html">data types</a> chapter, we need to specify which
+columns are factors:
+</p>
+
+<pre>&gt; tree &lt;- read.csv(file="trees91.csv",sep=",",head=TRUE)
+&gt; tree$C &lt;- factor(tree$C)
+&gt; tree$N &lt;- factor(tree$N)
+</pre>
+
+<p>
+We can look at the boxplot of just the data for the stem biomass:
+</p>
+
+<pre>&gt; boxplot(tree$STBM,
+          main='Stem BioMass in Different CO2 Environments',
+	  ylab='BioMass of Stems')
+</pre>
+
+<p>
+That plot does not tell the whole story. It is for all of the trees,
+but the trees were grown in different kinds of environments. The <span class="command">boxplot</span> command can be used to plot a separate
+box plot for each level. In this case the data is held in "tree$STBM,"
+and the different levels are stored as factors in "tree$C." The
+command to create different boxplots is the following:
+</p>
+
+<pre>boxplot(tree$STBM~tree$C)
+</pre>
+
+<p>
+Note that for the level called "2" there are four outliers which are
+plotted as little circles. There are many options to annotate your
+plot including different labels for each level. Please use the <span class="command">help(boxplot)</span> command for more information.
+</p>
+
+<h3><a name="scatter">Scatter Plots</a></h3>
+
+<p>
+A scatter plot provides a graphical view of the relationship between
+two sets of numbers.  Here we provide examples using the "tree" data
+frame from the "trees91.csv" data file which is mentioned at the top
+of the page. In particular we look at the relationship between the
+stem biomass ("tree$STBM") and the leaf biomass ("tree$LFBM").
+</p>
+
+<p>
+The command to plot each pair of points as an <em>x</em>-coordinate
+and a <em>y</em>-coorindate is "plot:" 
+</p>
+
+<pre>&gt; plot(tree$STBM,tree$LFBM)
+</pre>
+
+<p>
+It appears that there is a strong positive association between the
+biomass in the stems of a tree and the leaves of the tree. It
+<b>appears</b> to be a linear relationship. In fact, the corelation
+between these two sets of observations is quite high:
+</p>
+
+<pre>&gt; cor(tree$STBM,tree$LFBM)
+[1] 0.911595
+&gt; 
+</pre>
+
+<p>
+Getting back to the plot, you should always annotate your graphs. The
+title and labels can be specified in exactly the same way as with the
+other plotting commands:
+</p>
+
+<pre>&gt; plot(tree$STBM,tree$LFBM,
+       main="Relationship Between Stem and Leaf Biomass",
+       xlab="Stem Biomass",
+       ylab="Leaf Biomass")
+</pre>
+
+<h3><a name="qqplot">Normal QQ Plots</a></h3>
+
+<p>
+The final type of plot that we look at is the normal quantile
+plot. This plot is used to determine if your data is close to being
+normally distributed. You cannot be sure that the data is normally
+distributed, but you can rule out if it is not normally distributed.
+Here we provide examples using the "w1" data frame mentioned at the
+top of this page, and the one column of data is "w1$vals."
+</p>
+
+<p>
+The command to generate a normal quantile plot is <span class="command">qqnorm</span>. You can give it one argument, the
+univariate data set of interest:
+</p>
+
+<pre>&gt; qqnorm(w1$vals)
+</pre>
+
+<p>
+You can annotate the plot in exactly the same way as all of the other
+plotting commands given here:
+</p>
+
+<pre>&gt; qqnorm(w1$vals,
+         main="Normal Q-Q Plot of the Leaf Biomass",
+	 xlab="Theoretical Quantiles of the Leaf Biomass",
+	 ylab="Sample Quantiles of the Leaf Biomass")
+</pre>
+
+<p>
+After you creat the normal quantile plot you can also add the
+theoretical line that the data should fall on if they were normally
+distributed:
+</p>
+
+<pre>&gt; qqline(w1$vals)
+</pre>
+
+<p>
+In this example you should see that the data is not quite normally
+distributed. There are a few outliers, and it does not match up at the
+tails of the distribution.
+</p>
+
+
+</div>
+
+<hr>
+
+<div id="footer">
+
+The  <a class="subdued" href="http://www.cyclismo.org/tutorial/R/probability.html">previous  tutorial</a>
+is a description of the basic probability functions.
+          
+<br>
+The <a class="subdued" href="http://www.cyclismo.org/tutorial/R/linearLeastSquares.html"> next
+tutorial</a> is a description of basic least square linear regression.
+
+<p>
+Go back to the <a class="subdued" href="http://www.cyclismo.org/tutorial/R/index.html">main page</a>.
+</p>
+
+
+<p>
+This tutorial written by <a class="subdued" href="http://blackk.union.edu/%7Eblack">Kelly Black</a>.
+
+<!--Creative Commons License--><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/"><img alt="Creative Commons License" src="R4_plotting_files/somerights20.png"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/">Creative Commons Attribution-NonCommercial-ShareAlike2.5 License</a>.<!--/Creative Commons License--><!-- <rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+		<Work rdf:about="">
+			<license rdf:resource="http://creativecommons.org/licenses/by-nc-sa/2.5/" />
+		</Work>
+		<License rdf:about="http://creativecommons.org/licenses/by-nc-sa/2.5/"><permits rdf:resource="http://web.resource.org/cc/Reproduction"/><permits rdf:resource="http://web.resource.org/cc/Distribution"/><requires rdf:resource="http://web.resource.org/cc/Notice"/><requires rdf:resource="http://web.resource.org/cc/Attribution"/><prohibits rdf:resource="http://web.resource.org/cc/CommercialUse"/><permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/><requires rdf:resource="http://web.resource.org/cc/ShareAlike"/></License></rdf:RDF> -->
+
+
+
+</p>
+
+
+<br>
+<br>
+
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-8301099787686694";
+google_ad_width = 740;
+google_ad_height = 130;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="6171035172";
+google_color_border = "808080";
+google_color_bg = "F0ECEC";
+google_color_link = "000000";
+google_color_url = "666666";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript" src="R4_plotting_files/show_ads.js">
+</script><script src="R4_plotting_files/expansion_embed.js"></script><script src="R4_plotting_files/test_domain.js"></script><script>google_protectAndRun("ads_core.google_render_ad", google_handleError, google_render_ad);</script><ins style="border: medium none ; margin: 0pt; padding: 0pt; display: inline-table; height: 130px; position: relative; visibility: visible; width: 740px;"><ins style="border: medium none ; margin: 0pt; padding: 0pt; display: block; height: 130px; position: relative; visibility: visible; width: 740px;"><iframe allowtransparency="true" hspace="0" id="google_ads_frame1" marginheight="0" marginwidth="0" name="google_ads_frame" src="R4_plotting_files/ads.html" style="left: 0pt; position: absolute; top: 0pt;" vspace="0" scrolling="no" width="740" frameborder="0" height="130"></iframe></ins></ins>
+</center>
+
+
+</div>
+
+</div>
+
+
+</body></html>

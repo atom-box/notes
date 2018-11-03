@@ -1,0 +1,796 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+<title>Using R for statistical analyses - Graphing</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="keywords" content="Gardener">
+<meta name="keywords" content="Gardener, Bed &amp; Breakfast, Devon">
+</head><body>
+<a name="top"></a>
+<table width="100%" background="R_graphs_files/Leaf%2520pattern%25204.gif" border="0" cellpadding="5" cellspacing="0">
+  <tbody><tr>
+    <td width="20%" bgcolor="#66cc99"><div align="center"><img src="R_graphs_files/beanpods%2520green.gif" width="83" height="199"></div></td>
+    <td colspan="4"><div align="left">
+      <p><img src="R_graphs_files/GOwn%2520sigma.gif" width="573" height="80"></p>
+      <h3 align="right">Dr. Mark Gardener</h3>
+    </div></td>
+  </tr>
+  <tr>
+    <td width="20%" bgcolor="#66cc99"><div align="right"><em><strong><font size="+1">GO...</font></strong></em></div></td>
+    <td bordercolor="66cc99" width="20%" bgcolor="#66cc99"><div align="center"><a href="http://www.gardenersown.co.uk/index.htm"><font face="Verdana, Arial, Helvetica, sans-serif">Gardeners
+    Own Home</font></a></div></td>
+    <td bordercolor="66cc99" width="20%" bgcolor="#66cc99"><div align="center"><a href="http://www.gardenersown.co.uk/Education/Lectures/R/index.htm"><font face="Verdana, Arial, Helvetica, sans-serif">Using
+          R Introduction</font></a></div></td>
+    <td bordercolor="66cc99" width="20%" bgcolor="#66cc99"><div align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#nav"><font face="Verdana, Arial, Helvetica, sans-serif">Navigation
+              Index</font></a></font></div></td>
+    <td bordercolor="66cc99" width="20%" bgcolor="#66cc99"><div align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="http://www.gardenersown.co.uk/About/About.htm">About
+    Us</a></font></div></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99"><p><strong><em>On this page...</em></strong></p>
+      <a href="#graph_intro">Introduction to graphing</a>
+      <p><a href="#barplot">Bar charts</a>    </p>
+    <p>        <a href="#hist">Histograms</a></p>
+    <p><a href="#boxplot">Box-whisker plots</a></p></td>
+    <td colspan="4" bordercolor="#FFFFFF"><h1>Using R for statistical analyses
+        - Graphs 1</h1>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">This
+          page is intended to be a help in getting to grips with the powerful
+          statistical program called R. It is not intended as a course in statistics.
+          If you have an analysis to perform I hope that you will be able to
+          find the commands you need here and copy/paste them into R to get going.</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">On
+          this page you can find out information on producing a range of graphs
+          to illustrate your analyses. Specifically you'll find information on
+          <a href="#barplot">bar charts</a>, <a href="#hist">histograms</a> and <a href="#boxplot">box-whisker
+          plots</a>. For information on scatter
+          plots, pie charts and stem and leaf plots you need to go to the <a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs2.htm">graph2
+          page</a>.</font></p>
+      <hr>
+      <div align="center"><a href="#graph_intro"><font size="-2" face="Verdana, Arial, Helvetica, sans-serif">Skip directly
+      to the 1st topic</font></a></div></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99"><p>R is Open Source</p>
+    <p>R is Free</p>
+    <p><a href="http://www.r-project.org/">Get R at the R Project page.</a></p></td>
+    <td colspan="4" bordercolor="#FFFFFF"><h3><a name="what_is_R" id="what_is_R"></a>What is R?</h3>
+    <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">R is
+        an open-source (GPL) statistical environment modeled after S and <a href="http://www.insightful.com/">S-Plus</a>.
+      The S language was developed in the late 1980s at AT&amp;T labs. The R
+      project was started by <u>R</u>obert Gentleman and
+      <u>R</u>oss Ihaka (hence the name, R) of the Statistics Department of the
+      University of Auckland in 1995. It has quickly gained a widespread
+      audience. It is currently maintained by the R core-development team, a
+      hard-working, international team of volunteer
+      developers. The <a href="http://www.r-project.org/">R project web page</a>      is
+      the main site for information on R. At this site are directions for obtaining
+      the software, accompanying packages
+    and other sources of documentation.</font></p>
+    <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">R is
+    a powerful statistical program but it is first and foremost a programming
+        language. Many routines have been written for R by people all over the
+        world and made freely available from the <a href="http://www.r-project.org/">R
+    project website</a> as "packages". However, the basic installation (for Linux,
+    Windows or Mac) contains a powerful set of tools for most purposes.</font></p>
+    <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">Because
+    R is a programming language it can seem a bit daunting; you have to type
+    in commands to get it to work. However, it does have a Graphical User Interface
+    (GUI) to make things easier. You can also copy and paste text from other
+    applications into it (e.g. word processors). So, if you have a library of
+        these commands it is easy to pop in the ones you need for the task at
+        hand. That is the purpose of this web page; to provide a library of basic
+        commands that the user can copy and paste into R to perform a variety
+        of statistical analyses.</font></p>
+    <hr></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99"><div align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#top">Top</a></font></div></td>
+    <td colspan="4" bordercolor="#FFFFFF"><h3 align="center"><a name="nav"></a>Navigation index</h3>
+      <table align="center" border="0" cellpadding="5" cellspacing="5">
+        <tbody><tr valign="top">
+          <td width="25%"><h2><a href="http://www.gardenersown.co.uk/Education/Lectures/R/index.htm">Introduction</a></h2>
+              <p>Getting started with R:</p>
+              <p><a href="#top">Top</a><br>
+                  <a href="#what_is_R">What is R?</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/index.htm#introduction">Introduction</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/index.htm#data_files">Data files</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/index.htm#inputting_data">Inputting data</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/index.htm#seeing_your_data">Seeing your data in R</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/index.htm#what_data_loaded">What data are loaded?</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/index.htm#removing_data">Removing data sets</a><br>
+                <a href="http://www.gardenersown.co.uk/Education/Lectures/R/index.htm#help_docs">Help and Documentation</a></p>
+              <hr>
+              <h2><a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm"><strong>Data2</strong></a></h2>
+              <p>More about manipulating data and entering data without using
+                a spreadsheet:</p>
+              <p><a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm#make_data">Making Data</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm#combine">Combine command</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm#data_types">Types of Data</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm#scan">Entering data with scan()</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm#multivar">Multiple variables</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm#types_data">More types of data</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm#vars_inside">Variables within data</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm#transpose">Transposing data</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm#char_col">Making text columns</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm#NA">Missing values</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm#stack">Stacking data</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm#uselect_col">Selecting columns</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm#name_col">Naming columns</a><br>
+                <a href="http://www.gardenersown.co.uk/Education/Lectures/R/data2.htm#unstack">Unstacking data</a></p>
+              <hr>
+              <h4><a href="http://www.gardenersown.co.uk/Education/Lectures/R/index.htm#help_docs">Help and Documentation</a></h4>
+              <p>A short section on how to find more help with R</p>
+              <p>&nbsp;</p>
+          </td>
+          <td width="25%"><h2><strong><a href="http://www.gardenersown.co.uk/Education/Lectures/R/basics.htm">Basic Statistics</a></strong></h2>
+              <p>Some statistical tests:</p>
+              <p><a href="http://www.gardenersown.co.uk/Education/Lectures/R/basics.htm#basic_stats"><strong>Basic stats</strong></a><br>
+        Mean<br>
+        Variance<br>
+        Quantile<br>
+        Length</p>
+              <p><a href="http://www.gardenersown.co.uk/Education/Lectures/R/basics.htm#t_test"><strong>T-test</strong></a><br>
+        Variance unequal<br>
+        Variance Equal<br>
+        Paired t-test <br>
+        <a href="http://www.gardenersown.co.uk/Education/Lectures/R/basics.htm#t_step">T-test Step by Step</a></p>
+              <p><a href="http://www.gardenersown.co.uk/Education/Lectures/R/basics.htm#u_test"><strong>U-test</strong></a><br>
+        Two sample test<br>
+        Paired test<br>
+        <a href="http://www.gardenersown.co.uk/Education/Lectures/R/basics.htm#u_step">U-test Step by Step</a></p>
+              <p><strong>Paired tests</strong><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/basics.htm#t_test">T-test: see T-test</a><br>
+                <a href="http://www.gardenersown.co.uk/Education/Lectures/R/basics.htm#u_test">Wilcoxon: see U-test</a></p>
+              <p><a href="http://www.gardenersown.co.uk/Education/Lectures/R/basics.htm#chi_squared"><strong>Chi Squared</strong></a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/basics.htm#yates">Yates Correction for 2x2 matrix</a><br>
+                <a href="http://www.gardenersown.co.uk/Education/Lectures/R/basics.htm#chi_step">Chi-Squared Step by Step</a></p>
+              <p><a href="http://www.gardenersown.co.uk/Education/Lectures/R/basics.htm#goodness"><strong>Goodness of Fit</strong> test</a><br>
+                <a href="http://www.gardenersown.co.uk/Education/Lectures/R/basics.htm#goodness_step">Goodness of Fit Step by Step</a></p>
+              <hr>
+              <h2><a href="http://www.gardenersown.co.uk/Education/Lectures/R/nonparam.htm">Non-Parametric stats</a></h2>
+              <p>Stats on multiple samples when you have non-parametric data.</p>
+              <p><a href="http://www.gardenersown.co.uk/Education/Lectures/R/nonparam.htm#kruskal">Kruskal Wallis test</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/nonparam.htm#kruskal_stack">Kruskal-Wallis Stacked</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/nonparam.htm#kw_posthoc">Kruskal Post-Hoc test</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/nonparam.htm#Q">Studentized Range Q</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/nonparam.htm#stack_select">Selecting sub-sets</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/nonparam.htm#friedman">Friedman test</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/nonparam.htm#friedman_post">Friedman post-hoc</a><br>
+                <a href="http://www.gardenersown.co.uk/Education/Lectures/R/nonparam.htm#rank_anova">Rank data ANOVA</a></p>
+              <p>&nbsp;</p>
+          </td>
+          <td width="25%"><h2><strong><a href="http://www.gardenersown.co.uk/Education/Lectures/R/correl.htm">Correlation</a></strong></h2>
+              <p>Getting started with correlation and a basic graph:</p>
+              <p><a href="http://www.gardenersown.co.uk/Education/Lectures/R/correl.htm#correlation"><strong>Correlation</strong></a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/correl.htm#cor_sig">Correlation and Significance tests</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/correl.htm#cor_graph">Graphing the Correlation</a><br>
+                <a href="http://www.gardenersown.co.uk/Education/Lectures/R/correl.htm#cor_step">Correlation step by step</a></p>
+              <hr>
+              <h2><strong><a href="http://www.gardenersown.co.uk/Education/Lectures/R/regression.htm">Regression</a></strong></h2>
+              <p>Multiple regression analysis:</p>
+              <p><strong><a href="http://www.gardenersown.co.uk/Education/Lectures/R/regression.htm#multiple_regression">Multiple
+                    Regression</a></strong><br>
+                            <a href="http://www.gardenersown.co.uk/Education/Lectures/R/regression.htm#lr_models">Linear regression
+                            models</a><br>
+                            <a href="http://www.gardenersown.co.uk/Education/Lectures/R/regression.htm#lm_coefficients">Regression
+                            coefficients</a><br>
+                            <a href="http://www.gardenersown.co.uk/Education/Lectures/R/regression.htm#beta_coeff">Beta coefficients</a><br>
+                            <a href="http://www.gardenersown.co.uk/Education/Lectures/R/regression.htm#R_squared">R squared</a><br>
+                            <a href="http://www.gardenersown.co.uk/Education/Lectures/R/regression.htm#graph_lr">Graphing the regression</a><br>
+                          <a href="http://www.gardenersown.co.uk/Education/Lectures/R/regression.htm#lr_step">Regression step by
+                          step</a></p>
+              <hr>
+              <h2><strong><a href="http://www.gardenersown.co.uk/Education/Lectures/R/anova.htm">ANOVA</a></strong></h2>
+              <p>Analysis of variance:</p>
+              <p><a href="http://www.gardenersown.co.uk/Education/Lectures/R/anova.htm#anova"><strong>ANOVA</strong> analysis of
+                  variance</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/anova.htm#anova_1">One-Way ANOVA</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/anova.htm#tukey_1">Simple Post-hoc test</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/anova.htm#anova_models">ANOVA Models</a><br>
+                <a href="http://www.gardenersown.co.uk/Education/Lectures/R/anova.htm#anova_step">ANOVA Step by Step</a></p>
+              <h2>&nbsp;</h2>
+          </td>
+          <td width="25%"><h2><strong><a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs.htm">Graphs</a></strong></h2>
+              <p>Getting started with graphs, some basic types:</p>
+              <a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs.htm#graph_intro">Introduction</a><br>
+              <a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs.htm#barplot"><strong>Bar</strong> charts</a><br>
+              <a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs.htm#simple_bar">Multi-category</a><br>
+              <a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs.htm#stacked_bar">Stacked bars</a><br>
+              <a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs.htm#bar_frequency">Frequency plots</a><br>
+              <a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs.htm#bar_horiz">Horizontal bars</a>
+              <p><a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs.htm#hist"><strong>Histograms</strong></a></p>
+              <p><a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs.htm#boxplot"><strong>Box</strong>-whisker plots</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs.htm#box_single">Single sample</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs.htm#box_multi">Multi-sample</a><br>
+                <a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs.htm#box_horiz">Horizontal plot</a></p>
+              <hr>
+              <h2><strong><a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs2.htm">Graphs2</a></strong></h2>
+              <p>More graphical methods:</p>
+              <p><strong><a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs2.htm#scatter">Scatter</a></strong><a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs2.htm#scatter"> plot</a></p>
+              <p><strong><a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs2.htm#stem">Stem</a></strong><a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs2.htm#stem">-Leaf
+                  plots</a></p>
+              <p><strong><a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs2.htm#pie">Pie</a></strong><a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs2.htm#pie"> charts</a></p>
+              <hr>
+              <h2><a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs3.htm">Graphs3</a></h2>
+              <p>More advanced graphical methods:</p>
+              <p><a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs3.htm#line_plot">Line Plots</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs3.htm#plot_types">Plot types</a><br>
+                  <a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs3.htm#time_series">Time series</a><br>
+                <a href="http://www.gardenersown.co.uk/Education/Lectures/R/graphs3.htm#custom_axes">Custom axes</a></p>
+          </td>
+        </tr>
+      </tbody></table>
+      <p align="center"><a href="#bottom">Bottom</a></p>      
+      <hr></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99"><div align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#top">Top</a></font></div></td>
+    <td colspan="4" bordercolor="#FFFFFF"><h3><a name="graph_intro"></a>Introduction to Graphing</h3>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">R
+          has great graphical power but it is not a point and click interface.
+          This means that you must use typed commands to get it to produce the
+          graphs you desire. This can be a bit tedious at first but once you
+          have the hang of it you can save a list of useful commands as text
+          that you can copy and paste into the R command line.</font></p>
+      <hr></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99"><p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#top">Top</a></font></p>
+    <p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#nav">Navigation Index</a></font></p></td>
+    <td colspan="4" bordercolor="#FFFFFF"><h3><a name="barplot"></a>Bar charts</h3>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">The
+          bar chart is familiar to everyone and is a useful graphical tool
+          that may be used in a variety of ways. </font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">The
+          basic function is: barplot(data)</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">Before
+            you can draw a graph you need to get
+            your data into an appropriate format. R has many ways of manipulating
+            data but it is often easiest to assemble and manipulate your data
+          in a spreadsheet (you can save in .CSV format).</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">The
+          first stage is to <a href="http://www.gardenersown.co.uk/Education/Lectures/R/index.htm#data_files">arrange your data
+          in a .CSV file</a>.  You
+          may have
+          your data arranged in columns or in rows. You may also have both row
+          and column names. Don't forget that variable names in R can contain
+          letters and numbers but the only punctuation allowed is a period.</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">The
+          second stage is to <a href="http://www.gardenersown.co.uk/Education/Lectures/R/index.htm#inputting_data">read your data
+          file into memory</a> and give it a sensible name. When using barplots
+you may have both row and column names so don't forget to tell R that you are
+          using row names if you are.</font></p>
+      <hr>      <h4 align="justify"><a name="simple_bar"></a>Simple multi-category chart</h4>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">Your
+            data may consist of a simple row of means e.g. here are some data on
+            road deaths in Virginia. These data come with the basic distribution
+            of R and are called VADeaths. The means have been extracted below and
+            assigned to the variable VADmeans.</font></p>
+      <table border="0" cellpadding="2">
+        <tbody><tr>
+          <td><div align="right">Rural Male</div></td>
+          <td><div align="right">Rural Female</div></td>
+          <td><div align="right">Urban Male</div></td>
+          <td><div align="right">Urban Female</div></td>
+        </tr>
+        <tr>
+          <td><div align="right">32.74</div></td>
+          <td><div align="right">25.18</div></td>
+          <td><div align="right">40.48</div></td>
+          <td><div align="right">25.28</div></td>
+        </tr>
+      </tbody></table>      
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">We
+          can see that there are four categories. To create a basic bar chart
+          we simply call the barplot() function:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">barplot(VADmeans,
+          main="Road Deaths in Virginia",xlab="Categories",
+      ylab="Mean Deaths")</font></p>      <p align="center"><img src="R_graphs_files/bar_mean1.jpg" width="514" height="384"></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">This
+          produces a very basic plot; I have added   a main title and
+          labels for the x and y axes using fairly simple commands. When plotting
+          a graph R opens a graphics window. If you select the window (by clicking
+          on
+          or
+          in it)
+          you may then copy to the clipboard and paste into a variety of applications.</font></p>
+      <hr></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99"><p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#top">Top</a></font></p>
+      <p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#nav">Navigation
+    Index</a></font></p></td>
+    <td colspan="4" bordercolor="#FFFFFF"><h4 align="justify"><a name="stacked_bar"></a>Stacked
+        charts or not?</h4>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">The
+          VADeaths dataset consists of a matrix of values with both column and
+          row labels:</font></p>
+      <table border="0" cellpadding="2">
+        <tbody><tr>
+          <td>&nbsp;</td>
+          <td><div align="right">Rural Male</div>
+          </td>
+          <td><div align="right">Rural Female</div>
+          </td>
+          <td><div align="right">Urban Male</div>
+          </td>
+          <td><div align="right">Urban Female</div>
+          </td>
+        </tr>
+        <tr>
+          <td>50-54</td>
+          <td><div align="right">11.7</div>
+          </td>
+          <td><div align="right">8.7</div>
+          </td>
+          <td><div align="right">15.4</div>
+          </td>
+          <td><div align="right">8.4</div>
+          </td>
+        </tr>
+        <tr>
+          <td>55-59</td>
+          <td><div align="right">18.1</div>
+          </td>
+          <td><div align="right">11.7</div>
+          </td>
+          <td><div align="right">24.3</div>
+          </td>
+          <td><div align="right">13.6</div>
+          </td>
+        </tr>
+        <tr>
+          <td>60-64</td>
+          <td><div align="right">26.9</div>
+          </td>
+          <td><div align="right">20.3</div>
+          </td>
+          <td><div align="right">37.0</div>
+          </td>
+          <td><div align="right">19.3</div>
+          </td>
+        </tr>
+        <tr>
+          <td>65-69</td>
+          <td><div align="right">41.0</div>
+          </td>
+          <td><div align="right">30.9</div>
+          </td>
+          <td><div align="right">54.6</div>
+          </td>
+          <td><div align="right">35.1</div>
+          </td>
+        </tr>
+        <tr>
+          <td>70-74</td>
+          <td><div align="right">66.0</div>
+          </td>
+          <td><div align="right">54.3</div>
+          </td>
+          <td><div align="right">71.1</div>
+          </td>
+          <td><div align="right">50.0</div>
+          </td>
+        </tr>
+      </tbody></table>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">If
+          we attempt to produce a bar chart of these data we get something like
+          the following:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">barplot(VADeaths,
+          legend= rownames(VADeaths)) </font></p>
+      <p align="center"><img src="R_graphs_files/bar_stack1.jpg" width="627" height="426"></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">This
+          time a legend was added using the legend command along with the rownames
+          of the dataset. We see that by default a stacked bar chart is produced.
+          To unstack the bars and plot them alongside one another we use a new
+          command:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">barplot(VADeaths,
+          legend= rownames(VADeaths), beside= TRUE)</font></p>
+      <p align="center"><img src="R_graphs_files/bar_beside1.jpg" width="627" height="426"></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">This
+          is fine but the colour scheme is kind of boring. Here is a new set
+          of commands:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">barplot(VADeaths,
+          beside = TRUE, col = c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk"),
+          legend = rownames(VADeaths), ylim = c(0, 100))</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif"> title(main
+          = "Death Rates in Virginia", font.main = 4)</font></p>
+      <p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><img src="R_graphs_files/bar_beside_col1.jpg" width="627" height="426"></font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">This
+          is a bit better. We have specified a list of colours to use for the
+          bars. Note how the list is in the form c(item1, item2, item3, item4).
+          The command ylim sets the limits of the y-axis. In this case a lower
+          limit of 0 and an upper of 100. The command is in the form ylim= c(lower,
+          upper) and note again the use of the c(item1, item2) format. The legend
+          takes the names from the row names of the datafile. We set the y-axis
+          limit to accommodate the legend box.</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">It
+          is possible to specify the title of the graph as a separate command,
+          which is what was done above. The command title() achieves this but
+          of course it only works when a graphics window is already open. The
+          command font.main sets the typeface, 4 produces bold italic font.</font></p>
+    <hr></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99"><p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#top">Top</a></font></p>
+      <p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#nav">Navigation
+    Index</a></font></p></td>
+    <td colspan="4" bordercolor="#FFFFFF"><h4 align="justify"><a name="bar_frequency"></a>Frequency
+        plots</h4>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">Sometimes
+          you will have a single column of data that you wish to summarize. A
+          common use of a bar chart is to produce a frequency plot showing the
+          number of items in various ranges. Here is a vector of numbers:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">75
+          67 70 75 65 71 67 67 76 68</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">These
+          have been assigned to a variable called <em>carb</em> and we wish to
+          make a frequency plot. Let's try:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">barplot(carb)</font></p>
+      <p align="center"><img src="R_graphs_files/bar_all.jpg" width="606" height="365"></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">Oops.
+          That wasn't really what we wanted at all. What's happened is that each
+          item has been plotted as a separate entity. We need to tabulate the
+          frequencies. Fortunately there is an easy way to do this. We use the
+          table() function. Let's redraw the graph but using the following:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif"><a name="bar_f_plot"></a>barplot(table(carb))</font></p>
+      <p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><img src="R_graphs_files/bar_freq.jpg" width="606" height="365"></font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">This
+          is much better. Now we have the frequencies for the data arranged in
+          several categories (sometimes called bins). As with other graphs we
+          can add titles to axes and to the main graph.</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">We
+          can look at the table() function directly to see what it produces.</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">table(carb)</font></p>
+      <table border="0" cellpadding="2">
+        <tbody><tr>
+          <td>carb</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><div align="right">65</div>
+          </td>
+          <td><div align="right">67</div>
+          </td>
+          <td><div align="right">68</div>
+          </td>
+          <td><div align="right">70</div>
+          </td>
+          <td><div align="right">71</div>
+          </td>
+          <td><div align="right">75</div>
+          </td>
+          <td><div align="right">76</div>
+          </td>
+        </tr>
+        <tr>
+          <td><div align="right">1</div>
+          </td>
+          <td><div align="right">3</div>
+          </td>
+          <td><div align="right">1</div>
+          </td>
+          <td><div align="right">1</div>
+          </td>
+          <td><div align="right">1</div>
+          </td>
+          <td><div align="right">2</div>
+          </td>
+          <td><div align="right">1</div>
+          </td>
+        </tr>
+      </tbody></table>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">We
+          can see that the function has summarised the data for us into various
+          numerical categories.</font></p>
+    <hr></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99"><p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#top">Top</a></font></p>
+      <p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#nav">Navigation
+    Index</a></font></p></td>
+    <td colspan="4" bordercolor="#FFFFFF"><p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">We
+          may wish to show the frequencies as a proportion of the total rather
+          than as raw data. To do this we simply divide each item by the total
+          number of items in our dataset:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">barplot(table(carb)/length(carb))</font></p>
+      <p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><img src="R_graphs_files/bar_f_prop.jpg" width="606" height="365"></font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">This
+          shows exactly the same pattern but now the total of all the bars add
+          up to one.</font></p>
+    <hr></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99"><p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#top">Top</a></font></p>
+      <p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#nav">Navigation
+    Index</a></font></p></td>
+    <td colspan="4" bordercolor="#FFFFFF"><h4 align="justify"><a name="bar_horiz"></a>Horizontal
+        bar plots</h4>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">It
+          is straightforward to rotate your plot so that the bars run horizontal
+          rather than vertical (which is the default). To produce a horizontal
+          plot you add horizontal= TRUE to the command e.g.</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">barplot(table(carb),
+          horiz=T, col="lightgreen", xlab="Frequency", ylab="Range")<br>
+  title(main="Horizontal Bar Plot", font.main= 4)</font></p>
+      <p align="center"><img src="R_graphs_files/bar_horiz.jpg" width="604" height="369"></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">This
+          time I have used the title() command to add the main title separately.
+          The value of 4 sets the font to bold italic (try other values).</font></p>
+    <hr></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99"><p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#top">Top</a></font></p>
+      <p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#nav">Navigation
+    Index</a></font></p></td>
+    <td colspan="4" bordercolor="#FFFFFF"><h3><a name="hist"></a>Histograms</h3>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">The
+          barplot function can be used to create a <a href="#bar_frequency">frequency
+          plot of sorts</a> but
+          it does not produce a continuous distribution along the x-axis. A true
+          frequency distribution should have the bar categories (i.e. the x-axis)
+          as continuous items. The <a href="#bar_f_plot">frequency plot produced
+          previously</a> has discontinuous
+          categories.</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">To
+          create a frequency distribution chart we need a histogram, which has
+      a continuous range along the x-axis. The command in R is:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">hist(variable)</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">Here
+      is a vector of numbers saved as the variable <em>test.data</em>:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">2.1
+          2.6 2.7 3.2 4.1 4.3 5.2 5.1 4.8 1.8 1.4 2.5 2.7 3.1 2.6 2.8</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">To create a histogram we type:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">hist(test.data)</font></p>
+      <p align="center"><img src="R_graphs_files/hist_basic.jpg" width="606" height="365"></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">To
+          plot the probabilities (i.e. proportions) rather than the actual frequency
+          we need to add the command prob= TRUE like so:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">hist(test.data,
+          prob= TRUE)</font></p>
+      <p align="center"><img src="R_graphs_files/hist_prob_basic.jpg" width="606" height="365"></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">This
+          is useful but the plots are a bit basic and boring. We can change axis
+          labels and the main title using the same commands as for the <a href="#barplot">barplot</a>        function.
+          Here is a new plot with a few enhancements:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">hist(test.data,
+          col="cornsilk", xlab="Data
+        range", ylab="Frequency of data", main="Histogram",
+      font.main=4)</font></p>
+      <p align="center"><img src="R_graphs_files/hist_color.jpg" width="606" height="365"></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">These
+          commands are largely self-explanatory. The 4 in the font.main command
+          sets the font to italic (try some other values).</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">By
+          default R works out where to insert the breaks between the bars. You
+          can change the number of breaks by adding a simple command  e.g.</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">hist(data.set,breaks=10)
+            # 10 breaks, or just hist(data.set, 10)</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">The
+          # tells R that what follows is a comment, useful for creating your
+          own library of commands. </font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">Alternatively
+            you can be more specific and set the breaks exactly:</font></p>      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif"> hist(data.set,breaks=c(0,1,2,3,4,5,10,20,max(data.set)))
+          # specify break points exactly</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">Notice
+          how the exact break points are specified in the c(x1, x2, x3) format.
+          You can manipulate the axes by changing the limits e.g. make the x-axis
+          start at zero and run to 6 by another simple command e.g.:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">hist(test.data, 10, xlim=c(0,6), ylim=c(0,10))</font></p>
+      <p align="center"><img src="R_graphs_files/hist_limited.jpg" width="606" height="365"></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">This
+          sets 10 break-points and sets the y-axis from 0-10 and the x-axis from
+          0-6. Notice  how the commands are in the format c(lower, upper). The
+          xlim and ylim commands are useful if you wish to prepare several histograms
+          and want them all to have the same scale for comparison.</font></p>
+      <hr></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99"><p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#top">Top</a></font></p>
+      <p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#nav">Navigation
+    Index</a></font></p></td>
+    <td colspan="4" bordercolor="#FFFFFF"><h3><a name="boxplot"></a>Box and whisker plots</h3>
+      <h4><a name="box_single"></a>Single sample plot</h4>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">A
+          box and whisker graph allows you to convey a lot of information on
+          one simple plot. Generally they are used for data that are not normally
+          distributed (i.e. that are non-parametric). You can plot a single sample
+          or create a more complex plot of categories within a data set.</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">The
+          basic function is boxplot()</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">Here
+      is a vector of numbers saved as the variable <em>test.data</em>:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">        2.1 2.6 2.7 3.2 4.1 4.3 5.2 5.1 4.8 1.8 1.4 2.5 2.7 3.1 2.6 2.8</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">To
+          create a box-whisker plot we type:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">boxplot(test.data)</font></p>
+      <p align="center"><img src="R_graphs_files/box_1_plain.jpg" width="303" height="365"></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">Not
+          the most exciting graph ever but we can jazz it up later. What we see
+          is a box with a line through it. The line represents the <em><strong>median</strong></em> of
+          the sample. The box itself shows the upper and lower <em><strong>quartiles</strong></em>. The
+          whiskers show the <strong><em>range</em></strong> (i.e. the largest and smallest values). It
+          is easy to see that this sample has a skewed distribution and is certainly
+          non-parametric.</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">We
+          can add axis labels, a main title and colour the box using simple commands.
+          These commands are the same as for those used in producing <a href="#barplot">barplots</a>        and <a href="#hist">histograms</a>.
+          For example:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">boxplot(test.data,
+          xlab="Single sample", ylab="Value
+      axis", main="Simple Box plot", col="lightblue")</font></p>
+      <p align="center"><img src="R_graphs_files/box_1_labelled.jpg" width="303" height="365"></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">Let's
+          make the data even more skewed and add an outlier:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif"> 2.1
+       2.6 2.7 3.2 4.1 4.3 5.2 5.1 4.8 1.8 1.4 2.5 2.7 3.1 2.6 2.8 12.0</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">We'll
+          now redraw the graph. This time the main title will be added using
+          a separate command:</font></p>      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">boxplot(test.data,
+      xlab="Single sample", ylab="Value axis",  col="lightblue")<br>
+      title(main="Plot with outlier", font.main= 4)</font></p>
+      <p align="center"><img src="R_graphs_files/box_single_out.jpg" width="303" height="365"> </p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">Now
+          we see the outlier separately. R doesn't automatically show the full
+          range of data (as I implied earlier). We can control the range shown
+          using a simple command range= n. If we set n to 0 then the full range
+          is
+          shown.
+          Otherwise
+          the whiskers extend to n x the inter-quartile range. The default is
+          set to n = 1.5.</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">boxplot(test.data2,
+          xlab="Single sample",
+        ylab="Value axis", col="lightblue", range=0)<br>
+        title(main="Plot with full-range", font.main= 4)</font></p>
+      <p align="center"><img src="R_graphs_files/box_1_full.jpg" width="303" height="365"></p>
+      <hr></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99"><p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#top">Top</a></font></p>
+      <p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#nav">Navigation
+    Index</a></font></p></td>
+    <td colspan="4" bordercolor="#FFFFFF"><h4 align="justify"><a name="box_multi"></a>Plotting
+        several samples</h4>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">So
+          we can see how to represent a single sample but often we wish to compare
+          samples.For example, we may have raised broods of flies on various
+          sugars. We measure the size of the individual flies and record the
+          diet for each. Our data file would consist of two columns; one for
+          growth and one for sugar. e.g.</font></p>
+      <p align="justify">&nbsp;</p>
+      <table border="0" cellpadding="2">
+        <tbody><tr>
+          <td>growth</td>
+          <td>sugar</td>
+        </tr>
+        <tr>
+          <td><div align="right">75</div>
+          </td>
+          <td><div align="right">C</div>
+          </td>
+        </tr>
+        <tr>
+          <td><div align="right">72</div>
+          </td>
+          <td><div align="right">C</div>
+          </td>
+        </tr>
+        <tr>
+          <td><div align="right">73</div>
+          </td>
+          <td><div align="right">C</div>
+          </td>
+        </tr>
+        <tr>
+          <td><div align="right">61</div>
+          </td>
+          <td><div align="right">F</div>
+          </td>
+        </tr>
+        <tr>
+          <td><div align="right">67</div>
+          </td>
+          <td><div align="right">F</div>
+          </td>
+        </tr>
+        <tr>
+          <td><div align="right">64</div>
+          </td>
+          <td><div align="right">F</div>
+          </td>
+        </tr>
+        <tr>
+          <td><div align="right">62</div>
+          </td>
+          <td><div align="right">S</div>
+          </td>
+        </tr>
+        <tr>
+          <td><div align="right">63</div>
+          </td>
+          <td><div align="right">S</div>
+          </td>
+        </tr>
+      </tbody></table>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">These
+          data are the same as we used in the <a href="http://www.gardenersown.co.uk/Education/Lectures/R/anova.htm#anova_1">example</a> on <a href="http://www.gardenersown.co.uk/Education/Lectures/R/anova.htm">analysis
+          of variance</a>. Here is shown only part of the larger data set. We
+          have one variable, growth, and several samples (i.e. the different
+          sugars). To plot these we use the boxplot command with slightly different
+          syntax e.g. boxplot(y ~ x). This model syntax is used widely in R for
+          setting-up <a href="http://www.gardenersown.co.uk/Education/Lectures/R/anova.htm#anova_models">ANOVA</a> and <a href="http://www.gardenersown.co.uk/Education/Lectures/R/regression.htm#lr_models">regression
+          analyses</a> for example.</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">To
+          create a summary boxplot we type something like:</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">boxplot(growth
+          ~ sugar, data=fly, xlab="Sugar type", ylab="Growth",
+          col="bisque", range=0)<br>
+  title(main="Growth against sugar type", font.main= 4)</font></p>
+      <p align="center"><img src="R_graphs_files/box_multi.jpg" width="603" height="365"></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">Now
+          we can see that the different sugar treatments appear to produce differing
+          growth in our subjects.</font></p>
+    <hr></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99"><p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#top">Top</a></font></p>
+      <p align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#nav">Navigation
+    Index</a></font></p></td>
+    <td colspan="4" bordercolor="#FFFFFF"><h4 align="justify"><a name="box_horiz"></a>Horizontal
+        box plots</h4>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">It
+          is straightforward to rotate your plot so that the bars run horizontal
+          rather than vertical (which is the default). To produce a horizontal
+          plot you add horizontal= TRUE to the command e.g.</font></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">boxplot(growth
+          ~ sugar, data=fly, xlab="Sugar type", ylab="Growth",
+          col="mistyrose", range=0, horizontal=TRUE)<br>
+  title(main="Growth against sugar type - horizontal", font.main= 4)</font></p>
+      <p align="center"><img src="R_graphs_files/box_horiz.jpg" width="603" height="365"></p>
+      <p align="justify"><font face="Verdana, Arial, Helvetica, sans-serif">Once
+          again I have used the title command separately to add a main title.
+          The 4 in the font.main command sets bold itailic (try other values).</font></p>
+    <hr></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99">&nbsp;</td>
+    <td colspan="4" bordercolor="#FFFFFF"><div align="left"><a name="bottom"></a></div></td>
+  </tr>
+  <tr>
+    <td bgcolor="#66cc99"><div align="center"><font face="Verdana, Arial, Helvetica, sans-serif"></font></div></td>
+    <td bordercolor="66cc99" bgcolor="#66cc99"><div align="center"><a href="http://www.gardenersown.co.uk/index.htm"><font face="Verdana, Arial, Helvetica, sans-serif">Gardeners
+    Own Home</font></a></div></td>
+    <td bordercolor="66cc99" bgcolor="#66cc99"><div align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#top">Top</a></font></div></td>
+    <td bordercolor="66cc99" bgcolor="#66cc99"><div align="center"><font face="Verdana, Arial, Helvetica, sans-serif"><a href="#nav"><font face="Verdana, Arial, Helvetica, sans-serif">Navigation
+    Index</font></a></font></div></td>
+    <td bordercolor="66cc99" bgcolor="#66cc99"><div align="center"><font face="Verdana, Arial, Helvetica, sans-serif">
+      <script language="JavaScript" type="text/JavaScript">
+
+<!--
+/*
+This credit must stay intact
+For this script and more
+visit java-scripts.net 
+or http://wsabstract.com
+*/
+var name = "comments"
+var domain = "gardenersown.co.uk"
+document.write("<a href='mailto:" + name + "@" + domain + "'>")
+document.write("Contact Us")
+document.write("</a>")
+//-->
+          
+
+</script><a href="mailto:comments@gardenersown.co.uk">Contact Us</a>
+    </font></div></td>
+  </tr>
+</tbody></table>
+</body></html>

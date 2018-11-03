@@ -1,0 +1,74 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> 
+<font color="4040ff">R</font> - T tests</b></font></center><p>
+Caveats first. Using appropriate statistics is not always easy. Please do not
+blame me when a reviewer caustically refers to the 56 uncorrected t-tests that
+you performed on your data as the work of a moron. The techniques explained
+here will probably be adequate for univariate experiments and confirmatory tests
+of group equality. This is <u>not</u> a statistics book.<p>
+<h2>Tests of between-group means</h2>
+Again using the <code>infert</code> data set and the 
+<a href="brkdn.R" target="brkdn"><code>brkdn()</code></a>
+function, let's look at the means of age for cases and non-cases.<p>
+<pre>&gt; brkdn(age~case,infert)
+                 0        1
+Mean      31.49091 31.53012
+Variance  27.60510 27.86189
+n        165.00000 83.00000
+attr(,"class")
+[1] "dstat"</pre><p>
+It looks as though the two groups have been age-matched.  Try a t-test to see if
+there is a difference.<p>
+<pre>&gt; t.test(subset(infert$age,infert$case == 0),
++ subset(infert$age,infert$case == 1))
+ 
+         Welch Two Sample t-test
+ 
+data:  subset(infert$age, infert$case == 0) and
+ subset(infert$age, infert$case == 1)
+t = -0.0553, df = 163.766, p-value = 0.956
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.439600  1.361177
+sample estimates:
+mean of x mean of y
+ 31.49091  31.53012</pre><p>
+Bronwyn wants to know if those women in the sample who completed high school 
+were significantly younger than those who did not.<p>
+<pre>&gt; brkdn(age~education,infert)
+           0-5yrs   6-11yrs   12+ yrs
+Mean     35.25000  32.85000  29.72414
+Variance 40.02273  28.66639  19.19280
+n        12.00000 120.00000 116.00000
+attr(,"class")
+[1] "dstat"</pre><p>
+She may have a case here, but first let's do something about that painful typing
+in of every subsetting operation. Have a look at the function
+<a href="gttest.R" target="gttest"><code>group.t.test()</code></a>.
+By calling this function as follows:<p>
+<code>&gt; group.t.test(infert$age,infert$education,"12+yrs")</code><p>
+we can specify a grouping factor of high school completion versus everything
+else. This function also allows us to test two specified groups against one
+another.<p>
+Before we leave <code>t.test()</code>, the ellipsis (...) at the end of the 
+arguments means that you can pass additional arguments to <code>t.test()</code>.
+For example, you might want the 99% confidence interval displayed rather than 
+the default 95% one.<p>
+<pre>        Welch Two Sample t-test
+
+data:  age by as.factor(ifelse(infert$education != "12+ yrs", "<12 yrs", "12+ yrs"))
+t = 5.3423, df = 243.997, p-value = 2.103e-07
+alternative hypothesis: true difference in means is not equal to 0
+99 percent confidence interval:
+ 1.718973 4.969115
+sample estimates:
+mean in group <12 yrs mean in group 12+ yrs
+             33.06818              29.72414
+</pre><p>
+Looks like Bronwyn was right.<p>
+For a much more detailed treatment of ANOVAs and other methods, get the 
+<a href="http://cran.r-project.org/src/contrib/PACKAGES.html">
+VR</a> package or <a href="http://cran.r-project.org">Notes on the use of R..."
+</a> in the Contributed documentation page.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

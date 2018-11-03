@@ -1,0 +1,77 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i>
+<font color="4040ff">R</font> - Data objects</b></font></center><p>
+The <b><font color="4040ff">R</font></b> language is
+<emph>object-oriented</emph>, meaning that it conforms to the conventions
+implied by that term.  If you are not familiar with these conventions, some
+explanation may help to avoid confusion.  Officially, <emph>objects</emph> are
+discrete programming entities that send and receive <emph>messages</emph>.  This
+may not sound terribly edifying, but the concept was one of the major changes in
+the way that we think about programming.  Traditionally, code (also referred to
+as <emph>functions</emph>) and data (<emph>structures</emph>) were kept
+separate, even to the point of reserving different areas of memory to store
+them.  To use a function, you had to know how the function operated. 
+<emph>Objects</emph>, in contrast, typically combine code and data, and the
+programmer only has to know about the message interface, that is, what sort of
+message you can send to the object, and what sort of message the object will
+produce.  The message interface, like everything else about an object, is
+defined by its <emph>class</emph>.  The definition of the <emph>class</emph> of 
+an object might include something like "an object which when sent a message 
+containing the human-readable text of a number will return the numeric value".  
+So what makes this better than, say, the <code>strtod()</code> function in C?<p>
+For one thing, the C function requires that you pass it a pointer to the string.
+ If you pass something else, you may get a software explosion.  A properly
+constructed object should be able to gracefully tell whatever has sent it the
+wrong information that it has done so.  This isn't all, though.  In an
+object-oriented programming environment, objects can easily work out how to deal
+with a variety of incoming messages that better reflect how humans think.<p>
+The classic case is the addition operator '+'.  Humans naively think that
+numbers should be added in the manner that they learned in school, and that
+strings like "John" and "Smith" should be added by concatenation to "John Smith"
+or into a list like "John, Smith".  This implies that the '+' operator should be
+able to tell numbers from strings, use the appropriate operation for each, and
+probably refuse to add numbers to strings or <i>vice versa</i>.  That is a much
+smarter '+' than the '+' in C, for example.  If we were to specify its
+<emph>class</emph> in a verbose way, it might look like:<p>
+<pre>	An object which, when passed a message containing two numbers will
+	return a message containing their numerical sum, when passed a message 
+	containing two strings will return a message containing their 
+	concatenation, and when passed a message containing two different data 
+	types will display an error message and return nothing.</pre><p>
+Unfortunately for the beginner, <emph>classes</emph> are specified in a much
+more cryptic manner.  Typically, a language specifies very simple building
+blocks that are assigned fairly simple but very abstract classes, and
+other classes are spawned from these by <emph>inheritance</emph> with the
+addition of more specific abilities.  This means that to understand what the
+class of most useful objects is, you must trace it back through the parent
+classes.<p>
+It isn't quite as bad as it looks, though.  In order to <b>use</b> an object, 
+all you have to do is know what sort of message you can send to it, and what
+sort of message it will return.  So for the beginner, it's best to consider the
+object a "black box" - something that does something useful, but how it does it
+is unknown.  Understanding of any particular object-oriented system generally
+comes with familiarity and study, and we're here to learn how to <b>use</b>
+<b><font color="4040ff">R</font></b>.  The message from this particular object
+is, before using a function object, know what sort of objects may be sent to it,
+and what sort of objects are returned.  Misunderstandings about the structure 
+of data objects are among the most common problems for the beginner.<p>
+<h2>Data types</h2>
+The usual data types are available in 
+<b><font color="4040ff">R</font></b> known as "modes",
+called <emph>logical</emph> (Boolean true/false), <emph>numeric</emph> 
+(integers and reals), <emph>complex</emph> (real + imaginary numbers) and 
+<emph>character</emph> (strings).  A fundamental distinction is between 
+"atomic" objects in which all elements must be of the same mode and
+"recursive" objects which may contain members of different modes.<p>
+<img src="hoover.gif"> One of the more common pitfalls that the new user
+encounters is the behavior of factor objects. Although they often look like
+numbers, and in fact may advertise their mode as "numeric", they will fail the
+<code>is.numeric()</code> test and cause functions such as <code>mean()</code>
+to barf. If you want a factor to act like a number, try:<p>
+<code>as.numeric(myfactor)</code><p>
+The <code>as...()</code> functions are very handy things to know about when 
+trying to get some functions to work.<p>
+For more information, see <u>An Introduction to R</u>: Objects, their
+modes and attributes.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

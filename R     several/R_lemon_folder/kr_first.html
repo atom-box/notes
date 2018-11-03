@@ -1,0 +1,88 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font><br>Enhancing your startup experience:
+The .First file</font></center>
+<h2>What happens .First?</h2>
+One of the best things about <b><font color="4040ff">R</font></b> is that you can
+change many of its characteristics to suit you.  You will probably find a number
+of these things that you want to do every time you start 
+<b><font color="4040ff">R</font></b>.  These can all be conveniently packaged in a
+function named <code>.First()</code> which 
+<b><font color="4040ff">R</font></b> will run automatically when you start
+it.<p>
+As of this revision, the <code>.First()</code> function is defined in the
+<code>Rprofile</code> file (see below) that is also run on startup.
+<code>.First()</code> is a great place to start learning about 
+<a href="kr_func1.html">functions</a> in <b><font color="4040ff">R</font></b>.<p>
+You can write a function on the command line, but it is a lot easier using a
+text <a href="kr_edit.html">editor</a>. See what the <code>.First()</code>
+function contains after you have started <b><font color="4040ff">R</font></b>
+by entering:<br>
+<pre>&gt; .First
+function() {
+    require("ctest", quietly = TRUE)
+}</pre><p>
+Bit of a catch-22 here, as you want to edit the function without having changed
+the editor to your preference. One way to get around this is to edit the 
+<code>Rprofile</code> file with your favorite editor. You may be unable to do
+this if you don't have the authority to change files in the
+<b><font color="4040ff">R</font></b> directory tree, or you may be unwilling to
+subject other people who use <b><font color="4040ff">R</font></b> to your
+favorite editor. To stay on the safe side, you'll have to create a 
+<code>.First()</code> file in the current directory that will clobber the one
+defined in <code>Rprofile</code>, but perform the same functions.
+<pre>&gt; .First<-function() {
++ require("ctest", quietly = TRUE)
++ options(editor="my_favorite_editor")
++ }</pre><p>
+on the command line. If you enter just the name of the function as above,
+you should see the results of your creation.  Now add the empty parentheses,<p>
+<pre>&gt; .First()</pre><p>
+and you will run the function manually, changing the editor to whatever you have
+chosen. You can change options, invoke functions like <code>x11()</code> that
+will start up a graphics window, load a library or anything else you want to do
+to set up your initial <b><font color="4040ff">R</font></b> environment. Allow
+me a moment of pretense and assume that you would like to have the
+<code>xtab()</code> function available when you are using
+<b><font color="4040ff">R</font></b>. Simply add the following line to your 
+<code>.First()</code> function, changing the directory path to the one
+appropriate for your system.<br>
+<pre>source("/home/jim/R/kickstart/xtab.R")</pre><br>
+You will have to copy the <code>.First()</code> function to any directories in 
+which you want to start <b><font color="4040ff">R</font></b> so that it will be 
+available at startup (but see below for more far-reaching initializations). 
+One easy way to do this is to have a text file containing the current version 
+of <code>.First()</code> somewhere.  When you start working in a new directory,
+<p><code>&gt; source("/home/jim/R/First.txt")</code><p>
+and remember to save the <code>workspace image</code> when you leave 
+<b><font color="4040ff">R</font></b>.<p>
+<code>.First</code> can even reel off a sound file of atmospheric music if it 
+makes you feel better:<p>
+<code>system("noatun /home/jim/mod/toonz/r_intro.wav")</code><p>
+but of course you'll have to supply your own intro music and player.
+<h2>The hierarchy of initialization files</h2>
+The <code>.First()</code> function will only be run if it is in the .RData file
+in the directory in which <b><font color="4040ff">R</font></b> starts up.
+Above the <code>.First()</code> function are a few other ways to customize the 
+<b><font color="4040ff">R</font></b> startup.<p>
+The preferred method at the moment appears to be editing the 
+<code><b>$R_HOME</b>/etc/Renviron</code> file for globally setting a default
+or the <code>.Renviron</code> file that is created in your home directory for a
+shared system. For example:<br>
+<pre>...
+## Default browser
+R_BROWSER=${R_BROWSER-'/usr/bin/konqueror'}
+## Default editor
+EDITOR=${EDITOR-${nedit}}
+...</pre><br>
+will change the default Web browser to <code>Konqueror</code> and the default
+editor to <code>NEdit</code>.<p>
+The <code>.Rprofile</code> file may be in your home directory, or may be in 
+<b><font color="4040ff">R</font></b> working directories. It will be read by the
+<b><font color="4040ff">R</font></b> program when it starts up. You can edit
+this file and its global counterpart 
+<code><b>$R_HOME</b>/library/base/R/Rprofile</code> in much the same way.<p>
+For more information, see <u>An Introduction to R</u>: Customizing the
+environment.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

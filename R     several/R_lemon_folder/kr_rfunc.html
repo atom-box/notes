@@ -1,0 +1,91 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Functions - general</b></font></center>
+<h2>What are they?</h2>
+If you are confused by the very notion of functions (i.e., your entire
+experience of computing has been pressing simulated buttons with a simulated 
+finger), a function is formally a part of a computer program that performs some
+specific action, but is not itself a complete executable program.  Functions may
+perform the same things that complete programs do, such as the 
+<code>sort()</code> function in <b><font color="4040ff">R</font></b> and a
+<code>sort</code> program that you might write and compile in C.  
+<b><font color="4040ff">R</font></b> has a large number of functions built in,
+and the user can create their own functions, either by assembling them from
+existing <b><font color="4040ff">R</font></b> functions or writing them in a
+language like C for which there is an interface to 
+<b><font color="4040ff">R</font></b>.  Writing and precompiling functions is not
+a trivial job and is probably beyond what the new user will want to accomplish.
+The reader is directed to
+<a href="http:/cran.r-project.org/doc/manuals/R-exts.pdf">R-exts</a>
+for an excellent introduction to this topic.<p>
+In <b><font color="4040ff">R</font></b>, a function is an object which has the
+mode <code>function</code>.  This means that the <b><font color="4040ff">R</font></b>
+interpreter is able to pass control to the function, along with arguments that may
+be necessary for the function to accomplish the actions that are desired.  The
+function in turn must correctly perform its task and return control to the
+interpreter as well as any results which may be stored in other objects.  As
+usual, this explanation will be more or less incomprehensible to some without an
+example or two.  Let's start with the classic <code>hello()</code> function that has
+been the introduction to programming for so many.<p>
+<code>&gt; hello<-function() cat("Hello, world!\n")</code><p>
+By assigning the word <code>hello</code> as the name of a function object that
+takes no arguments (hence the empty parentheses), and making that function's
+task the printing of the greeting "Hello, world!", we have
+created a function.  Not a very interesting one, but a start.  Let's be more
+personal and get the function to greet us by name, well, at least username.<p>
+<pre>&gt; hello<-function() {
+	cat(paste("Hello, ",system("whoami",T),"!\n",sep="",collapse=""))
+}</pre><p>
+<code>system()</code> is a useful function that passes a command to the operating
+system.  I have assumed a *NIX system here, which when given the command
+<code>whoami</code> returns the username of the user issuing the command.  The
+<code>T</code> after the command tells <code>system()</code> to return its
+output, not just the return code, as it would normally return 0.  Also notice
+that because the <code>T</code> is in the place that <code>system()</code>
+expects it to be, we could leave out the label (<code>"intern"</code>) for that 
+argument. Now, what's this <code>paste()</code> function doing in the middle of
+things?  <code>paste()</code> sticks strings together.  Without it,
+<code>cat()</code> would have printed a space between each argument, making the
+greeting a bit messy.  <code>paste()</code> is one of the most useful string
+formatting tools in <b><font color="4040ff">R</font></b>.  Here, it has taken
+three arguments, <code>sep</code>arated them with nothing, and
+<code>collapse</code>d them into a single string.<p>
+Notice that when writing a multiline function, braces {} must be used to enclose
+the body of the function.
+So far, we have a function that can display a message and query the operating
+system for the name of the user.  For the majority of functions, one or more
+values will be returned to the calling program.  Here's how to get today's date
+from a UNIX operating system.<p>
+<pre>&gt; hello<-function() {
+	cat(paste("Hello, ",system("whoami",T),"!\n",sep="",collapse=""))
+	today<-as.list(unlist(strsplit(system("date",T)," ")))
+	names(today)<-c("weekday","month","day","time","timezone","year")
+	return(today)
+}</pre><p>
+The second line of the new function is something you will see quite a bit in 
+<b><font color="4040ff">R</font></b>.  Three functions are called to get
+<code>today</code> into the form of a list with six elements.<p>
+<code>strsplit</code> is a useful function that breaks strings into smaller
+pieces at the points where the character(s) in the second argument occur.  Here,
+we've just used a space.  This breaks the usual date string into six pieces.
+However, the pieces are stored as a vector in a list.  What we want to do is get
+the vector out of the list using <code>unlist</code> (we also could have used
+<code>strsplit(system("date","T")," ")[[1]]</code> which would have "extracted"
+the vector from the list), then make the vector into a list again, but this time
+with each element of the vector becoming an element in the list.  This allows us
+to assign names to the elements.  Because these six pieces are in a fixed order 
+in most UNIX systems, we can assign names to each piece.<p>
+If we were to create the <code>hello</code>
+function and assign its value to <code>today</code> (and, no, this will not
+interfere with the <code>today</code> inside the function), we have a useful
+object that will provide quotidian information.<p>
+<pre>&gt; today<-hello()
+Hello, jim!
+&gt; today$year
+[1] "2003"</pre><p>
+Perhaps you would like to try getting a "Good morning" or "Good afternoon" from
+it...<p>
+For more information, see <u>An Introduction to R</u>: Writing your own
+functions<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

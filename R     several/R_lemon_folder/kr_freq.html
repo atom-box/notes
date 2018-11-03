@@ -1,0 +1,32 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Frequencies</b></font></center><p>
+<h2>Displaying the frequencies of vectors of integers or factors</h2>
+Frequencies are almost mandatory in the initial stage of examining data.
+<a href="freq.R" target="freq">freq()</a> allows you to produce simple but
+easily understood tables of frequencies for variables with a small number of
+integral values.<p>
+Because <code>freq()</code> depends upon <code>tabulate()</code>, there are a
+number of workarounds in the function. Most of these are due to the way that a
+vector of integers is translated into a factor object. Numeric factor objects 
+are formed by simply using numbers starting with 1 as levels. This
+means that if zeros are the first level in a factor object, the count of zeros
+will be labeled "1", the next value "2" and so on. Values that aren't present 
+will be skipped. So if you have a bunch of perfectly valid zeros in your data
+and a category or two with no observations, you will get a result that looks
+markedly different from what you might expect. Worse still, you might get a
+result that looks meaningful, but doesn't represent the data in the way you
+think it does.<p>
+If category labels are supplied to <code>freq()</code>, it uses them, but
+otherwise it will try to use the entire range of values, displaying zero
+observations where necessary. Zeros only seem to be a problem when they are the
+first category, so the trick of adding 1 to the values is only applied in this
+case. Finally, <code>tabulate()</code> doesn't like NAs, so they have to be
+counted separately, removed, then added to the frequency counts after 
+<code>tabulate()</code> has done its job.<p>
+Finally, <code>freq()</code> will display category percentages if they are
+requested. <code>freq()</code> is a good introduction to getting 
+<b><font color="4040ff">R</font></b> to display output in a form that can be
+presented to those used to the vanilla stats report.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

@@ -1,0 +1,91 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Making your work portable</b></font></center><p>
+<h2>What are packages?</h2>
+In case you haven't noticed, computer programs have become so interconnected
+that the majority come in some sort of package.  It's no longer the rule that
+you create a directory, copy the program(s) to that directory and start it up. 
+All sorts of links and dependencies have to be satisfied before things will work
+properly. <b><font color="4040ff">R</font></b>, like everybody else, has a
+system for packaging things, described in detail in 
+<a href="http://www.stat.math.ethz.ch/CRAN/doc/manuals/R-exts.pdf">R-exts</a>.  
+It's about as difficult
+to understand as other packaging systems, requiring you to learn the 
+<b><font color="4040ff">R</font></b>
+documentation language among other things.  The purpose of this manual is to 
+enable you to get started with simple tasks without sending you off for a week 
+or two of training.<p>
+<h2>Using existing packages</h2>
+From the same place that you downloaded <b><font color="4040ff">R</font></b>,
+you should be able to download packages that will do an amazing variety of
+things. Finding out exactly what they do is not always straightforward. My
+current favorite among the cryptically named packages is <code>e1071</code>. 
+I'll leave it to the reader to find out what this package does and why it has 
+this name.<p>
+Packages are structured in the same way as the <b><font color="4040ff">R</font></b>
+distribution, a compressed archive of code that can be built into the required
+function library. Just download the package that you want, preferably to a
+convenient place (I use <code>/usr/local/R-pkg</code>) and then use the
+following command to build it:<p>
+<code>R CMD INSTALL /usr/local/R-pkg/package_1.0-2.tar.gz</code><p>
+of course substituting the correct path and package name. If you would like to
+avoid having the whole range of help files written, the option:<p>
+<code>--no-xxxxx</code><p>
+may interest you, where xxxxx indicates a sort of documentation(example, latex,
+html or text). This will stop the program from generating that particular type
+of help.
+<h2>Making a minimal package</h2>
+So, you've figured out how to write some really useful functions that you wish
+to apply to the entire animal kingdom, not just aardvarks.  You don't want to
+laboriously copy these functions to every one of your working 
+<b><font color="4040ff">R</font></b> directories.  Gather your functions
+together in your favorite editor (assuming that they are all written in 
+<b><font color="4040ff">R</font></b> script) and think of a great name.  I call
+mine <code>lemons</code>, which is really embarrassing in the creativity stakes,
+but I'm trying to maintain a modicum of honesty here.<p>
+Let's say you're about at my level of creativity and have decided to call
+your file of functions <code>mystuff</code>.  
+First you'll need a place to store your masterpiece.  
+Go to the directory <code>library</code> just beneath the
+<b><font color="4040ff">R</font></b> directory itself.  Make a directory named
+<code>mystuff</code>, and a directory below that named <code>R</code>. 
+You may have to become root (or administrator, i.e. THE BOSS of your system)
+to do this.  Now, save your file of <b><font color="4040ff">R</font></b> 
+functions into the <code>mystuff/R</code> directory as (surprise!)
+<code>mystuff</code>.  This repetition of names may seem mysterious.  It is. 
+For the moment, just accept that this is how the system works.<p>
+Now you have to create a file in the <code>mystuff</code> directory named
+<code>DESCRIPTION</code> that will look like this:<br>
+<pre>Package: mystuff
+Version: 1.0
+Date: 13/1/2003
+Author: Your name
+Maintainer: Your name
+Description: my ingenious functions
+Depends: (the names of any other libraries that your library needs to run)
+License: GPL
+Built: R 1.6.2; i586-pc-linux-gnu; Mon Jan 13 12:50:30 EST 2003</pre><p>
+The last line can be copied from another DESCRIPTION file - it's only there to
+con the system into accepting the package. This is the absolute minimum 
+necessary to be able to load your functions with the command:<p>
+<code>library(mystuff)</code><p>
+This allows you access to your functions in any directory in which you start 
+<b><font color="4040ff">R</font></b>. You can also add the 
+<code>library()</code> command to your <a href="kr_first.html">
+<code>.First</code></a> file to automatically load your functions at startup.<p>
+If you're on a system that doesn't allow you access to the 
+<b><font color="4040ff">R</font></b> directory structure, you can still have
+your functions.  Just create the file of all the functions (for the sake of
+propriety, you might call it <code>mystuff.R</code> this time) and store it in a
+directory to which you do have access (e.g. <code>/home/jim/R</code>).  You can
+then put the following line in your <a href="kr_first.html"><code>.First</code></a>
+function and it will automatically load your functions.<p>
+<code>source("/home/jim/R/mystuff.R")</code><p>
+This doesn't allow you to package up your functions so that the 
+<code>INSTALL</code> command will neatly install them, or allow you to create
+help files that will show up automatically on the list of packages.
+So when you get some free time, have a look at
+<a href="http://www.stat.math.ethz.ch/CRAN/doc/manuals/R-exts.pdf">R-exts</a>
+and learn how to make real packages.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

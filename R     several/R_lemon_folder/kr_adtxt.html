@@ -1,0 +1,22 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Adding text to a plot</b></font></center><p>
+<h2>Text labels</h2>
+The <code>text()</code> function allows us to put text on the plot where we want
+it.  An obvious use is to label a line or group of points.<p>
+<code>text(c(2,2),c(37,35),labels=c("Non-case","Case"))</code><p>
+This would give us two labels in the upper right corner of the plot, which with
+appropriate arrows could be used in place of a legend. Note that vectors were
+supplied as the coordinates.  The first label would be centered at (2,37), and the
+second at (2,35), as the default alignment is to center the labels.<p>
+Text labels can also be placed in the margins of a plot using the
+<code>mtext()</code> function.<p>
+<code>&gt; mtext(c("Low","High"),side=1,line=2,at=c(5,7))</code><p>
+This would place the words "Low" and "High" on the second line below the X axis
+centered at 5 and 7 units. Note that the documentation declares that "user
+coordinates" in <code>mtext()</code> do not match those on the plot, but it
+appears that they do at the moment (R-1.6.2).<p>
+For more information, see <u>An Introduction to R</u>: Low-level plotting
+commands.<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

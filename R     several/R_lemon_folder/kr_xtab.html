@@ -1,0 +1,107 @@
+<html><head><title>Kickstarting R</title></head>
+<body><center><font size=+3><b><i>Kickstarting</i> <font
+color="4040ff">R</font> - Contingency tables</b></font></center><p>
+<h2>How do I get a crosstab?</h2>
+You've been locked in a room with a PC containing the data for 248 subjects
+and they won't let you have lunch until you have crosstabulated all the 
+demographic data.  It's almost noon and you only have
+<b><font color="4040ff">R</font></b>.  You hesitantly try<p>
+<code>&gt; table(infert$education,infert$parity)</code><p>
+and you get a very sparse tabulation of the parity (number of births) by
+educational attainment.  You try the enhanced version of this function,<p>
+<code>&gt; xtabs(infert$education,infert$parity)</code><p>
+and are faced with a slightly more informative display.  Unfortunately,
+you know that Bronwyn will want to know what percentage
+of women who completed high school had 2 or fewer children and Hans will have to 
+have a chi-squared test for every contingency table.  Let's see what can be done. 
+<b><font color="4040ff">R</font></b> follows the precepts of a bunch of 
+brilliant people at Bell Labs in making statistics modular.  That is, 
+individual functions do fairly simple, general things very well, and 
+intelligently combining the modules will do almost anything that you want.  The
+beginner's problem is usually figuring out what the heck are the functions that
+will do the particular things that they want. 
+We'll use the example data frame <code>infert</code> provided with 
+<b><font color="4040ff">R</font></b> to illustrate how to build on that.  First,
+let's find and retrieve the data.<p>
+<pre>&gt; show.data()
+...
+freeny          Freeny's Revenue Data
+infert          Secondary infertility matched case-control study
+iris            Edgar Anderson's Iris Data as data.frame
+...
+&gt; data(infert)</pre><p>
+A quick summary of the data will reveal that parity ranges from 1-6.  This will
+have to be reduced to two categories.  That's pretty easy to do by assigning the
+output of a logical comparison.<p>
+<pre>&gt; gt2<-infert$parity>2
+&gt; table(infert$education,gt2)
+...</pre><p>
+The observant reader may ask why the comparison "greater than" was used rather than
+"less than or equal to".  Convenience is the answer. By default,
+<b><font color="4040ff">R</font></b> orders factors, and FALSE (0) is less than TRUE (1).  Using "greater than" here
+gets the factors "right way round", rather than having "more than 2" in the
+first column and "less than or equal to 2" in the second.  When
+factors are coded as labels, they are ordered alphabetically. You can explicitly
+order factors if you wish.<p>
+This is still a pretty laconic table which will have to be explained.  Putting
+the <code>dimnames</code> in will help.<p>
+<code>&gt; table(infert$education,gt2,dnn=c("Education","Parity"))</code><p>
+It would also be nice if there were some descriptive labels rather than just
+"FALSE" and "TRUE".  The really useful function <code>ifelse()</code> will do
+the trick.<p>
+<code>&gt; gt2<-ifelse(infert$parity>2,"Over 2","2 or less")<br>
+&gt; table(infert$education,gt2,dnn=c("Education","Parity"))</code><p>
+Notice how the labels have been doctored so that they will be in the
+conventional order.  Now we have a reasonable looking contingency table, but
+what about Bronwyn's percentages and Hans' chi-squares?  We're going to have to
+go a bit beyond what <code>table()</code> will do to get output that will satisfy
+them.  Let's go through the function <a href="xtab.R" target="xtab">
+format.xtab()</a>.<p>
+First, we check that the minimal data is there, then get the base table from
+which to derive the rest of the information.  In order to calculate the
+percentages, we'll need the row and column sums.  These can be calculated in one
+hit by using <code>apply()</code>.  Next up come the row and column names. 
+Here, <code>formatC()</code> pops up.  Plain old <code>format()</code> would
+have formatted each set of labels to the length of the longest label plus 1, but
+if we want a neat table, we want all of the labels to be the same length.  Also
+notice that the <code>fieldwidth</code> has been given the default value of 10,
+allowing the user to shrink or expand the columns.  <code>dnn</code> is given a
+default value if none was passed, and we're ready to go.<p>
+First the variable
+names (<code>dnn</code>) and the column names, then each of the rows, starting
+with the cell counts and row counts, the cell row percentages and the overall
+row percentages and then the cell column percentages.  After that, the column
+counts and grand total and the column percentages.  Finally, if a chi-square
+test was ordered by including the argument <code>chisq=T</code>, the rather
+complicated bit at the bottom to print out the values of the chi-square test
+will do its stuff.  It would be simpler just to run the chi-square test and let
+it print itself, but we would then get variables labeled as <code>v1</code> and
+<code>v2</code>, which might be confusing.  You'll also notice when you run this
+function that <code>chisq.test()</code> warns you that some of the cells have
+smaller than recommended counts.  You may wish to recode educational attainment
+to two categories as an exercise.<p>
+<h2>But wait, I want more than two dimensions!</h2>
+Contingency tables with more than two dimensions can be pretty difficult to
+interpret, and the chi-square test will only handle 2D at present anyway.
+However, that's no reason to get spooked.  In the same file as
+<code>format.xtab()</code> is the <code>xtab()</code> function.<p>
+If you pass it a two element formula, it will act just like 
+<code>format.xtab()</code>.<p>
+<code>xtab(v1~v2,mydata)</code><p>
+If you
+ask for more than two dimensions, it will print out hierarchical counts and
+percentages of all levels of variables starting at the last one in the
+formula.  When it gets to
+the first two, it will print out 2D contingency tables for those
+variables. It gets silly pretty quickly. Both 
+<code>table()</code> and <code>ftable()</code> will also display multi-way 
+crosstabulations.<p>
+This is also an introduction to the use of recursion, in which a function calls
+itself until whatever test you have set is satisfied.  In this case, the
+function stops calling itself when there are at most two variables to be
+crosstabulated.<p>
+Get the nachos, you deserve it.<p>
+For more information, see <u>Introduction to R</u>: Frequency tables from 
+factors<p>
+<a href="index.html">Back to Table of Contents</a>
+</body></html>

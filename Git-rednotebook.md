@@ -1,3 +1,36 @@
+See green notebook for current.
+
+Change commit message on something you just committed: 
+git commit --amend -m "Restore after accidental deletion."
+
+Shortcuts:
+  git checkout -b <new-branch>
+Set a key binding.  All of these make 2 letter shortcuts:
+  $ git config --global alias.co checkout
+  $ git config --global alias.br branch
+  $ git config --global alias.ci commit
+  $ git config --global alias.st status
+
+
+
+## unstage!  learn this
+git reset HEAD -- fileone.txt
+ 
+## many enjoy this, see last commit only, clearly: 
+git log -1 HEAD
+
+
+## merge trouble, very basic
+error: you cannot push, there are unchanged things there.
+Wrong move: trying to fetch then merge caused 'not something we can merge'
+This worked: git pull mke master
+
+## DIFF
+DIRDIFF causes a tree of the directories to open
+git difftool --dir-diff 3fb4c7436894b4f18f728
+git difftool 3fb4c7436894b4f18f728
+git diff        3fb4c7436894b4f18f728   baef8d19c52ae3b241
+
 ## Stash
 git stash
 git stash apply

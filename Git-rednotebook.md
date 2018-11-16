@@ -1,4 +1,57 @@
+
 See green notebook for current.
+https://stackoverflow.com/questions/2113889/git-difftool-to-give-directory-compare?noredirect=1&lq=1
+Commonest Git questions on Stackoverflow
+
+## undo
+git add myfile.txt  then undo with git reset <file>
+git reset HEAD *.ext where ext is the files of the given extension you want t
+## clear the tree editing 
+For all unstaged files use:
+git checkout -- .
+For a specific file use:
+git checkout path/to/file/to/revert
+Make sure to include the period at the end.
+
+
+## Undo!   
+https://blog.github.com/2015-06-08-how-to-undo-almost-anything-with-git/ 
+has everything!!
+## How to revert a Git repository to a previous commit
+if you haven't published any of these commits, simply reset, all tree will be lost:
+git reset --hard 0d1d7fc32
+## Alternatively, if there's work to keep:
+git stash
+git reset --hard 0d1d7fc32
+git stash pop
+And the fallout may be merge problems.
+## The forgiving way is to patch to the future: this is undoable
+With Git, revert has a very specific meaning: create a commit with the reverse patch to cancel it out. This way you don't rewrite any history.  man git-revert has examples!
+This will create three separate revert commits:
+git revert a867b4af 25eee4ca 0766c053
+## It also takes ranges. This will revert the last two commits:
+git revert HEAD~2..HEAD
+## Similarly, you can revert a range of commits using commit hashes:
+git revert a867b4af..0766c053 
+## Reverting a merge commit
+git revert -m 1 <merge_commit_sha>
+
+## hard, not hard, targeting just certain files
+There could be only three categories of files when we make local changes:
+    Type 1. Staged Tracked files
+    Type 2. Unstaged Tracked files
+    Type 3. Unstaged UnTracked files a.k.a UnTracked files
+——
+What each commands do:
+    git checkout . 
+- Removes Unstaged Tracked files ONLY [Type 2] {“undo changes in my tree”}
+    git clean -f 
+- Removes Unstaged UnTracked files ONLY [Type 3]
+    git reset --hard 
+- Removes Staged Tracked and UnStaged Tracked files ONLY[Type 1, Type 2]
+    git stash -u 
+- Removes all changes [Type 1, Type 2, Type 3]
+
 
 Change commit message on something you just committed: 
 git commit --amend -m "Restore after accidental deletion."

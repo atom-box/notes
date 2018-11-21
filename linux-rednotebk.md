@@ -1,95 +1,7 @@
-TROUBLESHOOTING
-1) turning on and off started working after I cleared browser history. It turns off now.
-2) "Forbidden: root!" happened when I said /Users/evan/Dropbox/elephant
-
-
-U.R.I. SYNTAX 
-Both of these are equivalent:
-file://localhost/etc/fstab
-file:///etc/fstab
-
-WINDOWS FILE PATH:
-To access a file "the file.txt", the following might be used.
-For a network location:
-file://hostname/path/to/the%20file.txt
-Or for a local file, the hostname is omitted, but the slash is not (note the third slash):
-file:///c:/path/to/the%20file.txt
 
 
 
-SET THE PATH SO APACHE CAN FIND YOUR FOLDERS:
-1)  Go back to Terminal and enter sudo nano /etc/apache2/httpd.conf
-2) Replace both occurrences of /Library/WebServer/Documents with /Users/david/Sites (instead of david use your name which can be found at the top of your terminal next to the home icon) 
-3) Type sudo apachectl restart and press enter
-Undid
-/Library/WebServer/Documents
 
-
-MAC OS KEY BINDINGS
-Press ⌘ + SPACE (Spotlight Search) 
-
-WHERE INSTALLED FOLDER
-which python
-which perl
-
-SEARCH.   IN NANO.
-ctl - W
-
-APACHE 
-Apache 2.4 comes pre-packaged in macOS 10.12 Sierra, 
-*check the version to verify*
-httpd -v
-__start the server by running the command__
-apachectl start
--------------------- 
-PATH OF APACHE
-1) set how:
-The DocumentRoot directive is set in your main server configuration file (httpd.conf) 
-2) if DocumentRoot were set to /var/www/html then a request for http://www.example.com/fish/guppies.html would result in the file /var/www/html/fish/guppies.html being served to the requesting client.
-------------
-MAKE THE APACHE CONFIG file APPEAR! 
-*from websitebeaver.com*
-sudo nano /etc/apache2/httpd.conf 
-Delete the #
- from #LoadModule php7_module libexec/apache2/libphp7.
------------
-PATHS WITH A SLASH AT BEGINNING
-*from /etc/apache2/httpd.conf*
-If the filenames do *not* begin
-# with "/", the value of ServerRoot is prepended -- so "logs/access_log"
-# with ServerRoot set to "/usr/local/apache2" will be interpreted by the
-# server as "/usr/local/apache2/logs/access_log", whereas "/logs/access_log$
-# will be interpreted as '/logs/access_log'.
-TODO: 
-at McDonalds, continue
-https://websitebeaver.com/set-up-localhost-on-macos-high-sierra-apache-mysql-and-php-7-with-sslhttps
-
-START AS ROOT
-sudo su -
-
-
-*ADDING a user by an ADMINISTRATOR*
-note, su and sudo might need to be changed per Debian vs other Linux.
-FIRST, CHECK FOR ALL USERS:
-sudo less /etc/passwd
-MAKE CELERY
-useradd celery
-(although sometimes it is "adduser")
-passwd _-_-_
-mkdir /home/jsmith
-chown jsmith:users /home/jsmith
-
-SWITCH USER TO CELERY
-exit (neccessary if you are logged in as root)
-exit
-su celery
-ssh celery@localhost
-
-REGEX EXAMPLES
-matching a username
-/^[a-z0-9_-]{3,16}$/
-matching an email
-/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
 
 
 SSH & SFTP & ONEANDONE &  KUNDEN
@@ -109,7 +21,7 @@ FIND YOUR IP ADDRESS:
 google or bing IP ADDRESS.  gives just machine you are on
 IPCONFIG gives info too
 
-SIZE
+DU tells SIZE
 du /etc
 du /etc/man
 du .
@@ -152,7 +64,24 @@ TRANSLATE
 tr "[:punct:]"  "\n"  <  file.txt
 
 TRANSLATE list of classes [::]
-alnum  alpha  digit  lower   upper   print   blank
+alnum  alpha  digit  lower   upper   print   
 
 THE ORDER OF ARGUMENTS 150  
 
+bind; APPLE + ARROW; switches between terminals
+bind; APPLE + K;     clears the terminal window
+
+NANO; nano -S -T 3; smooth scroll tab three
+GREP; grep '.gitignore /Users/evan/... -r
+UNIX; ls -d
+JS; ALERT, PROMPT, CONFIRM; three cheapie pop ups
+bind; APPLE L; selects entire line in sublime
+FIND; find -m time 3; how many days
+FIND; find -name index.html
+FIND; find /homework1 /css -atime +30
+FIND; find  .  -print
+UNIX;  du -a
+REGEX;  sed 's_[^aeiou]_+_g'  ; replaces all vowels
+REGEX;  \<  \> ;  matches words
+REGEX;  \{  \}  ; matches # of occurances
+bind;  SHIFT + CTL + UP ; goes in and out of holistic desktop

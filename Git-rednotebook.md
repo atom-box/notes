@@ -1,7 +1,19 @@
+## Shoot! I deleted a directory!  How to get back just one of its files (2 steps):
+git reset  -- scripts/page.elm
+git checkout -- scripts/page.elm
+
+## Change the commit message
+git commit --amend -m "Hey."
+changes message of your last commit
 
 See green notebook for current.
 https://stackoverflow.com/questions/2113889/git-difftool-to-give-directory-compare?noredirect=1&lq=1
 Commonest Git questions on Stackoverflow
+
+## Show diff of now to before, 
+## Doubledash syntax reqd for filename:
+git diff 80ac3ad279b2c5  -- README.md 
+This worked 11/16/2018.
 
 ## undo
 git add myfile.txt  then undo with git reset <file>

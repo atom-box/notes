@@ -10,10 +10,39 @@ See green notebook for current.
 https://stackoverflow.com/questions/2113889/git-difftool-to-give-directory-compare?noredirect=1&lq=1
 Commonest Git questions on Stackoverflow
 
+## DIFF
+DIRDIFF causes a tree of the directories to open
+git difftool --dir-diff 3fb4c7436894b4f18f728
+git difftool 3fb4c7436894b4f18f728
+git diff        3fb4c7436894b4f18f728   baef8d19c52ae3b241
+
 ## Show diff of now to before, 
 ## Doubledash syntax reqd for filename:
 git diff 80ac3ad279b2c5  -- README.md 
 This worked 11/16/2018.
+
+## Dot Dot notation
+git diff master..myBranch 
+
+## Digital Ocean DIFF
+git diff command shows changes between commits, branches, and more. You can read more fully about it through the Git documentation.
+
+Compare modified files that are on the staging area.
+    git diff --staged
+
+Display the diff of what is in a-branch but is not in b-branch.
+    git diff a-branch..b-branch
+
+Show the diff between two specific commits.
+    git diff 61ce3e6..e221d9c
+
+MERGE DIFF RESET 79
+git merge branchname
+	DONT git branch -d branchname // ATTENZIONE, THIS NUKES THE ENTIRE BRANCH
+git diff HEAD // shows differences since the last commit
+git diff --staged
+git diff zombie master  // works
+
 
 ## undo
 git add myfile.txt  then undo with git reset <file>
@@ -90,11 +119,6 @@ error: you cannot push, there are unchanged things there.
 Wrong move: trying to fetch then merge caused 'not something we can merge'
 This worked: git pull mke master
 
-## DIFF
-DIRDIFF causes a tree of the directories to open
-git difftool --dir-diff 3fb4c7436894b4f18f728
-git difftool 3fb4c7436894b4f18f728
-git diff        3fb4c7436894b4f18f728   baef8d19c52ae3b241
 
 ## Stash
 git stash
@@ -129,8 +153,7 @@ YOU ARE SAVING FILES AND ACTING LIKE THEY CAN BE MERGED. THEY CANT!
 ## deleting a branch 
 git branch -d evanbranch 
 
-## Dot Dot notation
-git diff master..myBranch 
+
 
 ## head, 
 HEAD just tells you what branch you are on, it doesn’t say which commit
@@ -183,20 +206,6 @@ Push or transmit your local branch commits to the remote repository branch.
 
 Fetch and merge any commits from the tracking remote branch.
     git pull
-
-
-
-## Digital Ocean DIFF
-git diff command shows changes between commits, branches, and more. You can read more fully about it through the Git documentation.
-
-Compare modified files that are on the staging area.
-    git diff --staged
-
-Display the diff of what is in a-branch but is not in b-branch.
-    git diff a-branch..b-branch
-
-Show the diff between two specific commits.
-    git diff 61ce3e6..e221d9c
 
 
 
@@ -326,12 +335,6 @@ WHAT IS HEAD 78
 3 - MASTER is the bread crumb showing you back where the main trailhead was, so you can get back to it.  You can diff them.
 4 - git reset HEAD --hard  [THIS HAS IS REPEATEDLY ROLLING ME BACK TO s.m.a.]
 
-MERGE DIFF RESET 79
-git merge branchname
-	DONT git branch -d branchname // ATTENZIONE, THIS NUKES THE ENTIRE BRANCH
-git diff -HEAD // shows differenes since the last commit
-git diff -staged
-git diff zombie master  // works
 
 HOW TO STEP THROUGH A BIT OF A TIME MACHINE, HOLISTIC
 git checkout somebranch

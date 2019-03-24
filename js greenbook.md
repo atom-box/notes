@@ -1,3 +1,34 @@
+## Ways to modify the document 
+### MAGICAL WAY TO DIVULGE OBJECT STATUS -- READ INSIDE JONAH
+const http = require('http');
+const PORT = 4923;
+
+var jonah =(take, give)=>{
+  const seconds = (new Date()).getSeconds();
+  const time = new Date();
+  for(let key in take){
+    console.log(key);
+    console.log(take[key]);
+    console.log(':::::::::::::::::::::::::::::::::::');
+  }
+  give.end(`The time is ${time} and you gave me `);
+}
+
+const whale = http.createServer(jonah);
+const confirm = console.log(`Everything is alright on port ${PORT}.`);
+whale.listen(PORT, confirm);
+
+### ONCLICK -> GETBYID/TEXTCONTENT
+<script type="text/javascript">
+function alert(){
+  document.getElementById('divA').textContent = 'This text is different!';
+}
+</script>
+      <button onclick="alert()">press</button>
+      <div id="divA"></div>
+
+### 
+
 ## For loops in 1996, ES5, and ES6
 1. For(i in things)    THIS GIVES THE INDEXES...AS STRINGS!
 2. things.foreach

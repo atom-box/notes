@@ -1,3 +1,29 @@
+## MODULES SOLVED!  Two hours at Starbucks:
+import {dummy} from './bottom.js';
+// to avoid CORS error, get path right
+// THE file that is the head can be anywhere, but the next called path must have same insert point on the tree.
+// See also SWISSREGEX project
+111111
+<script type="module" src="./app.js"></script>
+
+222222
+import { artistsString } from './data/artists.js';
+import { paneTwo } from './assets/messinWithThePage.js';
+
+333333
+export { artistsString};
+
+111111111
+<script   type="module" src="./js/top.js">
+
+222222222
+import {dummy} from './js/bottom.js';
+
+333333333
+export default dummy;
+
+
+
 ## Ways to modify the document 
 ### MAGICAL WAY TO DIVULGE OBJECT STATUS -- READ INSIDE JONAH
 const http = require('http');

@@ -1,3 +1,35 @@
+## order of operations: this explains a lot!  
+FARMERJOHN = from  join
+WATCHED = where
+GENEST = groupby
+HEAR = having
+SEWER = select
+==============
+DRAIN = distinct
+OILY = offset
+LAKE = limit
+
+## Arithmetic can be added...
+Add it to the columntitle!
+Add it to the conditionals without parens
+
+## join vocab
+Jx  Ox  , join, left join, right join, full***, outer
+
+## SQL Bolt
+* col_name NOT IN (1, 3, 5)
+*   col_name BETWEEN 1.5 AND 10.5
+
+## ALMOST MISSED THIS
+To be case insensitive, cant use ==
+To use wildcards, must use LIKE
+All strings must be quoted so that the query parser can distinguish words in the string from SQL keywords. 
+
+THEY ALLOW ||  &&
+WHERE condition
+    AND/OR another_condition
+    AND/OR …;
+
 ## Greatest hits I wrote:
 sqlite> select (fem.tally / mal.tally) as GIRLSRULE , mal.tally, fem.tally, mal.country from mal, fem group by mal.country ORDER BY GIRLSRULE  asc limit 10 ;
 

@@ -1,0 +1,52 @@
+---s-t-a-c-k--------------------
+https://tech.fpcomplete.com/haskell/tutorial/stack-play
+General commands are
+stack exec -- <command>
+$ stack exec -- ghc --version
+$ stack exec -- ghci
+$ stack exec -- ghc Main.hs -o HiHaskell
+CHECKVERSION
+REPL
+COMPILE
+
+--t-h-e---R-E-P-L------------
+:quit
+:? 
+which is started by 
+STACK GHCI
+running repl (or anything) with libraries beyond haskelllibrarycalledBASE:
+$ stack exec --package http-client -- ghci
+:set +m  
+FOR MULTILINE IN THE GHCI REPL
+
+---h-e-l-l-o--w-o-r-l-d-----------
+module Main where
+
+main :: IO ()
+main = putStrLn "Hello from Haskell!"
+SAVED AS MAIN.HS 
+COMPILED AS stack exec -- ghc Main.hs -o HiHaskell
+
+
+
+Wednesday
+Take the clothes to thrift goodwill
+Apply three becky jobs
+Haskell in the repo gotta look decent
+Resurrect three bats
+mom therapist
+phone unlock
+----
+stack will use a sandboxed GHC it installed
+For more information on paths, see 
+stack path 
+and
+stack exec env
+---'
+stack ghc, 
+stack ghci, 
+stack runghc, or 
+stack exec
+'------
+To COMPILE MAIN.HS INTO HIHASKELL
+$stack exec -- ghc Main.hs -o HiHaskell

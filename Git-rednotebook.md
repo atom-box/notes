@@ -1,3 +1,22 @@
+## OMG!
+## GO LOOK AROUND at an old commit:
+optional is stash and unstash before and after:
+GIT STASH
+GIT STASH POP
+
+## GO LOOK AROUND at an old commit:
+GIT LOG
+GIT CHECKOUT 8765432
+GIT CHECKOUT MASTER
+
+
+## DANGER Will Robinson! Detached HEAD
+I solved this with the help of https://gitolite.com/detached-head.html 
+1) git branch brownie
+2) git checkout brownie, checkout master for some reason but it worked, wait, WOE: my log is rolled back and those future commits are gone
+3) git reflog (to see my hash; to the rescue)
+4) git merge hash447y482n 
+
 ## Shoot! I deleted a directory!  How to get back just one of its files (2 steps):
 git reset  -- scripts/page.elm
 git checkout -- scripts/page.elm

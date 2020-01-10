@@ -1,0 +1,13 @@
+AGILE
+Samurai by Jonathan Rasmusson
+
+1) How do you estimate project time?
+* One week sprints give you frequent velocity measurements
+2) BIG10
+* "Done" means shippable code. You're off track on cruft otherwise.
+3) Vocabulary
+* SCRUM - this is a timebox
+* KANBAN - this is the flow visual; limit number of current tasks
+* LEAN - m v p
+* 
+* 

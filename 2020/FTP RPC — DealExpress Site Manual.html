@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<!-- saved from url=(0120)http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/ftprpc/index.html -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>FTP RPC — DealExpress Site Manual</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="./FTP RPC — DealExpress Site Manual_files/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../../../../../',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="./FTP RPC — DealExpress Site Manual_files/jquery.js"></script>
+        <script type="text/javascript" src="./FTP RPC — DealExpress Site Manual_files/underscore.js"></script>
+        <script type="text/javascript" src="./FTP RPC — DealExpress Site Manual_files/doctools.js"></script>
+    
+    <script type="text/javascript" src="./FTP RPC — DealExpress Site Manual_files/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="./FTP RPC — DealExpress Site Manual_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./FTP RPC — DealExpress Site Manual_files/pygments.css" type="text/css">
+  <link rel="stylesheet" href="./FTP RPC — DealExpress Site Manual_files/override_rtd.css" type="text/css">
+    <link rel="index" title="Index" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/genindex.html">
+    <link rel="search" title="Search" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/search.html">
+    <link rel="next" title="Geonames" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/GeonamesBundle/Resources/doc/index.html">
+    <link rel="prev" title="AWS SQS" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/aws/sqs.html"> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+    <a href="http://dash.officesupply-dev.com/" class="fa fa-dashboard">&nbsp;Systems Dashboard</a>
+
+    
+
+          
+            <a href="http://dash.officesupply-dev.com/documentation/OfficeSupply/index.html" class="icon icon-home"> DealExpress
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="http://dash.officesupply-dev.com/documentation/OfficeSupply/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+
+          
+
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+    
+        <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/doc/overview/index.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/deploy/doc/index.html">Site Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/doc/development/index.html">Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/doc/database/index.html">Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/doc/product_data/index.html">Product Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/doc/workflows/index.html">Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/doc/qatools/index.html">QA Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/doc/events.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/doc/architecture/index.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/library/Dx/doc/index.html">Dx</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/index.html"><span class="toctree-expand"></span>Bundles</a><ul class="">
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/AdminBundle/Resources/doc/index.html">Admin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/AmazonBundle/Resources/doc/index.html">Amazon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ApiBundle/Resources/doc/index.html">API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ApiClientBundle/Resources/doc/index.html">API Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/BloomReachBundle/Resources/doc/index.html">BloomReach</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/CMSBundle/Resources/doc/index.html">CMS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/CatalogBundle/Resources/doc/index.html">Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/DiscountOfficeItemsBundle/Resources/doc/index.html">DiscountOfficeItems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/EdiBundle/Resources/doc/index.html">EDI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/EmailBundle/Resources/doc/index.html">Email</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/index.html"><span class="toctree-expand"></span>Extras</a><ul class="">
+<li class="toctree-l3 current"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/index.html#bundle-scope"><span class="toctree-expand"></span>Bundle Scope</a><ul class="">
+<li class="toctree-l4"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/aws_cognito.html">AWS Cognito</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/guzzle.html">GuzzleHttp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/task.html">Task / Command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/js/index.html">Extras JavaScript Libraries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/aws/index.html">AWS Integration</a></li>
+<li class="toctree-l4 current"><a class="reference internal current" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/ftprpc/index.html#">FTP RPC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/GeonamesBundle/Resources/doc/index.html">Geonames</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/GoogleBundle/Resources/doc/index.html">Google</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/IngramBundle/Resources/doc/index.html">Ingram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ListrakBundle/Resources/doc/index.html">Listrak</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/MfgDirectBundle/Resources/doc/index.html">MfgDirect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/NotionsMarketingBundle/Resources/doc/index.html">NotionsMarketing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ReportBundle/Resources/doc/index.html">Report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/SPRBundle/Resources/doc/index.html">SPR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ScraperBundle/Resources/doc/index.html">Scraper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/SearchBundle/Resources/doc/index.html">Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/SuppliesNetworkBundle/Resources/doc/index.html">Supplies Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/SynnexBundle/Resources/doc/index.html">Synnex Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/TrimegaBundle/Resources/doc/index.html">Trimega</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/USCBundle/Resources/doc/index.html">USC/Essendant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/WarehouseBundle/Resources/doc/index.html">Warehouse</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/index.html#index">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/doc/todo.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/deploy/lambda/doc/index.html">Lambda Development</a></li>
+</ul>
+
+    
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="http://dash.officesupply-dev.com/documentation/OfficeSupply/index.html">DealExpress</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="http://dash.officesupply-dev.com/documentation/OfficeSupply/index.html">Docs</a> »</li>
+        
+          <li><a href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/index.html">Bundles</a> »</li>
+        
+          <li><a href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/index.html">Extras</a> »</li>
+        
+      <li>FTP RPC</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="http://dash.officesupply-dev.com/documentation/OfficeSupply/_sources/src/DealExpress/ExtrasBundle/Resources/doc/ftprpc/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ftp-rpc">
+<h1>FTP RPC<a class="headerlink" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/ftprpc/index.html#ftp-rpc" title="Permalink to this headline">¶</a></h1>
+<p>FTP via remote procedure call</p>
+<p>Due to technical details of how the FTP and FTPS protocol are defined, systems
+that transfer files via FTP require a firewall with mostly open egress rules.</p>
+<p>FTP RPC segregates the open egress requirement from the rest of the system(s).</p>
+<p>The system is asynchronous and does not return a response to the initiator.</p>
+<div class="section" id="outbound">
+<h2>Outbound<a class="headerlink" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/ftprpc/index.html#outbound" title="Permalink to this headline">¶</a></h2>
+<div><img height="729" src="./FTP RPC — DealExpress Site Manual_files/seqdiag-25145402bc50fc5083d7396a9fb86740c2f9d8c2.png" width="640"></div><div class="wy-table-responsive"><table border="1" class="docutils">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Uploader</td>
+<td>Outbound initiator</td>
+</tr>
+<tr class="row-odd"><td>Storage</td>
+<td>Shared storage</td>
+</tr>
+<tr class="row-even"><td>Queue</td>
+<td>Message queue</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="from-open-egress">
+<h3>From Open Egress<a class="headerlink" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/ftprpc/index.html#from-open-egress" title="Permalink to this headline">¶</a></h3>
+<div><img height="645" src="./FTP RPC — DealExpress Site Manual_files/seqdiag-7ccfec16c0bf5d656e42d76943f2a3eafe364fef.png" width="832"></div><div class="wy-table-responsive"><table border="1" class="docutils">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Storage</td>
+<td>Shared storage</td>
+</tr>
+<tr class="row-odd"><td>Queue</td>
+<td>Message queue</td>
+</tr>
+<tr class="row-even"><td>Consumer</td>
+<td>Message consumer</td>
+</tr>
+<tr class="row-odd"><td>Remote</td>
+<td>Remote / Vendor FTP</td>
+</tr>
+</tbody>
+</table></div>
+<p>As of writing:</p>
+<ul class="simple">
+<li>“Shared storage” is AWS S3, which supports creating queue messages.</li>
+<li>“Message queue” is AWS SQS</li>
+<li>“Consumer” will be AWS Lambda</li>
+</ul>
+</div>
+</div>
+<div class="section" id="inbound">
+<h2>Inbound<a class="headerlink" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/ftprpc/index.html#inbound" title="Permalink to this headline">¶</a></h2>
+<p>Starts with a request message sent describing the inbound request.</p>
+<div class="section" id="id1">
+<h3>From Open Egress<a class="headerlink" href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/ftprpc/index.html#id1" title="Permalink to this headline">¶</a></h3>
+<div><img height="1481" src="./FTP RPC — DealExpress Site Manual_files/seqdiag-2e3cebfa0e5a8b8b33baf4a5f8ffdc620919fb3f.png" width="832"></div><div class="wy-table-responsive"><table border="1" class="docutils">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Storage</td>
+<td>Shared storage</td>
+</tr>
+<tr class="row-odd"><td>Queue</td>
+<td>Message queue</td>
+</tr>
+<tr class="row-even"><td>Consumer</td>
+<td>Message consumer</td>
+</tr>
+<tr class="row-odd"><td>Remote</td>
+<td>Remote / Vendor FTP</td>
+</tr>
+</tbody>
+</table></div>
+<p>As of writing:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>“Shared storage” is AWS S3</dt>
+<dd><ul class="first last simple">
+<li>AWS S3 supports creating queue messages on object creation events, delaying the need for consumer creating ack-notifications.</li>
+<li>The use cases encapsulate the file-listing usages, meaning there is no need to send a “this is the file list” response.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">“Message queue” is AWS SQS</p>
+</li>
+<li><p class="first">“Consumer” will be AWS Lambda</p>
+</li>
+</ul>
+<p>For inbound requests, there is an expectation that there will be a later
+file-consumer that handles continuing the activates that happen after file has
+been acquired, either by queue-watching or storage-polling.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/GeonamesBundle/Resources/doc/index.html" class="btn btn-neutral float-right" title="Geonames" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="http://dash.officesupply-dev.com/documentation/OfficeSupply/src/DealExpress/ExtrasBundle/Resources/doc/aws/sqs.html" class="btn btn-neutral float-left" title="AWS SQS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+        © Copyright OfficeSupply.com
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+
+</body></html>

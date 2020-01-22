@@ -1,0 +1,32 @@
+<http://book.mixu.net/node/ch8.html>
+# global: DIRNAME - The name of the directory that the currently executing script resides in.
+# global: PROCESS - A object which is associated with the currently running process. In addition to variables, it has methods such as process.exit, process.cwd and process.uptime.
+# global: PROCESS.ARGV - An array containing the command line arguments. The first element will be 'node', the second element will be the name of the JavaScript file. The next elements will be any additional command line arguments.
+# global: PROCESS.STDIN - Streams which correspond to the standard input for the current process.
+# global: PROCESS.STOUT - Streams which correspond to the standard standard output for the current process.
+# global: PROCESS.STDERR - Streams which correspond to the standard standard error output for the current process.
+# global: PROCESS.ENV - An object containing the user environment of the current process.
+# global: REQUIRE.MAIN - When a file is run directly from Node, require.main is set to its module.
+# You can print out the global vars thusly:
+console.log('__filename', __filename);
+console.log('__dirname', __dirname);
+console.log('process.argv', process.argv);
+console.log('process.env', process.env);
+if(module === require.main) {
+  console.log('This is the main module being run.');
+}
+
+# Check it
+Make my test files runnable via
+node filename.js by including 
+==============
+// if this module is the script being run, then run the tests:
+if (module === require.main) {
+  var nodeunit_runner = require('nodeunit-runner');
+  nodeunit_runner.run(__filename);
+}
+===============
+# global: -
+# global: -
+# global: -
+# global: -

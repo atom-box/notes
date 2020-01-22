@@ -1,0 +1,71 @@
+h1 {
+    font-size: 220%
+}
+h2 {
+    font-size: 175%
+}
+h3 {
+    font-size: 140%
+}
+h4 {
+    font-size: 115%
+}
+h5 {
+    font-size: 95%
+}
+h6 {
+    font-size: 75%
+}
+.rst-content dl dt {
+    font-weight: normal
+}
+
+.rst-content dl p {
+    margin-bottom: 0 !important
+}
+
+dl.glossary p {
+    margin-bottom: 6px !important
+}
+.rst-content dl {
+    margin-bottom: 0
+}
+dl.glossary dt {
+    font-size: larger
+}
+
+.wy-side-nav-search {
+    text-align: left;
+}
+
+table.docutils div.line-block {
+    margin-left: 0;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+
+.wy-table-responsive table td {
+    white-space: normal;
+    line-height: 1.5;
+}
+
+.rst-content .highlight>pre {
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+ul.wy-breadcrumbs {
+    position: relative;
+}
+
+ul.wy-breadcrumbs li.wy-breadcrumbs-aside {
+    position: absolute;
+    top: -1.5em;
+    right: 0;
+}
+
+.view-source {
+    float: right;
+}

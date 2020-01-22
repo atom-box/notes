@@ -1,3 +1,12 @@
+## The three places
+REPO
+INDEX
+TREE working tree
+
+## When you reset
+-- hard  MESSES WITH YOUR ACTUAL HARDDRIVE
+-- soft  JUST CLEARS THE DECK IN GIT AWARENESS, BACK TO WHEREVER
+
 ## These, at StackOverflow 
 
 6616

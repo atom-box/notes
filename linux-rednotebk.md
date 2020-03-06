@@ -6,7 +6,26 @@ sudo chown -R $USER:$USER /var/www/example.com/html  HOW TO MAKE SURE A CERTAIN 
 sudo chmod -R 755 /var/www   HOW TO CHANGE UPSTREAM:
 -------------------
 
- 
+
+
+
+git checkout --patch amazing_feature_branch index.html // THIS WILL MERGE A SINGLE FILE, INTERACTIVELY
+
+
+aws s3 ls s3://dx-data/log/2020/
+
+
+tree -a all;show hidden files  
+tree  -d directories
+tree  -fi full path/omit indenting
+tree  -Pa for Regex
+tree  -I anti regex
+tree  -s show sizes
+tree  -D show modified date
+tree  -t sort modified date
+tree  -L limit the depth
+tree --filelimit limit the number of children
+tree -F  append a slash to folder names 
 
 
 FTP  only say the remote, at first.  presence in your pwd is implied:

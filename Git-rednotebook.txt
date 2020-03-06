@@ -6,6 +6,9 @@ TREE working tree
 ## When you reset
 -- hard  MESSES WITH YOUR ACTUAL HARDDRIVE
 -- soft  JUST CLEARS THE DECK IN GIT AWARENESS, BACK TO WHEREVER
+## When you reset
+git reset --hard   THIS IS ENOUGH TO ROLL BACK THE TREE TO your last commit. No head detachment issues this way.
+
 
 ## These, at StackOverflow 
 
@@ -13,19 +16,19 @@ TREE working tree
 https://stackoverflow.com/questions/27764857/how-does-git-review-work
 How to remove local (untracked) files from the current Git working tree
 11530
-What is the difference between 'git pull' and 'git fetch'?
+What is the difference between 'git pull' and 'git fetch'?https://stackoverflow.com/questions/27764857/how-does-git-review-work
 8641
-How do I undo 'git add' before commit?
+How do I undo 'git add' before commit?https://stackoverflow.com/questions/27764857/how-does-git-review-work
 20456
-How do I undo the most recent local commits in Git?
+How do I undo the most recent local commits in Git?https://stackoverflow.com/questions/27764857/how-does-git-review-work
 6744
-How do I force “git pull” to overwrite local files?
+How do I force “git pull” to overwrite local files?https://stackoverflow.com/questions/27764857/how-does-git-review-work
 3076
 Delete commits from a branch in Git
 16452
-How do I delete a Git branch locally and remotely?
+How do I delete a Git branch locally and remotely?https://stackoverflow.com/questions/27764857/how-does-git-review-work
 4188
-How do I push a new local branch to a remote Git repository and track it too?
+How do I push a new local branch to a remote Git repository and track it too?https://stackoverflow.com/questions/27764857/how-does-git-review-work
 7384
 How do I revert a Git repository to a previous commit?
 8110
@@ -62,7 +65,7 @@ WORKED GREAT ON DECEMBER 3, 2019
 if you haven't published any of these commits, simply reset, all tree will be lost:
 git reset --hard 0d1d7fc32
 
-
+git checkout --patch amazing_feature_branch index.html // THIS WILL MERGE A SINGLE FILE, INTERACTIVELY
 ## DANGER Will Robinson! Detached HEAD
 I solved this with the help of https://gitolite.com/detached-head.html 
 1) git branch brownie

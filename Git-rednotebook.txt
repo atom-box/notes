@@ -431,3 +431,11 @@ don't push master, push your 2ndbranch
 
 Solve a difficult merge!
 git merge origin use-ts-bot --allow-unrelated-histories
+git stash save Make fix. Add comments. Delete stuff.
+git stash save "Make fix. Add comments. Delete stuff."
+SAVE TWICE.    PICK THE HIGHEST, SQUASH THE OTHERS. SAVE. EXIT 2X      git rebase -i c0dda022a4
+git log --pretty=format:"%h %s" HEAD~17..HEAD
+git log --pretty=format:"%h %s" c0dda022a4
+PARTONE git rebase -i atom-box/consumertestingshell~3 consumertestingshell  PART2 git push atom-box +consumertestingshell
+git config -l   THIS LISTS 200 lines of your CONFIG
+git ls-files   LIST TRACKED FILENAMES

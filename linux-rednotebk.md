@@ -1,4 +1,12 @@
+PHPUNIT /srv/www $ ant phpunit-cc
+PHPUNIT phpdbg -qrr vendor/bin/phpunit src/DealExpress/OfficeDepotBundle/Tests/Consumer/CostConsumerTest.php 
+while php vendor/bin/phpunit --filter testReviseOrderTotalsNoCouponNotEditableDoesNotCallAddTotal tests/library/Doi/StoreTest.php ; do : ; done
+PHPUNIT  
+PHPUNIT 
 
+-----------------------
+aws logs filter-log-events   --log-group-name /aws/lambda/officesupply-inbound-ftp  --limit 55
+aws logs filter-log-events   --log-group-name /aws/lambda/officesupply-inbound-ftp  --start-time 1583606815
 
 sudo chown -R $USER:$USER /var/www/example.com/html  HOW TO MAKE SURE A CERTAIN USER WILL HAVE ACCESS:
 --------------------
@@ -87,3 +95,16 @@ bind;  SHIFT + CTL + UP ; goes in and out of holistic desktop
 REMOVE all newLINEs !!! tr -d "\n"
 SED to remove based on REGEX match: sed "s_pattern__g" & tr -d "\n"
 TR break on punctuation:   tr "[:punct:]"  "\n" < file.txt
+tree -I "*module*" -d -D
+tree -I  -d -D
+
+"mysql  -- If you find that the mysql output is hard to see (horizontal table structure), you can use the vertical view if you have a small number of records add a BACKSLASH G as in   "select * from orders limit 1 \G"; MYSQL
+mysql        MySQL [information_schema]> SELECT COLUMN_NAME, TABLE_NAME  FROM COLUMNS where COLUMN_NAME = "sku";
+MYSQL mysql  THIS SOLVED MY ABLE TO LOOK AT ALEX'S STORY   select TABLE_NAME, COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS     where COLUMN_NAME like '%log%'   order by TABLE_NAME\G;
+
+
+MYSQL select * from INFORMATION_SCHEMA.COLUMNS     where COLUMN_NAME like '%dc%'   order by TABLE_NAME;
+mysql Lerchs-three-table SELECT ce.*  , enl.* , p.* FROM change_event ce INNER JOIN event_note_log enl ON enl.object_id = ce.object_id INNER JOIN products p  ON p.products_id = ce.object_id WHERE ce.object_type = 'Product' LIMIT 3\G
+history SNEAKY VERSION: fc -l  #   #   
+ AWS HAS NO APT:      sudo yum install links 
+console.assert(false, %s %s %s dogs rule, adjective1, adjective2, adjective3);

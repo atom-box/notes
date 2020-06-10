@@ -108,3 +108,6 @@ mysql Lerchs-three-table SELECT ce.*  , enl.* , p.* FROM change_event ce INNER J
 history SNEAKY VERSION: fc -l  #   #   
  AWS HAS NO APT:      sudo yum install links 
 console.assert(false, %s %s %s dogs rule, adjective1, adjective2, adjective3);
+NANO; nano -liE  linenumbers, autoindent, tabstospaces
+sudo apt-get --only-upgrade install google-chrome-stable
+Branching without git start fix usually is git push -u atom-box <branchname>:<branchname> 

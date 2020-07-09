@@ -111,3 +111,24 @@ console.assert(false, %s %s %s dogs rule, adjective1, adjective2, adjective3);
 NANO; nano -liE  linenumbers, autoindent, tabstospaces
 sudo apt-get --only-upgrade install google-chrome-stable
 Branching without git start fix usually is git push -u atom-box <branchname>:<branchname> 
+git start example-branch atom-box/pr-to-assist changes the base remote and base branch to start a branch from.
+git start <branch> is a wrapper to basically:    git remote update <base remote, default "upstream">           git checkout -b <branch> <base branch, default "upstream/master">               git push -u <your repo, found it git-config> <branch>:<branch>            /// and some pivotal "I am taking this story" stuff
+select * from orders_invoices where supplier_method like 'M%Bestar%'; sqlcookbook SQLCOOKBOOK
+
+echo "Never shall I pass through Brighton on scooter (Vespa) again in this lifetime." | sed "s/[oaeiou]\{2\}/*/g"
+echo "Never shall I pass through Brighton on scooter (Vespa) again in this lifetime." | sed "s/[^aeiou]\{2\}/*/g"
+WORD BOUNDARY (ESCAPED)  echo "Selling his cool scooter (this Vespa). this." | sed "s/\<his\>/cat/g"
+SQL where-do-i-start??    dash-DOCS are searchable.   browser from "DATABASE DIAGRAMS" page in RtDs
+git stash --all save testsegregate
+my new note
+UNSTAGING AN ADD: git reset -- ../../src/DealExpress/TimeOptimizerXKCDTest.php
+99\% of the time bin/console should be run up in the STACK SSH, not locally
+SQL JOIN     select orders_id from orders join customers on customers.customers_id=orders.customers_id  where customers.tax_exempt_type=government  limit 20;
+SQL UNIQUE ROWS  select tax_exempt_type  from customers group by tax_exempt_type;    
+SED DELETE ENTIRE LINE IF FOUND CHAR!  sed '/[1-8]/d' dorfans_EDI_example.txt  
+SED DELETE BLANKLINES    cat   dogfoodblanklines.txt  | sed "/^[[:space:]]$/d" | sed "/^$/d" 
+SQL sql      select * from orders join customers on customers.customers_id=orders.customers_id where orders.date_purchased > "2019-11-07 09:32:13"  limit 20\G;
+UPDATE location_disposition SET disposition="Virtual" WHERE dc=1170 limit 4;
+mysql      UPDATE location_disposition SET disposition="Virtual" WHERE dc=1170 limit 4;
+mysql  select * from location_disposition where dc=1078  limit 2;    &&    UPDATE location_disposition SET disposition="Virtual" WHERE dc=1170 limit 4;
+SELECT column1, column2 FROM table_name ORDER BY column1, column2, ... ASC|DESC; 

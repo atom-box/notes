@@ -132,3 +132,7 @@ UPDATE location_disposition SET disposition="Virtual" WHERE dc=1170 limit 4;
 mysql      UPDATE location_disposition SET disposition="Virtual" WHERE dc=1170 limit 4;
 mysql  select * from location_disposition where dc=1078  limit 2;    &&    UPDATE location_disposition SET disposition="Virtual" WHERE dc=1170 limit 4;
 SELECT column1, column2 FROM table_name ORDER BY column1, column2, ... ASC|DESC; 
+select * from INFORMATION_SCHEMA.COLUMNS where COLUMN_NAME like '%order_id%' order by TABLE_NAME;   FIND ALL COLUMNS WITH THIS HEADER find all columns with this header
+update orders set date_purchased=curdate() where orders_id=3366811;
+sql SQL update orders set date_purchased=curdate() where orders_id=3366811;
+ROLL BACK SPURIOUS FILES AND KEEP THE ONE YOU CHANGED WELL:15135  [2020-07-24 05:45:16] git status LOOK FOR WHO CHANGED |15136  [2020-07-24 05:47:00] git add src/DealExpress/AdminBundle/Resources/views/MinimumStock/index.html.twig SAVE YOUR FAVORITE ONES|15137  [2020-07-24 05:47:53] git commit -m "Change some html values to probe the files." COMMIT IT|15138  [2020-07-24 05:48:26] git reset --hard ALL ARE WIPED CLEAN EXCEPT YOUR COMMITTEDS|15139  [2020-07-24 05:48:32] git log TO GET A HASH|15140  [2020-07-24 05:49:26] git status|15141  [2020-07-24 05:50:29] git difftool e4817e00efe3f032a THIS HASH CONFIRMED THINGS FOR MY DOUBTS|

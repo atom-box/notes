@@ -1,3 +1,5 @@
+php sniff your code:      git check-branch   && vendor/bin/phpcbf --standard=application/config/ruleset.xml that_file_name
+    symfony SYMFONY
 PHPUNIT /srv/www $ ant phpunit-cc
 PHPUNIT phpdbg -qrr vendor/bin/phpunit src/DealExpress/OfficeDepotBundle/Tests/Consumer/CostConsumerTest.php 
 while php vendor/bin/phpunit --filter testReviseOrderTotalsNoCouponNotEditableDoesNotCallAddTotal tests/library/Doi/StoreTest.php ; do : ; done
@@ -135,4 +137,6 @@ SELECT column1, column2 FROM table_name ORDER BY column1, column2, ... ASC|DESC;
 select * from INFORMATION_SCHEMA.COLUMNS where COLUMN_NAME like '%order_id%' order by TABLE_NAME;   FIND ALL COLUMNS WITH THIS HEADER find all columns with this header
 update orders set date_purchased=curdate() where orders_id=3366811;
 sql SQL update orders set date_purchased=curdate() where orders_id=3366811;
-ROLL BACK SPURIOUS FILES AND KEEP THE ONE YOU CHANGED WELL:15135  [2020-07-24 05:45:16] git status LOOK FOR WHO CHANGED |15136  [2020-07-24 05:47:00] git add src/DealExpress/AdminBundle/Resources/views/MinimumStock/index.html.twig SAVE YOUR FAVORITE ONES|15137  [2020-07-24 05:47:53] git commit -m "Change some html values to probe the files." COMMIT IT|15138  [2020-07-24 05:48:26] git reset --hard ALL ARE WIPED CLEAN EXCEPT YOUR COMMITTEDS|15139  [2020-07-24 05:48:32] git log TO GET A HASH|15140  [2020-07-24 05:49:26] git status|15141  [2020-07-24 05:50:29] git difftool e4817e00efe3f032a THIS HASH CONFIRMED THINGS FOR MY DOUBTS|
+ROLL BACK SPURIOUS FILES AND KEEP THE ONE YOU CHANGED WELL:15135  [2020-07-24 05:45:16] git status LOOK FOR WHO CHANGED |15136  [2020-07-24 05:47:00] git add src/DealExpress/AdminBundle/Resources/views/MinimumStock/index.html.twig SAVE YOUR FAVORITE ONES|15137  [2020-07-24 05:47:53] git commit -m "Change some html values to probe the files." COMMIT IT|15138  [2020-07-24 05:48:26] git reset --hard ALL ARE WIPED CLEAN EXCEPT YOUR COMMITTEDS|15139  [2020-07-24 05:48:32] git log TO GET A HASH|15140  [2020-07-24 05:49:26] git status|15141  [2020-07-24 05:50:29] git difftool e4817e00efe3f032a THIS HASH CONFIRMED THINGS FOR MY DOUBTS|git fetch ksteinmetz && git branch -a  ALLOWS YOU TO LIST ALL REMOTE GIT DIRECTORIES OF TEAM
+git fetch ksteinmetz && git branch -a && git checkout -b foo  && git merge ksteinmetz/import-process-signals-173816344 ||  ALLOWS YOU TO LIST ALL REMOTE GIT DIRECTORIES OF TEAM allows you to list remote git directories
+
